@@ -99,7 +99,7 @@ pytest tests/ -v --cov=src
 
 - [Schema PostgreSQL](docs/SCHEMA.md)
 - [API Reference](docs/API.md)
-- [SDK Documentation](docs/SDK.md)
+- [SDK Python Documentation](docs/SDK.md)
 
 ## 🔑 Features
 
