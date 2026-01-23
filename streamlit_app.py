@@ -145,7 +145,8 @@ def generate_smart_accident_data():
             gravite_prob = [p * 0.7 if i < 2 else p * 1.5 for i, p in enumerate(gravite_prob)]
             df.loc[idx, 'conditions_meteo'] = np.random.choice(['Pluie', 'Neige', 'Brouillard'])
         
-        # Données finales
+        # Données finales - Normaliser probabilités
+        gravite_prob = [p / sum(gravite_prob) for p in gravite_prob]  # Normaliser à 1.0
         df.loc[idx, 'gravite'] = np.random.choice([1, 2, 3, 4], p=gravite_prob)
         df.loc[idx, 'nombre_victimes'] = max(1, int(np.random.poisson(victimes_base)))
         df.loc[idx, 'type_route'] = np.random.choice(['Autoroute', 'RN', 'Départementale', 'Route locale'])
