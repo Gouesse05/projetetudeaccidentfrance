@@ -49,3 +49,4 @@ htmlcov/
 # Logs
 logs/
 *.log
+venv_clean/

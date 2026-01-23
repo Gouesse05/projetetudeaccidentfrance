@@ -6,6 +6,10 @@ Module d'analyses pour projet académique Data Analyst / Assurance
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+
+# 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
+# 🟨 PACKAGES À INSTALLER: pip install seaborn scipy scikit-learn 🟨
+# 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
 import seaborn as sns
 from scipy import stats
 from sklearn.cluster import KMeans, AgglomerativeClustering
@@ -13,6 +17,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression, LinearRegression
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
+# 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
+
 import warnings
 warnings.filterwarnings('ignore')
 

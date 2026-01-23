@@ -1,0 +1,64 @@
+# Render Configuration File
+# This file configures deployment on Render.com
+# Reference: https://render.com/docs/yaml-spec
+
+services:
+  - type: web
+    name: accidents-api-prod
+    env: python
+    region: frankfurt
+    plan: free
+    
+    # Build Configuration
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn src.api.main:app --host 0.0.0.0 --port $PORT
+    
+    # Repository
+    repo: https://github.com/Gouesse05/projetetudeaccidentfrance
+    branch: main
+    
+    # Auto-deploy on push
+    autoDeploy: true
+    
+    # Environment Variables (reference from PostgreSQL service)
+    envVars:
+      - key: DB_HOST
+        value: accidents-db-prod.c99xyz.postgres.render.com
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_NAME
+        value: accidents_db
+      - key: DB_USER
+        fromService:
+          name: accidents-db-prod
+          type: pserv
+          property: username
+      - key: DB_PASSWORD
+        fromService:
+          name: accidents-db-prod
+          type: pserv
+          property: password
+      - key: API_HOST
+        value: "0.0.0.0"
+      - key: ENVIRONMENT
+        value: production
+      - key: LOG_LEVEL
+        value: INFO
+    
+    # Health Check
+    healthCheckPath: /api/v1/health
+    healthCheckInterval: 60
+    
+    # Scaling
+    numInstances: 1
+    maxNumInstances: 3
+    
+    # Timeouts
+    buildTimeoutMinutes: 30
+    deployTimeoutMinutes: 10
+
+databases:
+  - name: accidents-db-prod
+    plan: free
+    region: frankfurt
+    ipAllowList: []  # Allow all IPs

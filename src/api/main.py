@@ -20,6 +20,7 @@ from datetime import datetime
 import os
 
 from src.api.routes import router as api_router
+from src.api.analysis_endpoints import router as analysis_router
 from src.config import API_HOST, API_PORT
 
 # ============================================================================
@@ -203,6 +204,7 @@ async def general_exception_handler(request: Request, exc: Exception):
 # ============================================================================
 
 app.include_router(api_router)
+app.include_router(analysis_router)
 
 
 # ============================================================================
