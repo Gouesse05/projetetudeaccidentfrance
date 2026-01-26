@@ -77,14 +77,13 @@ CUSTOM_CSS = """
         font-weight: 300;
     }
 
-    /* SIDEBAR STYLING */
+    /* SIDEBAR STYLING - MINIMAL */
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #7B3FF2 0%, #6A2FD9 100%);
         padding: 20px;
     }
 
     [data-testid="stSidebar"] .stMarkdown {
-        color: white;
+        color: inherit;
     }
 
     [data-testid="stSidebar"] .stSelectbox, 
@@ -93,73 +92,22 @@ CUSTOM_CSS = """
         margin-bottom: 20px;
     }
     
-    /* Labels avec fond noir et texte blanc */
     [data-testid="stSidebar"] label {
-        background-color: #000000 !important;
-        color: #FFFFFF !important;
-        font-weight: 600 !important;
-        font-size: 14px !important;
-        padding: 8px 12px !important;
-        border-radius: 6px !important;
-        display: inline-block !important;
-        margin-bottom: 8px !important;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        color: inherit !important;
+        font-weight: normal !important;
+        font-size: inherit !important;
     }
     
-    /* Titres et heading */
-    [data-testid="stSidebar"] h1,
-    [data-testid="stSidebar"] h2,
-    [data-testid="stSidebar"] h3 {
-        background-color: #000000 !important;
-        color: #FFFFFF !important;
-        padding: 10px 12px !important;
-        border-radius: 6px !important;
-        margin-bottom: 10px !important;
-    }
-    
-    /* Inputs et placeholders */
     [data-testid="stSidebar"] input,
     [data-testid="stSidebar"] select,
     [data-testid="stSidebar"] textarea {
-        background-color: #000000 !important;
-        color: #FFFFFF !important;
-        border: 2px solid #FFFFFF !important;
-        border-radius: 6px !important;
+        color: inherit !important;
+        background-color: inherit !important;
+        border: inherit !important;
     }
 
-    [data-testid="stSidebar"] input::placeholder,
-    [data-testid="stSidebar"] textarea::placeholder {
-        color: #CCCCCC !important;
-    }
-
-    /* Selectbox et multiselect */
-    [data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] {
-        background-color: #000000 !important;
-    }
-
-    [data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] input {
-        background-color: #000000 !important;
-        color: #FFFFFF !important;
-    }
-
-    [data-testid="stSidebar"] .stMultiSelect div[data-baseweb="multi_select"] {
-        background-color: #000000 !important;
-    }
-
-    /* Boutons */
     [data-testid="stSidebar"] .stButton > button {
-        background: linear-gradient(135deg, #FF6B6B 0%, #E74C3C 100%);
-        color: white !important;
-        font-weight: 600 !important;
-        border: none !important;
-        border-radius: 8px !important;
-        padding: 12px 20px !important;
         transition: all 0.3s ease;
-    }
-
-    [data-testid="stSidebar"] .stButton > button:hover {
-        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4) !important;
-        transform: translateY(-2px) !important;
     }
 
     /* CARDS & CONTAINERS */
