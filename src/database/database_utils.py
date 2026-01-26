@@ -75,7 +75,7 @@ class DatabaseManager:
                 user=self.config['user'],
                 password=self.config['password']
             )
-            logger.info(f"✓ Pool PostgreSQL créé (size={self.pool_size})")
+            logger.info(f" Pool PostgreSQL créé (size={self.pool_size})")
         except Error as e:
             logger.error(f"Erreur création pool: {e}")
             raise
@@ -500,11 +500,11 @@ if __name__ == '__main__':
     print(db.generate_data_report())
     
     # Afficher communes les plus dangereuses
-    print("\n📍 TOP 10 COMMUNES LES PLUS DANGEREUSES:")
+    print("\n TOP 10 COMMUNES LES PLUS DANGEREUSES:")
     print(db.get_stats_communes(limit=10).to_string())
     
     # Afficher scores danger
-    print("\n⚠️ TOP 10 SCORES DE DANGER:")
+    print("\n TOP 10 SCORES DE DANGER:")
     print(db.get_danger_scores(limit=10).to_string())
     
     db.close_pool()

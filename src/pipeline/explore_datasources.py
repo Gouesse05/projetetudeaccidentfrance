@@ -9,7 +9,7 @@ from typing import List, Dict
 def explore_datasets():
     """Explore les datasets accidents routiers sur data.gouv.fr"""
     
-    print("🔍 Exploration des datasets accidents routiers...\n")
+    print(" Exploration des datasets accidents routiers...\n")
     
     # API data.gouv.fr
     api_url = "https://www.data.gouv.fr/api/1/datasets"
@@ -27,7 +27,7 @@ def explore_datasets():
         data = response.json()
         datasets = data.get("data", [])
         
-        print(f"📊 {len(datasets)} datasets trouvés\n")
+        print(f" {len(datasets)} datasets trouvés\n")
         print("=" * 80)
         
         for i, dataset in enumerate(datasets, 1):
@@ -50,14 +50,14 @@ def explore_datasets():
         return datasets
         
     except Exception as e:
-        print(f"❌ Erreur lors de l'exploration: {e}")
+        print(f" Erreur lors de l'exploration: {e}")
         return []
 
 
 def get_securite_routiere_datasets():
     """Récupère spécifiquement les datasets de la Sécurité Routière"""
     
-    print("\n🚗 Recherche datasets Sécurité Routière...\n")
+    print("\n Recherche datasets Sécurité Routière...\n")
     
     # Utiliser l'organisation "Securite-Routiere"
     api_url = "https://www.data.gouv.fr/api/1/organizations/securite-routiere/datasets"
@@ -69,10 +69,10 @@ def get_securite_routiere_datasets():
         data = response.json()
         datasets = data.get("data", [])
         
-        print(f"📊 {len(datasets)} datasets trouvés de Sécurité Routière\n")
+        print(f" {len(datasets)} datasets trouvés de Sécurité Routière\n")
         
         for dataset in datasets:
-            print(f"📁 {dataset.get('title')}")
+            print(f" {dataset.get('title')}")
             print(f"   ID: {dataset.get('id')}")
             print(f"   Slug: {dataset.get('slug')}")
             print(f"   Resources: {len(dataset.get('resources', []))}")
@@ -86,14 +86,14 @@ def get_securite_routiere_datasets():
         return datasets
         
     except Exception as e:
-        print(f"❌ Erreur: {e}")
+        print(f" Erreur: {e}")
         return []
 
 
 def get_accidents_data_urls():
     """Récupère les URLs des données d'accidents"""
     
-    print("\n🎯 Récupération des URLs de données d'accidents...\n")
+    print("\n Récupération des URLs de données d'accidents...\n")
     
     # URLs connues des données d'accidents (à mettre à jour)
     urls = {
@@ -108,10 +108,10 @@ def get_accidents_data_urls():
         
         resources = response.json().get("data", [])
         
-        print(f"📦 {len(resources)} ressources trouvées\n")
+        print(f" {len(resources)} ressources trouvées\n")
         
         for res in resources:
-            print(f"📄 {res.get('title')}")
+            print(f" {res.get('title')}")
             print(f"   Format: {res.get('format')}")
             print(f"   Taille: {res.get('filesize', 'N/A')} bytes")
             print(f"   Mise à jour: {res.get('last_modified')}")
@@ -120,13 +120,13 @@ def get_accidents_data_urls():
         return resources
         
     except Exception as e:
-        print(f"❌ Erreur: {e}")
+        print(f" Erreur: {e}")
         return []
 
 
 if __name__ == "__main__":
     print("=" * 80)
-    print("🔍 EXPLORATION SOURCES DE DONNÉES - ACCIDENTS ROUTIERS")
+    print(" EXPLORATION SOURCES DE DONNÉES - ACCIDENTS ROUTIERS")
     print("=" * 80)
     
     # 1. Exploration générale
@@ -139,5 +139,5 @@ if __name__ == "__main__":
     get_accidents_data_urls()
     
     print("\n" + "=" * 80)
-    print("✅ Exploration terminée")
+    print(" Exploration terminée")
     print("=" * 80)

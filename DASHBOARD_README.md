@@ -1,10 +1,10 @@
-# 📊 Streamlit Dashboard - Accidents Routiers
+#  Streamlit Dashboard - Accidents Routiers
 
 Interactive visualization dashboard for accident data analysis.
 
 ---
 
-## 🚀 Démarrage rapide
+##  Démarrage rapide
 
 ### Option 1: Script bash
 ```bash
@@ -22,27 +22,27 @@ streamlit run streamlit_app.py
 
 ---
 
-## 📄 Pages du Dashboard
+##  Pages du Dashboard
 
-### 1. 🏠 Accueil
+### 1.  Accueil
 - Vue d'ensemble du projet
 - Métriques clés
 - Architecture
 - Instructions démarrage
 
-### 2. 📊 Données
+### 2.  Données
 - Exploration des données
 - Aperçu et statistiques
 - Distributions des variables
 - Histogrammes interactifs
 
-### 3. 📈 Statistiques
+### 3.  Statistiques
 - Matrice de corrélation heatmap
 - Corrélations entre variables
 - Statistiques par catégorie
 - Analyse descriptive
 
-### 4. 🤖 Machine Learning
+### 4.  Machine Learning
 - Feature importance
 - Résultats Random Forest
 - Métriques de performance:
@@ -51,7 +51,7 @@ streamlit run streamlit_app.py
   - Recall
   - F1 Score
 
-### 5. 🔍 Dimensionalité
+### 5.  Dimensionalité
 - Analyse PCA
 - Variance expliquée
 - K-Means clustering
@@ -59,17 +59,17 @@ streamlit run streamlit_app.py
 
 ---
 
-## 🛠 Fonctionnalités
+##  Fonctionnalités
 
-✅ **Responsive Design** - S'adapte à tous les écrans  
-✅ **Interactive Charts** - Plotly pour les graphiques interactifs  
-✅ **Cached Data** - Performance optimisée  
-✅ **Real-time Updates** - Rafraîchissement instant  
-✅ **Sidebar Navigation** - Navigation facile  
+ **Responsive Design** - S'adapte à tous les écrans  
+ **Interactive Charts** - Plotly pour les graphiques interactifs  
+ **Cached Data** - Performance optimisée  
+ **Real-time Updates** - Rafraîchissement instant  
+ **Sidebar Navigation** - Navigation facile  
 
 ---
 
-## 📦 Dépendances
+##  Dépendances
 
 ```
 streamlit>=1.28.0
@@ -86,7 +86,7 @@ pip install streamlit plotly
 
 ---
 
-## 🎨 Customization
+##  Customization
 
 ### Changer les couleurs
 Éditer le CSS custom au début de `streamlit_app.py`:
@@ -108,7 +108,7 @@ st.markdown("""
 
 ---
 
-## 🔗 Intégration avec API
+##  Intégration avec API
 
 Le dashboard peut être connecté à l'API FastAPI:
 
@@ -121,7 +121,7 @@ data = response.json()
 
 ---
 
-## 📊 Données de Test
+##  Données de Test
 
 Le dashboard utilise actuellement des données aléatoires pour démonstration.
 
@@ -134,7 +134,7 @@ df = load_accident_data('data/raw')
 
 ---
 
-## 🚀 Déploiement
+##  Déploiement
 
 ### Streamlit Cloud
 ```bash
@@ -157,7 +157,7 @@ Connecter le repo à Streamlit Cloud
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Port déjà utilisé
 ```bash
@@ -178,7 +178,7 @@ pip install -r requirements.txt
 
 ---
 
-## 📝 Notes
+##  Notes
 
 - Données actuellement aléatoires (pour démo)
 - À connecter avec données réelles du pipeline
@@ -187,4 +187,4 @@ pip install -r requirements.txt
 
 ---
 
-**Status**: ✅ Phase 5 - Production Ready
+**Status**:  Phase 5 - Production Ready

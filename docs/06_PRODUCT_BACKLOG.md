@@ -1,11 +1,11 @@
-# 📦 PRODUCT BACKLOG
+#  PRODUCT BACKLOG
 
 ## Plateforme d'Analyse des Accidents Routiers
 
 **Version**: 2.0  
 **Date**: 26 Janvier 2026  
 **Product Owner**: Business Analysis Team  
-**Statut**: ✅ Phase 5 Complete, Phase 6 Planifiée
+**Statut**:  Phase 5 Complete, Phase 6 Planifiée
 
 ---
 
@@ -13,63 +13,63 @@
 
 ```
 PHASE 5 (ACTUELLE)       | STATUS    | COMPLETION
-─────────────────────────────────────────────────
-Infrastructure           | ✅ DONE   | 100%
-API REST                 | ✅ DONE   | 100%
-Dashboard Streamlit      | ✅ DONE   | 100%
-Tests & QA              | ✅ DONE   | 100%
-Documentation BA        | 🔄 DOING  | 90%
-GitHub Deployment       | ✅ DONE   | 100%
-─────────────────────────────────────────────────
+
+Infrastructure           |  DONE   | 100%
+API REST                 |  DONE   | 100%
+Dashboard Streamlit      |  DONE   | 100%
+Tests & QA              |  DONE   | 100%
+Documentation BA        |  DOING  | 90%
+GitHub Deployment       |  DONE   | 100%
+
 
 PHASE 6 (Q2 2026)        | STATUS    | TIMEFRAME
-─────────────────────────────────────────────────
+
 Real Data Integration   | ⏳ PLANNED | Apr-Jun
 ML Predictions         | ⏳ PLANNED | May-Jun
 Cloud Deployment       | ⏳ PLANNED | Jun
-─────────────────────────────────────────────────
+
 ```
 
 ---
 
 ## BACKLOG GLOBAL (25 items)
 
-### ✅ DONE (Phase 5) - 20 items
+###  DONE (Phase 5) - 20 items
 
 | ID | Title | Epic | Points | Status |
 |----|-------|------|--------|--------|
-| US-001 | Dashboard KPIs | EPIC-001 | 5 | ✅ |
-| US-002 | Filtres Avancés | EPIC-001 | 8 | ✅ |
-| US-003 | Onglets Analyse | EPIC-001 | 13 | ✅ |
-| US-004 | Graphiques Plotly | EPIC-001 | 5 | ✅ |
-| US-005 | Mise à Jour Dynamique | EPIC-001 | 3 | ✅ |
-| US-006 | Classe d'Âge | EPIC-002 | 5 | ✅ |
-| US-007 | Genre Analysis | EPIC-002 | 3 | ✅ |
-| US-008 | Expérience Conducteur | EPIC-002 | 5 | ✅ |
-| US-009 | Coûts Assurance | EPIC-002 | 8 | ✅ |
-| US-010 | Profil Accident Grave | EPIC-002 | 5 | ✅ |
-| US-011 | Alcool vs Gravité | EPIC-003 | 5 | ✅ |
-| US-012 | Luminosité Analysis | EPIC-003 | 4 | ✅ |
-| US-013 | Météo Analysis | EPIC-003 | 4 | ✅ |
-| US-014 | Interprétations Auto | EPIC-003 | 5 | ✅ |
-| US-015 | Recommandations | EPIC-003 | 5 | ✅ |
-| US-016 | Pipeline ETL | EPIC-004 | 13 | ✅ |
-| US-017 | Analyses Stats | EPIC-004 | 8 | ✅ |
-| US-018 | Machine Learning | EPIC-004 | 8 | ✅ |
-| US-019 | API REST | EPIC-004 | 13 | ✅ |
-| US-020 | Tests Unitaires | EPIC-004 | 8 | ✅ |
+| US-001 | Dashboard KPIs | EPIC-001 | 5 |  |
+| US-002 | Filtres Avancés | EPIC-001 | 8 |  |
+| US-003 | Onglets Analyse | EPIC-001 | 13 |  |
+| US-004 | Graphiques Plotly | EPIC-001 | 5 |  |
+| US-005 | Mise à Jour Dynamique | EPIC-001 | 3 |  |
+| US-006 | Classe d'Âge | EPIC-002 | 5 |  |
+| US-007 | Genre Analysis | EPIC-002 | 3 |  |
+| US-008 | Expérience Conducteur | EPIC-002 | 5 |  |
+| US-009 | Coûts Assurance | EPIC-002 | 8 |  |
+| US-010 | Profil Accident Grave | EPIC-002 | 5 |  |
+| US-011 | Alcool vs Gravité | EPIC-003 | 5 |  |
+| US-012 | Luminosité Analysis | EPIC-003 | 4 |  |
+| US-013 | Météo Analysis | EPIC-003 | 4 |  |
+| US-014 | Interprétations Auto | EPIC-003 | 5 |  |
+| US-015 | Recommandations | EPIC-003 | 5 |  |
+| US-016 | Pipeline ETL | EPIC-004 | 13 |  |
+| US-017 | Analyses Stats | EPIC-004 | 8 |  |
+| US-018 | Machine Learning | EPIC-004 | 8 |  |
+| US-019 | API REST | EPIC-004 | 13 |  |
+| US-020 | Tests Unitaires | EPIC-004 | 8 |  |
 
-**Total Phase 5**: 20 US | 135 points | ✅ 100% Done
+**Total Phase 5**: 20 US | 135 points |  100% Done
 
 ---
 
-### 🟡 NEXT SPRINT (Phase 6 Early) - 5 items
+###  NEXT SPRINT (Phase 6 Early) - 5 items
 
 #### US-021: Intégrer Données Réelles DGCN
 
 **ID**: US-021  
 **Epic**: EPIC-005 (New: Data Integration)  
-**Priorité**: 🔴 CRITIQUE  
+**Priorité**:  CRITIQUE  
 **Points Story**: 13  
 **Timeframe**: Apr 2026  
 **Status**: ⏳ BACKLOG  
@@ -101,7 +101,7 @@ Remplacer données simulées par vraies données du Gouvernement français (DGCN
 
 **ID**: US-022  
 **Epic**: EPIC-006 (New: Predictive Analytics)  
-**Priorité**: 🟡 HAUTE  
+**Priorité**:  HAUTE  
 **Points Story**: 13  
 **Timeframe**: May 2026  
 **Status**: ⏳ BACKLOG  
@@ -137,7 +137,7 @@ Implémenter model ML prédisant la gravité d'un accident basé sur conditions.
 
 **ID**: US-023  
 **Epic**: EPIC-001 (Extended)  
-**Priorité**: 🟡 HAUTE  
+**Priorité**:  HAUTE  
 **Points Story**: 8  
 **Timeframe**: May 2026  
 **Status**: ⏳ BACKLOG  
@@ -169,7 +169,7 @@ Permettre export des analyses en rapports PDF professionnels.
 
 **ID**: US-024  
 **Epic**: EPIC-07 (New: Monitoring)  
-**Priorité**: 🟡 HAUTE  
+**Priorité**:  HAUTE  
 **Points Story**: 8  
 **Timeframe**: Jun 2026  
 **Status**: ⏳ BACKLOG  
@@ -194,7 +194,7 @@ Système d'alertes detekant anomalies en données ou prédictions.
 
 **ID**: US-025  
 **Epic**: EPIC-08 (New: Mobile)  
-**Priorité**: 🟢 BASSE  
+**Priorité**:  BASSE  
 **Points Story**: 21  
 **Timeframe**: H2 2026  
 **Status**: ⏳ BACKLOG  
@@ -219,28 +219,28 @@ Application mobile (iOS/Android) pour consultations dashboard.
 
 ## BACKLOG DÉTAILLÉ (Priorité)
 
-### 🔴 CRITIQUE (Must Have)
+###  CRITIQUE (Must Have)
 
 ```
-✅ US-001 → US-020: Phase 5 (DONE)
-🟡 US-021: Real Data Integration (NEXT)
-🟡 US-022: ML Predictions (NEXT)
+ US-001 → US-020: Phase 5 (DONE)
+ US-021: Real Data Integration (NEXT)
+ US-022: ML Predictions (NEXT)
 ```
 
-### 🟡 HAUTE (Should Have)
+###  HAUTE (Should Have)
 
 ```
-🟡 US-023: Export PDF
-🟡 US-024: Alertes Anomalies
+ US-023: Export PDF
+ US-024: Alertes Anomalies
 ⏳ Refacto Filtering Logic (Code Quality)
 ⏳ CI/CD Pipeline GitHub Actions (DevOps)
 ⏳ Performance Optimization (Speed)
 ```
 
-### 🟢 BASSE (Nice To Have)
+###  BASSE (Nice To Have)
 
 ```
-🟢 US-025: Mobile App
+ US-025: Mobile App
 ⏳ Internationalisation (i18n)
 ⏳ Dark Mode
 ⏳ Custom Dashboards (User Builder)
@@ -255,7 +255,7 @@ Application mobile (iOS/Android) pour consultations dashboard.
 
 | Item | Bloqueur | Status |
 |------|----------|--------|
-| US-021 | API DGCN auth access | ✅ Obtenu (pending) |
+| US-021 | API DGCN auth access |  Obtenu (pending) |
 | US-024 | Email service config | ⏳ TBD |
 | US-025 | Mobile development env | ⏳ TBD |
 
@@ -266,11 +266,11 @@ Application mobile (iOS/Android) pour consultations dashboard.
 ### Velocity Historical
 
 ```
-Sprint 1 (Semaine 1-2): 25 points ✅
-Sprint 2 (Semaine 3-4): 25 points ✅
-Sprint 3 (Semaine 5-6): 30 points ✅
-Sprint 4 (Semaine 7-8): 30 points ✅
-──────────────────────────────────
+Sprint 1 (Semaine 1-2): 25 points 
+Sprint 2 (Semaine 3-4): 25 points 
+Sprint 3 (Semaine 5-6): 30 points 
+Sprint 4 (Semaine 7-8): 30 points 
+
 Average Velocity: 27.5 points/2-week sprint
 ```
 
@@ -282,7 +282,7 @@ Sprint 6 (Apr 16-30):  25 points (US-021 fin, US-023 fin)
 Sprint 7 (May 1-15):   30 points (US-022, US-024 start)
 Sprint 8 (May 16-31):  30 points (US-024 fin)
 Sprint 9 (Jun 1-15):   25 points (Buffer, refinements)
-──────────────────────────────────────────────────────
+
 Total Phase 6: ~135 points (5 epics)
 Duration: 4.5 months (realistic)
 ```
@@ -292,20 +292,20 @@ Duration: 4.5 months (realistic)
 ## RELEASE PLAN
 
 ### Release 1.0 (Current - January 2026)
-✅ Dashboard Streamlit complet  
-✅ API REST 25+ endpoints  
-✅ Infrastructure robuste  
-✅ Tests & documentation  
+ Dashboard Streamlit complet  
+ API REST 25+ endpoints  
+ Infrastructure robuste  
+ Tests & documentation  
 
-**Features**: 20 US | 135 points | ✅ SHIPPED
+**Features**: 20 US | 135 points |  SHIPPED
 
 ---
 
 ### Release 2.0 (Target: June 2026)
-🔄 Real data integration  
-🔄 ML predictions (gravité)  
-🔄 Export PDF rapports  
-🔄 Alertes anomalies  
+ Real data integration  
+ ML predictions (gravité)  
+ Export PDF rapports  
+ Alertes anomalies  
 
 **Target Features**: 5 US | 52 points | ETA: Q2 2026
 
@@ -367,7 +367,7 @@ Duration: 4.5 months (realistic)
 
 **Approuvé par**: Product Owner  
 **Reviewé par**: Engineering Lead  
-**Statut**: ✅ FINAL - ACTIVE
+**Statut**:  FINAL - ACTIVE
 
 ---
 

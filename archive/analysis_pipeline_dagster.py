@@ -76,7 +76,7 @@ REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 )
 def load_and_clean_data(context) -> dict:
     """Charge et nettoie les données d'accidents."""
-    context.log.info("🔄 Chargement et nettoyage des données...")
+    context.log.info(" Chargement et nettoyage des données...")
     
     try:
         data = clean_all_data()
@@ -88,11 +88,11 @@ def load_and_clean_data(context) -> dict:
             "status": "success"
         }
         
-        context.log.info(f"✅ Données chargées: {len(data)} lignes")
+        context.log.info(f" Données chargées: {len(data)} lignes")
         return result
         
     except Exception as e:
-        context.log.error(f"❌ Erreur lors du chargement: {str(e)}")
+        context.log.error(f" Erreur lors du chargement: {str(e)}")
         raise
 
 
@@ -102,7 +102,7 @@ def load_and_clean_data(context) -> dict:
 )
 def statistical_analysis_op(context, cleaned_data: dict) -> dict:
     """Effectue l'analyse statistique."""
-    context.log.info("📊 Exécution de l'analyse statistique...")
+    context.log.info(" Exécution de l'analyse statistique...")
     
     try:
         data = cleaned_data["data"]
@@ -124,11 +124,11 @@ def statistical_analysis_op(context, cleaned_data: dict) -> dict:
         with open(report_path, 'w') as f:
             json.dump(report, f, indent=2, default=str)
         
-        context.log.info(f"✅ Analyse statistique complète - Rapport sauvegardé: {report_path}")
+        context.log.info(f" Analyse statistique complète - Rapport sauvegardé: {report_path}")
         return report
         
     except Exception as e:
-        context.log.error(f"❌ Erreur lors de l'analyse statistique: {str(e)}")
+        context.log.error(f" Erreur lors de l'analyse statistique: {str(e)}")
         raise
 
 
@@ -138,7 +138,7 @@ def statistical_analysis_op(context, cleaned_data: dict) -> dict:
 )
 def dimensionality_analysis_op(context, cleaned_data: dict) -> dict:
     """Effectue l'analyse dimensionnelle."""
-    context.log.info("🔍 Exécution de l'analyse dimensionnelle...")
+    context.log.info(" Exécution de l'analyse dimensionnelle...")
     
     try:
         data = cleaned_data["data"]
@@ -175,11 +175,11 @@ def dimensionality_analysis_op(context, cleaned_data: dict) -> dict:
         with open(kmeans_path, 'wb') as f:
             pickle.dump(kmeans_result['model'], f)
         
-        context.log.info(f"✅ Analyse dimensionnelle complète - Modèles sauvegardés")
+        context.log.info(f" Analyse dimensionnelle complète - Modèles sauvegardés")
         return results
         
     except Exception as e:
-        context.log.error(f"❌ Erreur lors de l'analyse dimensionnelle: {str(e)}")
+        context.log.error(f" Erreur lors de l'analyse dimensionnelle: {str(e)}")
         raise
 
 
@@ -189,7 +189,7 @@ def dimensionality_analysis_op(context, cleaned_data: dict) -> dict:
 )
 def machine_learning_op(context, cleaned_data: dict) -> dict:
     """Effectue l'apprentissage automatique."""
-    context.log.info("🤖 Exécution de l'apprentissage automatique...")
+    context.log.info(" Exécution de l'apprentissage automatique...")
     
     try:
         data = cleaned_data["data"]
@@ -227,11 +227,11 @@ def machine_learning_op(context, cleaned_data: dict) -> dict:
             "timestamp": datetime.now().isoformat()
         }
         
-        context.log.info("✅ Apprentissage automatique complète")
+        context.log.info(" Apprentissage automatique complète")
         return results
         
     except Exception as e:
-        context.log.error(f"❌ Erreur lors de l'apprentissage automatique: {str(e)}")
+        context.log.error(f" Erreur lors de l'apprentissage automatique: {str(e)}")
         raise
 
 
@@ -252,7 +252,7 @@ def generate_summary_report(
     ml_analysis: dict
 ) -> dict:
     """Génère un rapport récapitulatif."""
-    context.log.info("📝 Génération du rapport récapitulatif...")
+    context.log.info(" Génération du rapport récapitulatif...")
     
     try:
         summary = {
@@ -280,11 +280,11 @@ def generate_summary_report(
         with open(report_path, 'w') as f:
             json.dump(summary, f, indent=2, default=str)
         
-        context.log.info(f"✅ Rapport sauvegardé: {report_path}")
+        context.log.info(f" Rapport sauvegardé: {report_path}")
         return summary
         
     except Exception as e:
-        context.log.error(f"❌ Erreur lors de la génération du rapport: {str(e)}")
+        context.log.error(f" Erreur lors de la génération du rapport: {str(e)}")
         raise
 
 

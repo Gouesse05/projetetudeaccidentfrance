@@ -23,7 +23,7 @@ def backup_local_db(db_host: str, db_user: str, db_name: str, output_file: str =
     
     Path(output_file).parent.mkdir(exist_ok=True)
     
-    print(f"📦 Backing up local database to {output_file}...")
+    print(f" Backing up local database to {output_file}...")
     
     try:
         result = subprocess.run([
@@ -36,15 +36,15 @@ def backup_local_db(db_host: str, db_user: str, db_name: str, output_file: str =
             '-f', output_file
         ], check=True, capture_output=True, text=True)
         
-        print(f"✅ Backup completed: {output_file}")
+        print(f" Backup completed: {output_file}")
         return output_file
     except subprocess.CalledProcessError as e:
-        print(f"❌ Backup failed: {e.stderr}")
+        print(f" Backup failed: {e.stderr}")
         return None
 
 def restore_render_db(db_url: str, dump_file: str):
     """Restore PostgreSQL dump vers Render"""
-    print(f"📥 Restoring backup to Render ({dump_file})...")
+    print(f" Restoring backup to Render ({dump_file})...")
     
     try:
         result = subprocess.run([
@@ -54,15 +54,15 @@ def restore_render_db(db_url: str, dump_file: str):
             '-v', 'ON_ERROR_STOP=1'
         ], check=True, capture_output=True, text=True)
         
-        print(f"✅ Restore completed")
+        print(f" Restore completed")
         return True
     except subprocess.CalledProcessError as e:
-        print(f"❌ Restore failed: {e.stderr}")
+        print(f" Restore failed: {e.stderr}")
         return False
 
 def load_data_from_csvs(db_host: str, db_user: str, db_name: str, db_password: str):
     """Load data from Phase 1 CSVs usando PostgreSQLLoader"""
-    print(f"📊 Loading data from CSVs to {db_host}...")
+    print(f" Loading data from CSVs to {db_host}...")
     
     try:
         from src.database.load_postgresql import PostgreSQLLoader
@@ -91,15 +91,15 @@ def load_data_from_csvs(db_host: str, db_user: str, db_name: str, db_password: s
         print("Loading vehicles...")
         loader.load_vehicles(f"{DATA_DIR}/vehicules.csv")
         
-        print("✅ Data loaded successfully")
+        print(" Data loaded successfully")
         return True
     except Exception as e:
-        print(f"❌ Data loading failed: {e}")
+        print(f" Data loading failed: {e}")
         return False
 
 def verify_migration(db_host: str, db_user: str, db_name: str, db_password: str):
     """Verify data migration"""
-    print(f"🔍 Verifying migration to {db_host}...")
+    print(f" Verifying migration to {db_host}...")
     
     try:
         import psycopg2
@@ -119,33 +119,33 @@ def verify_migration(db_host: str, db_user: str, db_name: str, db_password: str)
             WHERE table_schema = 'public'
         """)
         tables = cursor.fetchone()[0]
-        print(f"  📋 Tables: {tables}")
+        print(f"   Tables: {tables}")
         
         # Check data
         cursor.execute("SELECT COUNT(*)::int FROM accidents")
         accidents = cursor.fetchone()[0]
-        print(f"  🚗 Accidents: {accidents:,}")
+        print(f"   Accidents: {accidents:,}")
         
         cursor.execute("SELECT COUNT(*)::int FROM usagers")
         usagers = cursor.fetchone()[0]
-        print(f"  👤 Usagers: {usagers:,}")
+        print(f"   Usagers: {usagers:,}")
         
         cursor.execute("SELECT COUNT(*)::int FROM vehicules")
         vehicles = cursor.fetchone()[0]
-        print(f"  🚕 Vehicles: {vehicles:,}")
+        print(f"   Vehicles: {vehicles:,}")
         
         cursor.close()
         conn.close()
         
         if accidents > 0 and usagers > 0 and vehicles > 0:
-            print(f"✅ Migration verified successfully")
+            print(f" Migration verified successfully")
             return True
         else:
-            print(f"⚠️  Some tables are empty")
+            print(f"  Some tables are empty")
             return False
             
     except Exception as e:
-        print(f"❌ Verification failed: {e}")
+        print(f" Verification failed: {e}")
         return False
 
 def main():
@@ -191,7 +191,7 @@ def main():
     
     args = parser.parse_args()
     
-    print("🚀 PostgreSQL Migration Tool")
+    print(" PostgreSQL Migration Tool")
     print("=" * 50)
     
     if args.action == 'backup':
@@ -199,13 +199,13 @@ def main():
     
     elif args.action == 'restore':
         if not args.render_db:
-            print("❌ --render-db required for restore action")
+            print(" --render-db required for restore action")
             sys.exit(1)
         restore_render_db(args.render_db, args.local_db)
     
     elif args.action == 'load':
         if not args.db_password:
-            print("❌ --db-password required for load action")
+            print(" --db-password required for load action")
             sys.exit(1)
         load_data_from_csvs(
             args.render_db or args.local_db,
@@ -216,7 +216,7 @@ def main():
     
     elif args.action == 'verify':
         if not args.db_password:
-            print("❌ --db-password required for verify action")
+            print(" --db-password required for verify action")
             sys.exit(1)
         verify_migration(
             args.render_db or args.local_db,

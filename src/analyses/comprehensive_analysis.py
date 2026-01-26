@@ -7,9 +7,9 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
-# 🟨 PACKAGES À INSTALLER: pip install seaborn scipy scikit-learn 🟨
-# 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
+# 
+#  PACKAGES À INSTALLER: pip install seaborn scipy scikit-learn 
+# 
 import seaborn as sns
 from scipy import stats
 from sklearn.cluster import KMeans, AgglomerativeClustering
@@ -17,7 +17,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression, LinearRegression
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
-# 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
+# 
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -60,7 +60,7 @@ class AnalysesAccidents:
             Dict avec statistiques
         """
         print("\n" + "="*80)
-        print("📊 ANALYSE UNIVARIÉE - ÉVOLUTION TEMPORELLE")
+        print(" ANALYSE UNIVARIÉE - ÉVOLUTION TEMPORELLE")
         print("="*80)
         
         # Par année
@@ -69,7 +69,7 @@ class AnalysesAccidents:
             'nbp': 'sum'  # nombre de personnes
         }).rename(columns={'Num_Acc': 'nombre_accidents', 'nbp': 'nombre_personnes'})
         
-        print("\n📈 Accidents par année:")
+        print("\n Accidents par année:")
         print(accidents_par_an)
         
         # Par mois
@@ -77,7 +77,7 @@ class AnalysesAccidents:
             'Num_Acc': 'count'
         }).rename(columns={'Num_Acc': 'nombre_accidents'})
         
-        print("\n📅 Accidents par mois:")
+        print("\n Accidents par mois:")
         print(accidents_par_mois)
         
         return {
@@ -93,7 +93,7 @@ class AnalysesAccidents:
             DataFrame avec distribution
         """
         print("\n" + "="*80)
-        print("💀 ANALYSE UNIVARIÉE - GRAVITÉ DES ACCIDENTS")
+        print(" ANALYSE UNIVARIÉE - GRAVITÉ DES ACCIDENTS")
         print("="*80)
         
         gravite_dist = self.df_accidents['grav'].value_counts().sort_index()
@@ -120,7 +120,7 @@ class AnalysesAccidents:
         Analyse bivariée: gravité par jour de la semaine
         """
         print("\n" + "="*80)
-        print("🚗 ANALYSE BIVARIÉE - GRAVITÉ PAR JOUR")
+        print(" ANALYSE BIVARIÉE - GRAVITÉ PAR JOUR")
         print("="*80)
         
         jours_noms = {1: 'Lundi', 2: 'Mardi', 3: 'Mercredi', 4: 'Jeudi', 
@@ -137,12 +137,12 @@ class AnalysesAccidents:
         
         # Test du Chi-2
         chi2, p_val = stats.chi2_contingency(crosstab.iloc[:-1, :-1])[:2]
-        print(f"\n🔬 Chi-2: {chi2:.2f}, p-value: {p_val:.4f}")
+        print(f"\n Chi-2: {chi2:.2f}, p-value: {p_val:.4f}")
         
         if p_val < 0.05:
-            print("   ✓ Relation SIGNIFICATIVE entre jour et gravité")
+            print("    Relation SIGNIFICATIVE entre jour et gravité")
         else:
-            print("   ✗ Pas de relation significative")
+            print("    Pas de relation significative")
         
         return crosstab
     
@@ -156,7 +156,7 @@ class AnalysesAccidents:
             DataFrame avec accidents par commune
         """
         print("\n" + "="*80)
-        print("🗺️  ANALYSE SPATIALE - ACCIDENTS PAR COMMUNE")
+        print("  ANALYSE SPATIALE - ACCIDENTS PAR COMMUNE")
         print("="*80)
         
         accidents_communes = self.df_accidents.groupby('com').agg({
@@ -193,7 +193,7 @@ class AnalysesAccidents:
             Résultats du clustering
         """
         print("\n" + "="*80)
-        print("🎯 CLUSTERING - GROUPEMENT D'ACCIDENTS")
+        print(" CLUSTERING - GROUPEMENT D'ACCIDENTS")
         print("="*80)
         
         # Préparation données
@@ -232,7 +232,7 @@ class AnalysesAccidents:
             DataFrame avec scores
         """
         print("\n" + "="*80)
-        print("⚠️  SCORE DE DANGER PAR COMMUNE")
+        print("  SCORE DE DANGER PAR COMMUNE")
         print("="*80)
         
         # Agrégation par commune
@@ -275,7 +275,7 @@ class AnalysesAccidents:
             Matrice de corrélation
         """
         print("\n" + "="*80)
-        print("📊 ANALYSE DE CORRÉLATION")
+        print(" ANALYSE DE CORRÉLATION")
         print("="*80)
         
         # Sélectionner colonnes numériques
@@ -303,7 +303,7 @@ class AnalysesAccidents:
             Dict avec résultats
         """
         print("\n" + "="*80)
-        print("⚡ ANALYSE DES FACTEURS DE RISQUE")
+        print(" ANALYSE DES FACTEURS DE RISQUE")
         print("="*80)
         
         results = {}
@@ -348,7 +348,7 @@ class AnalysesAccidents:
             Modèle entraîné
         """
         print("\n" + "="*80)
-        print("🔬 MODÈLE GLM - PRÉDICTION GRAVITÉ")
+        print(" MODÈLE GLM - PRÉDICTION GRAVITÉ")
         print("="*80)
         
         # Préparation données
@@ -384,7 +384,7 @@ class AnalysesAccidents:
             Modèle entraîné avec importances
         """
         print("\n" + "="*80)
-        print("🌳 MODÈLE MACHINE LEARNING - RANDOM FOREST")
+        print(" MODÈLE MACHINE LEARNING - RANDOM FOREST")
         print("="*80)
         
         # Préparation
@@ -420,35 +420,35 @@ class AnalysesAccidents:
             Résumé formaté
         """
         print("\n" + "="*80)
-        print("📋 RÉSUMÉ EXÉCUTIF - FINDINGS PRINCIPAUX")
+        print(" RÉSUMÉ EXÉCUTIF - FINDINGS PRINCIPAUX")
         print("="*80)
         
         resume = f"""
         
-1️⃣ VOLUME ET RÉPARTITION
+1⃣ VOLUME ET RÉPARTITION
    • Nombre total d'accidents: {len(self.df_accidents):,}
    • Période couverte: {self.df_accidents['an'].min():.0f} - {self.df_accidents['an'].max():.0f}
    • Personnes impliquées: {self.df_accidents['nbp'].sum():,}
 
-2️⃣ TENDANCES TEMPORELLES
+2⃣ TENDANCES TEMPORELLES
    • Accidents par année: tendance hausse/baisse
    • Pics mensuels: analyse des périodes critiques
    • Risque horaire: heures les plus accidentogènes
 
-3️⃣ ZONES À RISQUE
+3⃣ ZONES À RISQUE
    • Communes critiques: {self.df_accidents['com'].nunique()} communes affectées
    • Concentration: {(self.df_accidents.groupby('com').size().nlargest(10).sum() / len(self.df_accidents) * 100):.1f}% des accidents en top 10
 
-4️⃣ FACTEURS DE RISQUE
+4⃣ FACTEURS DE RISQUE
    • Nombre véhicules: multi-véhiculaires = plus graves
    • Jour de semaine: variance significative
    • Gravité moyenne: {self.df_accidents['grav'].mean():.2f}/4
 
-5️⃣ MODÉLISATION
+5⃣ MODÉLISATION
    • Prédictivité: X% de variance expliquée
    • Facteurs clés: véhicules, personnes, temporalité
    
-6️⃣ RECOMMANDATIONS
+6⃣ RECOMMANDATIONS
    • Focus géographique sur zones critiques
    • Campagnes prévention jours/heures à risque
    • Tarification assurance basée sur score danger
@@ -462,11 +462,11 @@ def main():
     """Fonction principale pour exécuter les analyses"""
     
     print("\n" + "="*80)
-    print("🔍 ANALYSES COMPLÈTES - ACCIDENTS ROUTIERS")
+    print(" ANALYSES COMPLÈTES - ACCIDENTS ROUTIERS")
     print("="*80)
     
     # À adapter selon vos données
-    print("\n⚠️  À utiliser avec données chargées depuis data/clean/")
+    print("\n  À utiliser avec données chargées depuis data/clean/")
     print("    Exemple: df_acc = pd.read_csv('data/clean/clean_accidents.csv')")
 
 

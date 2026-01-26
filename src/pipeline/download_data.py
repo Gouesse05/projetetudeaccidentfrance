@@ -52,7 +52,7 @@ DATASETS = {
 def ensure_raw_data_dir():
     """Crée le répertoire des données brutes s'il n'existe pas"""
     RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
-    logger.info(f"✓ Répertoire données: {RAW_DATA_DIR}")
+    logger.info(f" Répertoire données: {RAW_DATA_DIR}")
 
 
 def calculate_file_hash(file_path: Path, algorithm: str = "md5") -> str:
@@ -96,7 +96,7 @@ def calculate_url_hash(url: str) -> str:
         
         return hash_obj.hexdigest()
     except Exception as e:
-        logger.error(f"✗ Erreur calcul hash pour {url}: {e}")
+        logger.error(f" Erreur calcul hash pour {url}: {e}")
         return None
 
 
@@ -107,7 +107,7 @@ def load_metadata() -> Dict:
             with open(METADATA_FILE, "r") as f:
                 return json.load(f)
         except Exception as e:
-            logger.warning(f"⚠ Erreur lecture metadata: {e}")
+            logger.warning(f" Erreur lecture metadata: {e}")
     return {}
 
 
@@ -116,9 +116,9 @@ def save_metadata(metadata: Dict):
     try:
         with open(METADATA_FILE, "w") as f:
             json.dump(metadata, f, indent=2)
-        logger.info(f"✓ Métadonnées sauvegardées")
+        logger.info(f" Métadonnées sauvegardées")
     except Exception as e:
-        logger.error(f"✗ Erreur sauvegarde metadata: {e}")
+        logger.error(f" Erreur sauvegarde metadata: {e}")
 
 
 def download_file(url: str, file_path: Path, timeout: int = 30) -> Tuple[bool, str]:
@@ -134,7 +134,7 @@ def download_file(url: str, file_path: Path, timeout: int = 30) -> Tuple[bool, s
         Tuple (succès, message)
     """
     try:
-        logger.info(f"📥 Téléchargement: {file_path.name}")
+        logger.info(f" Téléchargement: {file_path.name}")
         
         response = requests.get(url, timeout=timeout, stream=True)
         response.raise_for_status()
@@ -153,15 +153,15 @@ def download_file(url: str, file_path: Path, timeout: int = 30) -> Tuple[bool, s
                         print(f"\r  Progression: {progress:.1f}%", end="")
         
         print()  # Nouvelle ligne après la barre de progression
-        logger.info(f"✓ Téléchargement réussi: {file_path.name}")
+        logger.info(f" Téléchargement réussi: {file_path.name}")
         
         return True, "Succès"
         
     except requests.exceptions.RequestException as e:
-        logger.error(f"✗ Erreur téléchargement: {e}")
+        logger.error(f" Erreur téléchargement: {e}")
         return False, str(e)
     except Exception as e:
-        logger.error(f"✗ Erreur inattendue: {e}")
+        logger.error(f" Erreur inattendue: {e}")
         return False, str(e)
 
 
@@ -231,10 +231,10 @@ def process_dataset_resources(dataset_name: str, dataset_url: str) -> Dict[str, 
                     resources[filename] = url
                     logger.info(f"  Ressource trouvée: {filename}")
         
-        logger.info(f"✓ {len(resources)} ressources trouvées pour {dataset_name}")
+        logger.info(f" {len(resources)} ressources trouvées pour {dataset_name}")
         
     except Exception as e:
-        logger.error(f"✗ Erreur lors de la récupération des ressources: {e}")
+        logger.error(f" Erreur lors de la récupération des ressources: {e}")
     
     return resources
 
@@ -258,12 +258,12 @@ def download_all_datasets(force: bool = False) -> Dict[str, Dict]:
     results = {}
     
     logger.info("\n" + "=" * 80)
-    logger.info("📥 TÉLÉCHARGEMENT DONNÉES ACCIDENTS ROUTIERS")
+    logger.info(" TÉLÉCHARGEMENT DONNÉES ACCIDENTS ROUTIERS")
     logger.info("=" * 80 + "\n")
     
     # Traiter chaque dataset
     for dataset_name, dataset_config in DATASETS.items():
-        logger.info(f"\n🔍 Dataset: {dataset_name}")
+        logger.info(f"\n Dataset: {dataset_name}")
         logger.info("-" * 40)
         
         dataset_url = dataset_config["url"]
@@ -274,7 +274,7 @@ def download_all_datasets(force: bool = False) -> Dict[str, Dict]:
         resources = process_dataset_resources(dataset_name, dataset_url)
         
         if not resources:
-            logger.warning(f"⚠ Aucune ressource trouvée pour {dataset_name}")
+            logger.warning(f" Aucune ressource trouvée pour {dataset_name}")
             results[dataset_name] = {
                 "success": False,
                 "message": "Aucune ressource trouvée"
@@ -285,7 +285,7 @@ def download_all_datasets(force: bool = False) -> Dict[str, Dict]:
         download_url = list(resources.values())[0]
         
         # Vérifier hash distant
-        logger.info(f"🔐 Calcul du hash distant...")
+        logger.info(f" Calcul du hash distant...")
         remote_hash = calculate_url_hash(download_url)
         
         # Vérifier si mise à jour nécessaire
@@ -317,7 +317,7 @@ def download_all_datasets(force: bool = False) -> Dict[str, Dict]:
                     "message": message
                 }
         else:
-            logger.info(f"✓ Fichier à jour, pas de téléchargement")
+            logger.info(f" Fichier à jour, pas de téléchargement")
             results[dataset_name] = {
                 "success": True,
                 "message": "Fichier déjà à jour"
@@ -328,11 +328,11 @@ def download_all_datasets(force: bool = False) -> Dict[str, Dict]:
     
     # Afficher résumé
     logger.info("\n" + "=" * 80)
-    logger.info("📊 RÉSUMÉ TÉLÉCHARGEMENT")
+    logger.info(" RÉSUMÉ TÉLÉCHARGEMENT")
     logger.info("=" * 80)
     
     for dataset, result in results.items():
-        status = "✓" if result.get("success") else "✗"
+        status = "" if result.get("success") else ""
         logger.info(f"{status} {dataset}: {result.get('message')}")
     
     return results

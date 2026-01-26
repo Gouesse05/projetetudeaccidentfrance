@@ -1,4 +1,4 @@
-# 📊 Documentation des Endpoints d'Analyse Avancée
+#  Documentation des Endpoints d'Analyse Avancée
 
 ## Vue d'ensemble
 
@@ -8,13 +8,13 @@ Les endpoints d'analyse avancée permettent d'effectuer des analyses statistique
 
 ```
 src/analyses/
-├── data_cleaning.py              # Nettoyage et préparation des données
-├── statistical_analysis.py        # Analyses statistiques (corrélations, tests)
-├── dimensionality_reduction.py    # PCA, LDA, clustering, MCA, CA
-└── machine_learning.py            # Random Forest, H2O GLM, feature selection
+ data_cleaning.py              # Nettoyage et préparation des données
+ statistical_analysis.py        # Analyses statistiques (corrélations, tests)
+ dimensionality_reduction.py    # PCA, LDA, clustering, MCA, CA
+ machine_learning.py            # Random Forest, H2O GLM, feature selection
 
 src/api/
-└── analysis_endpoints.py          # Endpoints FastAPI pour les analyses
+ analysis_endpoints.py          # Endpoints FastAPI pour les analyses
 ```
 
 ## Installation
@@ -502,7 +502,7 @@ rf_result = analysis.train_classifier(df, target='outcome')
 
 ## Ressources
 
-- 📚 [Scikit-learn Documentation](https://scikit-learn.org)
-- 📊 [Statsmodels Documentation](https://www.statsmodels.org)
-- 🎯 [H2O ML Platform](https://h2o.ai)
-- 👑 [Prince Library (MCA/CA)](https://github.com/MaxHalford/prince)
+-  [Scikit-learn Documentation](https://scikit-learn.org)
+-  [Statsmodels Documentation](https://www.statsmodels.org)
+-  [H2O ML Platform](https://h2o.ai)
+-  [Prince Library (MCA/CA)](https://github.com/MaxHalford/prince)

@@ -42,14 +42,14 @@ def check_database_health(**context):
     """Vérifier la santé de la base de données"""
     from src.config import DB_CONFIG
     
-    print("🏥 Vérification santé base de données...")
+    print(" Vérification santé base de données...")
     try:
         conn = psycopg2.connect(**DB_CONFIG)
         cursor = conn.cursor()
         
         # Requêtes de santé
         checks = {
-            'database_connection': '✅',
+            'database_connection': '',
             'accidents_table': None,
             'usagers_table': None,
             'vehicules_table': None,
@@ -57,33 +57,33 @@ def check_database_health(**context):
         
         try:
             cursor.execute("SELECT COUNT(*) FROM accidents;")
-            checks['accidents_table'] = '✅'
+            checks['accidents_table'] = ''
         except:
-            checks['accidents_table'] = '❌'
+            checks['accidents_table'] = ''
         
         try:
             cursor.execute("SELECT COUNT(*) FROM usagers;")
-            checks['usagers_table'] = '✅'
+            checks['usagers_table'] = ''
         except:
-            checks['usagers_table'] = '❌'
+            checks['usagers_table'] = ''
         
         try:
             cursor.execute("SELECT COUNT(*) FROM vehicules;")
-            checks['vehicules_table'] = '✅'
+            checks['vehicules_table'] = ''
         except:
-            checks['vehicules_table'] = '❌'
+            checks['vehicules_table'] = ''
         
         cursor.close()
         conn.close()
         
-        print("\n📋 Résultats santé:")
+        print("\n Résultats santé:")
         for check, status in checks.items():
             print(f"   {check}: {status}")
         
         return checks
         
     except Exception as e:
-        print(f"❌ Erreur santé base: {str(e)}")
+        print(f" Erreur santé base: {str(e)}")
         raise
 
 
@@ -91,7 +91,7 @@ def check_disk_space(**context):
     """Vérifier l'espace disque"""
     import shutil
     
-    print("💾 Vérification espace disque...")
+    print(" Vérification espace disque...")
     project_path = '/home/sdd/projetetudeapi'
     
     usage = shutil.disk_usage(project_path)
@@ -102,7 +102,7 @@ def check_disk_space(**context):
     print(f"   Pourcentage: {percent_used:.1f}%")
     
     if percent_used > 90:
-        print("⚠️  ALERTE: Plus de 90% du disque utilisé!")
+        print("  ALERTE: Plus de 90% du disque utilisé!")
         raise Exception("Espace disque insuffisant")
     
     return {'percent_used': percent_used, 'status': 'ok'}
@@ -113,7 +113,7 @@ def backup_database(**context):
     import subprocess
     from src.config import DB_CONFIG
     
-    print("📦 Backup base de données...")
+    print(" Backup base de données...")
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     backup_file = f"/home/sdd/projetetudeapi/backups/accidents_db_{timestamp}.sql"
     
@@ -137,14 +137,14 @@ def backup_database(**context):
         
         if result.returncode == 0:
             file_size = os.path.getsize(backup_file) / (1024**2)  # en MB
-            print(f"✅ Backup créé: {backup_file} ({file_size:.2f} MB)")
+            print(f" Backup créé: {backup_file} ({file_size:.2f} MB)")
             return {'file': backup_file, 'size_mb': file_size}
         else:
-            print(f"❌ Erreur backup: {result.stderr}")
+            print(f" Erreur backup: {result.stderr}")
             raise Exception(f"Erreur pg_dump: {result.stderr}")
             
     except Exception as e:
-        print(f"❌ Erreur backup: {str(e)}")
+        print(f" Erreur backup: {str(e)}")
         raise
 
 
@@ -152,7 +152,7 @@ def cleanup_old_backups(**context):
     """Supprimer les backups de plus de 30 jours"""
     import glob
     
-    print("🗑️  Nettoyage anciens backups...")
+    print("  Nettoyage anciens backups...")
     backup_dir = '/home/sdd/projetetudeapi/backups'
     
     if not os.path.exists(backup_dir):
@@ -169,7 +169,7 @@ def cleanup_old_backups(**context):
             deleted += 1
             print(f"   Supprimé: {os.path.basename(backup_file)}")
     
-    print(f"✅ {deleted} anciens backups supprimés")
+    print(f" {deleted} anciens backups supprimés")
     return {'deleted': deleted}
 
 

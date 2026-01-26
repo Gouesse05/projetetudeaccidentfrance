@@ -39,14 +39,14 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     """Gère le cycle de vie de l'application"""
     # Startup
-    logger.info("🚀 Starting Accidents API v1.0.0")
-    logger.info(f"📊 Host: {API_HOST}, Port: {API_PORT}")
-    logger.info("📚 Documentation: http://localhost:8000/docs")
+    logger.info(" Starting Accidents API v1.0.0")
+    logger.info(f" Host: {API_HOST}, Port: {API_PORT}")
+    logger.info(" Documentation: http://localhost:8000/docs")
     
     yield
     
     # Shutdown
-    logger.info("🛑 Shutting down Accidents API")
+    logger.info(" Shutting down Accidents API")
 
 
 app = FastAPI(
@@ -88,11 +88,11 @@ def custom_openapi() -> Dict[str, Any]:
         title="Accidents Routiers API",
         version="1.0.0",
         description="""
-# 🚗 Accidents Routiers API
+#  Accidents Routiers API
 
 API RESTful pour l'analyse des accidents corporels routiers en France.
 
-## 📊 Cas d'Usage
+##  Cas d'Usage
 
 ### Pour Assureurs
 - **Évaluation Risque**: Scores de danger par commune/département
@@ -104,18 +104,18 @@ API RESTful pour l'analyse des accidents corporels routiers en France.
 - **Heatmaps**: Visualisations géographiques
 - **Rapports**: Exports statistiques
 
-## 📈 Données Disponibles
+##  Données Disponibles
 
 - **68,432 accidents** (2022-2024)
 - **245,123 usagers** (décès, blessures, indemnes)
 - **89,321 véhicules** (catégories, équipements)
 - **12,234 communes** avec données INSEE
 
-## 🔐 Authentification
+##  Authentification
 
 Actuellement **publique**. À implémenter: JWT tokens (Phase 5)
 
-## 🚀 Démarrage Rapide
+##  Démarrage Rapide
 
 ### Installation
 ```bash
@@ -138,7 +138,7 @@ curl "http://localhost:8000/api/v1/accidents?annee=2022&limit=10"
 curl http://localhost:8000/api/v1/danger-scores?limit=20
 ```
 
-## 📚 Documentation
+##  Documentation
 
 Chaque endpoint inclut:
 - Description détaillée

@@ -1,4 +1,4 @@
-# 📊 Guide Analyses Académiques - Accidents Routiers
+#  Guide Analyses Académiques - Accidents Routiers
 
 ## Contexte Projet
 
@@ -8,68 +8,68 @@
 
 ---
 
-## 📋 Consignes Académiques
+##  Consignes Académiques
 
 ### Fond (Contenu)
 
-✅ **Utiliser packages Python** (vus ou non) pour exploiter les données  
-✅ **Analyses pertinentes** avec sens et intérêt (pas juste du code)  
-✅ **Interpréter résultats** : déduire relations, tendances, patterns  
-✅ **Expliciter chaque analyse** : objectif → mise en place → résultats  
-✅ **Variables externes** :
+ **Utiliser packages Python** (vus ou non) pour exploiter les données  
+ **Analyses pertinentes** avec sens et intérêt (pas juste du code)  
+ **Interpréter résultats** : déduire relations, tendances, patterns  
+ **Expliciter chaque analyse** : objectif → mise en place → résultats  
+ **Variables externes** :
    - Région (data.gouv.fr)
    - Densité/population (INSEE)
    - Analyse géographique pour zonier
 
 ### Forme (Présentation)
 
-✅ **Notebook propre** : clair, précis, structuré, concis  
-✅ **Commentaires et titres** de parties  
-✅ **Conclusions et interprétations**  
-✅ **Note PDF** en plus du notebook  
-✅ **Code commenté** avec documentation
+ **Notebook propre** : clair, précis, structuré, concis  
+ **Commentaires et titres** de parties  
+ **Conclusions et interprétations**  
+ **Note PDF** en plus du notebook  
+ **Code commenté** avec documentation
 
 ---
 
-## 📊 Processus Classique d'Analyse Statistique
+##  Processus Classique d'Analyse Statistique
 
 ```
 1. Nettoyage de données
-   ├─ Compréhension format
-   ├─ Analyse complétude
-   ├─ Contrôles cohérence
-   └─ Gestion anomalies
+    Compréhension format
+    Analyse complétude
+    Contrôles cohérence
+    Gestion anomalies
 
 2. Jointure et enrichissement
-   ├─ Variables externes (région, densité)
-   ├─ Rapprochement données
-   └─ Gestion doublons
+    Variables externes (région, densité)
+    Rapprochement données
+    Gestion doublons
 
 3. Analyse descriptive
-   ├─ Univariée (distributions)
-   ├─ Bivariée (crosstab, corrélations)
-   └─ Multivariée (clustering, ACP)
+    Univariée (distributions)
+    Bivariée (crosstab, corrélations)
+    Multivariée (clustering, ACP)
 
 4. Modélisation
-   ├─ Approche paramétrique (GLM)
-   └─ Approche non-paramétrique (ML)
+    Approche paramétrique (GLM)
+    Approche non-paramétrique (ML)
 
 5. Résultats et interprétation
-   ├─ Analyse coefficients
-   ├─ Tests statistiques
-   └─ Implications pratiques
+    Analyse coefficients
+    Tests statistiques
+    Implications pratiques
 
 6. Applications
-   ├─ Prévisions
-   ├─ Tarification
-   └─ Gestion des risques
+    Prévisions
+    Tarification
+    Gestion des risques
 ```
 
 ---
 
-## 🎯 12 Sections du Notebook
+##  12 Sections du Notebook
 
-### 1️⃣ **Chargement et Exploration**
+### 1⃣ **Chargement et Exploration**
 - Charger datasets (5 fichiers accidents)
 - Structure et dimensions
 - Statistiques basiques
@@ -79,7 +79,7 @@
 
 ---
 
-### 2️⃣ **Nettoyage et Prétraitement**
+### 2⃣ **Nettoyage et Prétraitement**
 - Analyse complétude (% valeurs manquantes)
 - Doublons (identification et suppression)
 - Incohérences (inter-variables)
@@ -93,7 +93,7 @@ Après nettoyage: X' lignes, Y'% manquant
 
 ---
 
-### 3️⃣ **Intégration Variables Externes**
+### 3⃣ **Intégration Variables Externes**
 Ajouter:
 - **Régions**: joindre communes → régions
 - **Démographie**: population, densité (INSEE)
@@ -103,7 +103,7 @@ Ajouter:
 
 ---
 
-### 4️⃣ **Analyse Univariée**
+### 4⃣ **Analyse Univariée**
 Pour chaque variable clé:
 - Histogramme/distribution
 - Statistiques (mean, median, std, quantiles)
@@ -113,7 +113,7 @@ Pour chaque variable clé:
 
 ---
 
-### 5️⃣ **Analyse Bivariée et Multivariée**
+### 5⃣ **Analyse Bivariée et Multivariée**
 - Crosstabs (jour × gravité, etc.)
 - **Tests Chi-2** pour variables catégoriques
 - **Correlations** (Pearson/Spearman) numériques
@@ -128,7 +128,7 @@ chi2, p_val = stats.chi2_contingency(crosstab)
 
 ---
 
-### 6️⃣ **Analyse Spatiale et Heatmaps**
+### 6⃣ **Analyse Spatiale et Heatmaps**
 - Top 20 communes dangereuses (par accidents)
 - **Heatmap géographique**: latitude × longitude × accidents
 - Densité zones urbaines vs rurales
@@ -141,7 +141,7 @@ plt.hexbin(df['lat'], df['lon'], gridsize=30, cmap='YlOrRd')
 
 ---
 
-### 7️⃣ **Clustering (Classification Non-Supervisée)**
+### 7⃣ **Clustering (Classification Non-Supervisée)**
 - **K-Means**: grouper accidents par caractéristiques
   - Features: nombre véhicules, personnes, heure, etc.
   - Déterminer k optimal (elbow method)
@@ -151,7 +151,7 @@ plt.hexbin(df['lat'], df['lon'], gridsize=30, cmap='YlOrRd')
 
 ---
 
-### 8️⃣ **Score de Danger par Commune**
+### 8⃣ **Score de Danger par Commune**
 Créer score composite (0-100):
 ```
 Score = 50% × (accidents normalisés) 
@@ -163,19 +163,19 @@ Score = 50% × (accidents normalisés)
 
 ---
 
-### 9️⃣ **Analyse des Facteurs de Risque**
+### 9⃣ **Analyse des Facteurs de Risque**
 Corrélations avec accidents/gravité:
 - ⏰ **Heure du jour** (pics matinaux, soir?)
-- 📅 **Jour de semaine** (WE vs semaine?)
-- 🌤️ **Météo** (si disponible)
-- 🛣️ **Infrastructure** (type route)
-- 🏙️ **Densité** (urbain vs rural)
+-  **Jour de semaine** (WE vs semaine?)
+-  **Météo** (si disponible)
+-  **Infrastructure** (type route)
+-  **Densité** (urbain vs rural)
 
 **Test**: ANOVA ou Kruskal-Wallis selon distribution
 
 ---
 
-### 🔟 **Modélisation: Approche Paramétrique (GLM)**
+###  **Modélisation: Approche Paramétrique (GLM)**
 Prédire: Accident grave (gravité ≥ 3)?
 
 ```python
@@ -195,7 +195,7 @@ model.fit(X, y)
 
 ---
 
-### 1️⃣1️⃣ **Modélisation: Approche Non-Paramétrique (ML)**
+### 1⃣1⃣ **Modélisation: Approche Non-Paramétrique (ML)**
 Comparer modèles:
 - **Random Forest** (importance variables)
 - **Gradient Boosting** (meilleure performance?)
@@ -204,7 +204,7 @@ Comparer modèles:
 **Comparaison**:
 ```
 Modèle           | Accuracy | AUC   | F1-Score
-─────────────────┼──────────┼───────┼─────────
+
 Logistic         |   0.78   | 0.82  |  0.65
 Random Forest    |   0.85   | 0.89  |  0.74
 Gradient Boost   |   0.87   | 0.91  |  0.76
@@ -212,7 +212,7 @@ Gradient Boost   |   0.87   | 0.91  |  0.76
 
 ---
 
-### 1️⃣2️⃣ **Résultats, Interprétation et Recommandations**
+### 1⃣2⃣ **Résultats, Interprétation et Recommandations**
 
 **Synthèse des findings:**
 1. Tendances temporelles (accidents augmentent? où?)
@@ -221,15 +221,15 @@ Gradient Boost   |   0.87   | 0.91  |  0.76
 4. Patterns identifiés (qui cause les accidents graves?)
 
 **Recommandations pour assurance:**
-- 🎯 Zones de surprime (score danger > X)
+-  Zones de surprime (score danger > X)
 - ⏰ Tarification horaire/jour
-- 🚗 Surprime multi-véhicules
-- 📍 Zonier géographique
-- 📊 Score creditant (ajustement primes)
+-  Surprime multi-véhicules
+-  Zonier géographique
+-  Score creditant (ajustement primes)
 
 ---
 
-## 📈 Exemple: Analyse Complète d'une Variable
+##  Exemple: Analyse Complète d'une Variable
 
 ### Cas: Accidents par Heure
 
@@ -274,7 +274,7 @@ plt.grid(True)
 
 ---
 
-## 🛠️ Stack Technique Recommandée
+##  Stack Technique Recommandée
 
 ```python
 # Data
@@ -305,7 +305,7 @@ warnings.filterwarnings('ignore')
 
 ---
 
-## 📝 Checklist Notebook
+##  Checklist Notebook
 
 - [ ] Introduction et contexte
 - [ ] Chargement données
@@ -327,7 +327,7 @@ warnings.filterwarnings('ignore')
 
 ---
 
-## 📄 Structure Note PDF
+##  Structure Note PDF
 
 ```
 1. Résumé exécutif (1 page)
@@ -362,18 +362,18 @@ warnings.filterwarnings('ignore')
 
 ---
 
-## 💡 Conseils de Rédaction
+##  Conseils de Rédaction
 
-✅ **Clarté**: Chaque figure doit être explicite (titre, axes, légende)  
-✅ **Concision**: Aller à l'essentiel, pas de redondance  
-✅ **Interprétation**: Toujours expliquer le "pourquoi"  
-✅ **Critique**: Souligner limitations et hypothèses  
-✅ **Rigueur**: Tests stats, p-values, intervalle confiance  
-✅ **Actionnable**: Recommandations concrètes pour business
+ **Clarté**: Chaque figure doit être explicite (titre, axes, légende)  
+ **Concision**: Aller à l'essentiel, pas de redondance  
+ **Interprétation**: Toujours expliquer le "pourquoi"  
+ **Critique**: Souligner limitations et hypothèses  
+ **Rigueur**: Tests stats, p-values, intervalle confiance  
+ **Actionnable**: Recommandations concrètes pour business
 
 ---
 
-## 🎓 Évaluation (ce que les profs regardent)
+##  Évaluation (ce que les profs regardent)
 
 | Critère | Points | Détails |
 |---------|--------|---------|
@@ -384,7 +384,7 @@ warnings.filterwarnings('ignore')
 
 ---
 
-## 📚 Ressources
+##  Ressources
 
 - [scikit-learn documentation](https://scikit-learn.org)
 - [Pandas for data analysis](https://pandas.pydata.org)
@@ -395,4 +395,4 @@ warnings.filterwarnings('ignore')
 
 ---
 
-**Bonne chance! Faites du code propre et des analyses pertinentes.** 🚀
+**Bonne chance! Faites du code propre et des analyses pertinentes.** 

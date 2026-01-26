@@ -91,10 +91,10 @@ class PostgreSQLLoader:
         try:
             self.conn = psycopg2.connect(**self.config)
             self.cursor = self.conn.cursor(cursor_factory=extras.RealDictCursor)
-            logger.info(f"✓ Connexion PostgreSQL établie ({self.config['host']}:{self.config['port']})")
+            logger.info(f" Connexion PostgreSQL établie ({self.config['host']}:{self.config['port']})")
             return True
         except Error as e:
-            logger.error(f"✗ Erreur connexion PostgreSQL: {e}")
+            logger.error(f" Erreur connexion PostgreSQL: {e}")
             return False
     
     def disconnect(self):
@@ -141,7 +141,7 @@ class PostgreSQLLoader:
                 self.execute_query(
                     f"TRUNCATE TABLE accidents_schema.{table} CASCADE"
                 )
-            logger.info("✓ Tables tronquées")
+            logger.info(" Tables tronquées")
         except Exception as e:
             logger.error(f"Erreur troncature: {e}")
     
@@ -160,7 +160,7 @@ class PostgreSQLLoader:
             # Exécuter le schéma
             self.cursor.execute(schema_sql)
             self.conn.commit()
-            logger.info("✓ Schéma PostgreSQL créé/vérifié")
+            logger.info(" Schéma PostgreSQL créé/vérifié")
             return True
         except Error as e:
             logger.error(f"Erreur création schéma: {e}")
@@ -215,7 +215,7 @@ class PostgreSQLLoader:
                     continue
             
             self.conn.commit()
-            logger.info(f"✓ {self.stats['communes_inserted']} communes chargées")
+            logger.info(f" {self.stats['communes_inserted']} communes chargées")
         except Exception as e:
             logger.error(f"Erreur chargement communes: {e}")
             self.conn.rollback()
@@ -295,7 +295,7 @@ class PostgreSQLLoader:
                     logger.info(f"  {idx + 1}/{len(records)} accidents traités")
             
             self.conn.commit()
-            logger.info(f"✓ {self.stats['accidents_inserted']} accidents chargés")
+            logger.info(f" {self.stats['accidents_inserted']} accidents chargés")
         except Exception as e:
             logger.error(f"Erreur chargement accidents: {e}")
             self.conn.rollback()
@@ -345,7 +345,7 @@ class PostgreSQLLoader:
                     self.conn.commit()
             
             self.conn.commit()
-            logger.info(f"✓ {self.stats['caracteristiques_inserted']} caractéristiques chargées")
+            logger.info(f" {self.stats['caracteristiques_inserted']} caractéristiques chargées")
         except Exception as e:
             logger.error(f"Erreur chargement caractéristiques: {e}")
             self.conn.rollback()
@@ -399,7 +399,7 @@ class PostgreSQLLoader:
                     self.conn.commit()
             
             self.conn.commit()
-            logger.info(f"✓ {self.stats['lieux_inserted']} lieux chargés")
+            logger.info(f" {self.stats['lieux_inserted']} lieux chargés")
         except Exception as e:
             logger.error(f"Erreur chargement lieux: {e}")
             self.conn.rollback()
@@ -456,7 +456,7 @@ class PostgreSQLLoader:
                     self.conn.commit()
             
             self.conn.commit()
-            logger.info(f"✓ {self.stats['usagers_inserted']} usagers chargés")
+            logger.info(f" {self.stats['usagers_inserted']} usagers chargés")
         except Exception as e:
             logger.error(f"Erreur chargement usagers: {e}")
             self.conn.rollback()
@@ -511,7 +511,7 @@ class PostgreSQLLoader:
                     self.conn.commit()
             
             self.conn.commit()
-            logger.info(f"✓ {self.stats['vehicules_inserted']} véhicules chargés")
+            logger.info(f" {self.stats['vehicules_inserted']} véhicules chargés")
         except Exception as e:
             logger.error(f"Erreur chargement véhicules: {e}")
             self.conn.rollback()
@@ -526,7 +526,7 @@ class PostgreSQLLoader:
             result = self.cursor.fetchone()
             count = result[0] if result else 0
             
-            logger.info(f"✓ {count} scores de danger calculés")
+            logger.info(f" {count} scores de danger calculés")
         except Error as e:
             logger.error(f"Erreur calcul scores: {e}")
     
@@ -556,7 +556,7 @@ class PostgreSQLLoader:
             if len(self.stats['errors']) > 10:
                 report.append(f"  ... et {len(self.stats['errors']) - 10} autres")
         else:
-            report.append("✓ Aucune erreur")
+            report.append(" Aucune erreur")
         
         report.append("="*80 + "\n")
         
@@ -614,7 +614,7 @@ def main():
     finally:
         loader.disconnect()
     
-    logger.info("✓ Chargement terminé")
+    logger.info(" Chargement terminé")
 
 
 if __name__ == '__main__':

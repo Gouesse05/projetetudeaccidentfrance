@@ -1,8 +1,8 @@
-# 🚀 Quick Deploy Guide - Render
+#  Quick Deploy Guide - Render
 
 **5-minute deployment checklist**
 
-## ✅ Pre-Deploy Checklist
+##  Pre-Deploy Checklist
 
 ```bash
 # 1. Vérifier Phase 4 est complète
@@ -23,7 +23,7 @@ git status
 git push origin main
 ```
 
-## 🎬 Step-by-Step Deployment
+##  Step-by-Step Deployment
 
 ### 1. Create Render Account (2 min)
 ```
@@ -89,7 +89,7 @@ psql -h accidents-db-prod.c99xyz.postgres.render.com \
      -f data/schema.sql
 ```
 
-## ✅ Verify Deployment
+##  Verify Deployment
 
 ```bash
 # Health check
@@ -102,7 +102,7 @@ curl "https://accidents-api-prod.onrender.com/api/v1/accidents?limit=5"
 https://accidents-api-prod.onrender.com/docs
 ```
 
-## 🎯 URLs
+##  URLs
 
 ```
 API:      https://accidents-api-prod.onrender.com
@@ -111,22 +111,22 @@ ReDoc:    https://accidents-api-prod.onrender.com/redoc
 Health:   https://accidents-api-prod.onrender.com/api/v1/health
 ```
 
-## 🔍 Monitoring
+##  Monitoring
 
 ```
 Render Dashboard:
-  ├── Logs (live tail)
-  ├── Metrics (CPU, memory)
-  └── Deployments (history)
+   Logs (live tail)
+   Metrics (CPU, memory)
+   Deployments (history)
 
 Monitor for:
-  ✅ No errors in logs
-  ✅ All endpoints responding
-  ✅ Database connected
-  ✅ Response times < 1s
+   No errors in logs
+   All endpoints responding
+   Database connected
+   Response times < 1s
 ```
 
-## 📝 Troubleshooting
+##  Troubleshooting
 
 ### Build Fails
 ```bash
@@ -151,6 +151,6 @@ psql -h [HOST] -U postgres -d accidents_db -c "SELECT 1"
 
 ---
 
-**Done!** Your API is live on Render 🎉
+**Done!** Your API is live on Render 
 
 See `PHASE5_RENDER_DEPLOYMENT.md` for detailed guide

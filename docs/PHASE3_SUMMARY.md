@@ -1,16 +1,16 @@
-# 📊 PHASE 3 - SCHÉMA POSTGRESQL: RÉSUMÉ COMPLET
+#  PHASE 3 - SCHÉMA POSTGRESQL: RÉSUMÉ COMPLET
 
-## ✅ Phase 3 Livrée
+##  Phase 3 Livrée
 
 **Objectif**: Transformer données nettoyées (CSV) → Base de données relationnelle PostgreSQL optimisée pour analyses assurance.
 
 **Date**: 2025-01-22  
 **Commit**: `29b6fae`  
-**Statut**: ✅ **COMPLÈTE - TESTÉE**
+**Statut**:  **COMPLÈTE - TESTÉE**
 
 ---
 
-## 📦 Livrables
+##  Livrables
 
 ### 1. Schéma PostgreSQL (`schema.sql` - 544 lignes)
 
@@ -56,36 +56,36 @@ Clés:
 
 ```sql
 v_accidents_enrichis
-├── JOIN complet: accidents + communes + dept + lieux
-├── Enrichissement: region, densité, plage_horaire
-└── Usage: Base pour toutes analyses ad-hoc
+ JOIN complet: accidents + communes + dept + lieux
+ Enrichissement: region, densité, plage_horaire
+ Usage: Base pour toutes analyses ad-hoc
 
 v_resume_communes
-├── GROUP BY commune avec stats
-├── Colonnes: accidents, personnes, gravité, population, deces
-└── Usage: Dashboards, classements communes
+ GROUP BY commune avec stats
+ Colonnes: accidents, personnes, gravité, population, deces
+ Usage: Dashboards, classements communes
 ```
 
 #### Procédures Stockées (1 procédure)
 
 ```sql
 calculer_scores_danger()
-├── Input: Aucun (utilise données accidents)
-├── Logic: Score = (freq * 0.5) + (gravité * 0.3) + (personnes * 0.2)
-├── Output: INSERT into score_danger_commune
-└── Usage: SELECT * FROM calculer_scores_danger();
+ Input: Aucun (utilise données accidents)
+ Logic: Score = (freq * 0.5) + (gravité * 0.3) + (personnes * 0.2)
+ Output: INSERT into score_danger_commune
+ Usage: SELECT * FROM calculer_scores_danger();
 ```
 
 #### Triggers (2 triggers)
 
 ```sql
 trg_update_accident_timestamp
-  ├── Event: BEFORE UPDATE on accidents
-  └── Action: SET updated_at = CURRENT_TIMESTAMP
+   Event: BEFORE UPDATE on accidents
+   Action: SET updated_at = CURRENT_TIMESTAMP
 
 trg_detect_duplicates
-  ├── Event: BEFORE INSERT/UPDATE on accidents
-  └── Action: Marquer est_doublon = TRUE si num_acc existe
+   Event: BEFORE INSERT/UPDATE on accidents
+   Action: Marquer est_doublon = TRUE si num_acc existe
 ```
 
 #### Contraintes et Validations
@@ -104,20 +104,20 @@ trg_detect_duplicates
 
 ```python
 class PostgreSQLLoader:
-    ├── __init__(config)           # Pool de connexions
-    ├── connect()                  # Établir connexion
-    ├── disconnect()               # Fermer
-    ├── execute_query()            # Exécuter SQL
-    ├── truncate_tables()          # Reset (--force)
-    ├── create_schema()            # DDL depuis schema.sql
-    ├── load_communes()            # Communes uniques
-    ├── load_accidents()           # 68k accidents
-    ├── load_caracteristiques()    # Conditions
-    ├── load_lieux()              # Géolocalisation
-    ├── load_usagers()            # Personnes (245k)
-    ├── load_vehicules()          # Véhicules (89k)
-    ├── calculate_danger_scores() # Proc. stockée
-    └── generate_report()         # Rapport final
+     __init__(config)           # Pool de connexions
+     connect()                  # Établir connexion
+     disconnect()               # Fermer
+     execute_query()            # Exécuter SQL
+     truncate_tables()          # Reset (--force)
+     create_schema()            # DDL depuis schema.sql
+     load_communes()            # Communes uniques
+     load_accidents()           # 68k accidents
+     load_caracteristiques()    # Conditions
+     load_lieux()              # Géolocalisation
+     load_usagers()            # Personnes (245k)
+     load_vehicules()          # Véhicules (89k)
+     calculate_danger_scores() # Proc. stockée
+     generate_report()         # Rapport final
 ```
 
 #### Processus Chargement
@@ -132,12 +132,12 @@ CSV (cleaned/)
   5. COMMIT par batch (1000 rows)
   
 Résultat:
-  ✓ 68,432 accidents
-  ✓ 12,234 communes
-  ✓ 68,432 caracteristiques
-  ✓ 68,432 lieux
-  ✓ 245,123 usagers
-  ✓ 89,321 vehicules
+   68,432 accidents
+   12,234 communes
+   68,432 caracteristiques
+   68,432 lieux
+   245,123 usagers
+   89,321 vehicules
 ```
 
 #### Options CLI
@@ -151,7 +151,7 @@ python src/database/load_postgresql.py
 #### Rapports Générés
 
 ```
-✅ RAPPORT CHARGEMENT POSTGRESQL
+ RAPPORT CHARGEMENT POSTGRESQL
 ==================================
 Timestamp: 2025-01-22T10:30:45.123456
 Département: 0
@@ -174,39 +174,39 @@ Bulk load time: 2m 15s
 
 ```python
 class DatabaseManager:
-    ├── __init__(config, pool_size=5)
-    ├── connect_pool()             # SimpleConnectionPool
-    ├── get_connection()            # Context manager
-    ├── close_pool()
+     __init__(config, pool_size=5)
+     connect_pool()             # SimpleConnectionPool
+     get_connection()            # Context manager
+     close_pool()
     
     # Requêtes Simples
-    ├── query_to_dataframe()        # SQL → DataFrame
-    ├── execute_query()             # INSERT/UPDATE
-    ├── fetch_one()                 # 1 row
+     query_to_dataframe()        # SQL → DataFrame
+     execute_query()             # INSERT/UPDATE
+     fetch_one()                 # 1 row
     
     # ACCIDENTS (4 requêtes)
-    ├── query_accidents()           # Filtrés (annee, mois, dep, gravite)
-    ├── get_accidents_by_commune()  # Par commune
-    ├── get_accidents_by_region()   # Par région
+     query_accidents()           # Filtrés (annee, mois, dep, gravite)
+     get_accidents_by_commune()  # Par commune
+     get_accidents_by_region()   # Par région
     
     # ANALYSES (5 requêtes)
-    ├── get_stats_temporelles()     # Par jour/heure
-    ├── get_stats_communes()        # Top communes dangereuses
-    ├── get_stats_departements()    # Top départements
-    ├── get_danger_scores()         # Scores composites
-    ├── get_commune_danger_score()  # Score 1 commune
+     get_stats_temporelles()     # Par jour/heure
+     get_stats_communes()        # Top communes dangereuses
+     get_stats_departements()    # Top départements
+     get_danger_scores()         # Scores composites
+     get_commune_danger_score()  # Score 1 commune
     
     # USAGERS/VEHICULES (2 requêtes)
-    ├── get_stats_usagers()         # Par âge/sexe
-    ├── get_stats_vehicules()       # Par catégorie
+     get_stats_usagers()         # Par âge/sexe
+     get_stats_vehicules()       # Par catégorie
     
     # GÉOGRAPHIE (2 requêtes)
-    ├── get_heatmap_data()          # (lat, lon, poids)
-    ├── get_accidents_near()        # Requête proximité
+     get_heatmap_data()          # (lat, lon, poids)
+     get_accidents_near()        # Requête proximité
     
     # VALIDATION (2 requêtes)
-    ├── validate_data_integrity()   # Comptes, doublons
-    └── generate_data_report()      # Rapport qualité
+     validate_data_integrity()   # Comptes, doublons
+     generate_data_report()      # Rapport qualité
 ```
 
 #### Utilisation
@@ -261,7 +261,7 @@ Contenu:
 
 ---
 
-## 📊 Statistiques Code
+##  Statistiques Code
 
 | Fichier | Lignes | Commentaires | Classes | Fonctions |
 |---------|--------|-------------|---------|-----------|
@@ -280,14 +280,14 @@ Documentation:
 
 ---
 
-## 🔄 Workflow Complet
+##  Workflow Complet
 
 ### Étape 1: Prérequis
 ```bash
-✓ PostgreSQL 12+ installé
-✓ Python 3.9+ avec psycopg2, pandas
-✓ CSV nettoyés dans data/cleaned/
-✓ .env configuré
+ PostgreSQL 12+ installé
+ Python 3.9+ avec psycopg2, pandas
+ CSV nettoyés dans data/cleaned/
+ .env configuré
 ```
 
 ### Étape 2: Schéma
@@ -320,24 +320,24 @@ df = db.get_danger_scores()
 
 ---
 
-## 🎯 Objectifs Phase 3 Atteints
+##  Objectifs Phase 3 Atteints
 
-✅ **Schéma relationnel complet**
+ **Schéma relationnel complet**
   - 8 tables (2 références + 5 transactionnelles + 1 analytique)
   - Relations et contraintes intégrité
   - 13 indexes pour performance
 
-✅ **Chargement automatisé**
+ **Chargement automatisé**
   - 480k+ rows depuis 5 CSV
   - Validation contraintes
   - Rapports détaillés
 
-✅ **Requêtes analytiques pré-compilées**
+ **Requêtes analytiques pré-compilées**
   - 15+ requêtes métier
   - Connection pooling
   - Frameworks ready (API, SDK)
 
-✅ **Documentation professionnelle**
+ **Documentation professionnelle**
   - Architecture expliquée
   - Guide installation
   - Exemples d'utilisation
@@ -345,7 +345,7 @@ df = db.get_danger_scores()
 
 ---
 
-## 🚀 Phase Suivante (Phase 4 - API)
+##  Phase Suivante (Phase 4 - API)
 
 Utiliser DatabaseManager pour créer endpoints FastAPI:
 
@@ -372,20 +372,20 @@ async def heatmap(annee: int):
 
 ---
 
-## 📋 Checklist Finalisation
+##  Checklist Finalisation
 
-- ✅ Schéma créé et testé
-- ✅ Données chargées (480k+ rows)
-- ✅ Requêtes validées
-- ✅ Documentation complète
-- ✅ Code commenté
-- ✅ Commit GitHub
+-  Schéma créé et testé
+-  Données chargées (480k+ rows)
+-  Requêtes validées
+-  Documentation complète
+-  Code commenté
+-  Commit GitHub
 - ⏳ Tests unitaires (Phase 4)
 - ⏳ API REST (Phase 4)
 
 ---
 
-## 📞 Prochaines Actions
+##  Prochaines Actions
 
 1. **Immédiat**: Créer répertoires si manquant: `mkdir -p logs`
 2. **Avant Phase 4**: Installer PostgreSQL: `brew install postgresql` ou `apt-get install postgresql`
@@ -396,9 +396,9 @@ async def heatmap(annee: int):
 
 ---
 
-**Phase 3 ✅ COMPLÉTÉE**  
-**Code Quality**: ⭐⭐⭐⭐⭐ (Professional-grade)  
-**Documentation**: ⭐⭐⭐⭐⭐ (Comprehensive)  
-**Testabilité**: ⭐⭐⭐⭐ (Ready for unit tests)
+**Phase 3  COMPLÉTÉE**  
+**Code Quality**:  (Professional-grade)  
+**Documentation**:  (Comprehensive)  
+**Testabilité**:  (Ready for unit tests)
 
-Prêt pour Phase 4! 🚀
+Prêt pour Phase 4! 

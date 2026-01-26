@@ -14,7 +14,7 @@ from datetime import datetime
 # Page config
 st.set_page_config(
     page_title="Dashboard Accidents - Advanced",
-    page_icon="🚗",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -516,7 +516,7 @@ df['type_jour'] = df['jour_semaine'].apply(lambda x: 'Week-end' if x in ['Saturd
 # Header principal amélioré
 st.markdown("""
 <div class="main-header">
-    <h1>🚗 Dashboard Accidents Routiers</h1>
+    <h1> Dashboard Accidents Routiers</h1>
     <p>Analyse avancée • Démographie • Assurance • Intelligence Artificielle</p>
 </div>
 """, unsafe_allow_html=True)
@@ -524,23 +524,23 @@ st.markdown("""
 # Résumé rapide KPIs
 col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
-    st.metric("📊 Total Accidents", f"{len(df):,}", delta="100%", delta_color="off")
+    st.metric(" Total Accidents", f"{len(df):,}", delta="100%", delta_color="off")
 with col2:
-    st.metric("👥 Conducteurs", f"{len(df):,}", delta="100%", delta_color="off")
+    st.metric(" Conducteurs", f"{len(df):,}", delta="100%", delta_color="off")
 with col3:
-    st.metric("⚠️ Graves", f"{len(df[df['gravite']>=3]):,}", 
+    st.metric(" Graves", f"{len(df[df['gravite']>=3]):,}", 
               delta=f"{len(df[df['gravite']>=3])/len(df)*100:.1f}%", delta_color="inverse")
 with col4:
-    st.metric("🍺 Alcoolémie", f"{df['alcoolémie'].sum():,}", 
+    st.metric(" Alcoolémie", f"{df['alcoolémie'].sum():,}", 
               delta=f"{df['alcoolémie'].sum()/len(df)*100:.1f}%", delta_color="inverse")
 with col5:
-    st.metric("💰 Coût Moyen", f"{df['cout_assurance_annuel'].mean():.0f}€/an", 
+    st.metric(" Coût Moyen", f"{df['cout_assurance_annuel'].mean():.0f}€/an", 
               delta=f"±{df['cout_assurance_annuel'].std():.0f}€", delta_color="off")
 
 st.markdown("---")
 
 # Sidebar: Filtres
-st.sidebar.title("🔧 Filtres Avancés")
+st.sidebar.title(" Filtres Avancés")
 st.sidebar.markdown("---")
 
 with st.sidebar:
@@ -554,17 +554,17 @@ with st.sidebar:
     st.markdown("---")
     
     # FILTRE DÉMOGRAPHIE
-    st.subheader("👤 Profil Conducteur")
+    st.subheader(" Profil Conducteur")
     
     classes_age = st.multiselect(
-        "📊 Classe d'âge",
+        " Classe d'âge",
         options=sorted(df['classe_age'].unique()),
         default=sorted(df['classe_age'].unique()),
         help="Sélectionner 1+ classes d'âge"
     )
     
     genres = st.multiselect(
-        "👥 Genre",
+        " Genre",
         options=['Homme', 'Femme'],
         default=['Homme', 'Femme']
     )
@@ -579,7 +579,7 @@ with st.sidebar:
     
     # Filtre saison
     saisons_selected = st.multiselect(
-        "🌡️ Saisons",
+        " Saisons",
         options=df['saison'].unique(),
         default=df['saison'].unique()
     )
@@ -588,7 +588,7 @@ with st.sidebar:
     
     # Filtre type jour
     jours_selected = st.multiselect(
-        "📅 Type Jour",
+        " Type Jour",
         options=['Jour Travail', 'Week-end'],
         default=['Jour Travail', 'Week-end']
     )
@@ -606,7 +606,7 @@ with st.sidebar:
     
     # Filtre gravité
     gravite_selected = st.multiselect(
-        "⚠️ Gravité",
+        " Gravité",
         options=['Léger', 'Modéré', 'Grave', 'Mortel'],
         default=['Léger', 'Modéré', 'Grave', 'Mortel']
     )
@@ -614,21 +614,21 @@ with st.sidebar:
     st.markdown("---")
     
     # Filtre facteurs de risque
-    st.subheader("⚡ Facteurs de Risque")
-    alcool_filter = st.checkbox("🍺 Avec Alcool", value=False)
-    fatigue_filter = st.checkbox("😴 Avec Fatigue", value=False)
+    st.subheader(" Facteurs de Risque")
+    alcool_filter = st.checkbox(" Avec Alcool", value=False)
+    fatigue_filter = st.checkbox(" Avec Fatigue", value=False)
     
     st.markdown("---")
     
     # Filtre conditions
     meteo_selected = st.multiselect(
-        "🌧️ Conditions Météo",
+        " Conditions Météo",
         options=df['conditions_meteo'].unique(),
         default=df['conditions_meteo'].unique()
     )
     
     luminosite_selected = st.multiselect(
-        "💡 Luminosité",
+        " Luminosité",
         options=df['luminosite'].unique(),
         default=df['luminosite'].unique()
     )
@@ -637,7 +637,7 @@ with st.sidebar:
     
     # Filtre route
     route_selected = st.multiselect(
-        "🛣️ Type de Route",
+        " Type de Route",
         options=df['type_route'].unique(),
         default=df['type_route'].unique()
     )
@@ -684,54 +684,54 @@ if fatigue_filter:
 # DASHBOARD PRINCIPAL
 # ============================================================================
 
-st.markdown("<h2 style='text-align: center; margin-bottom: 30px;'>📊 Vue d'ensemble des Données Filtrées</h2>", 
+st.markdown("<h2 style='text-align: center; margin-bottom: 30px;'> Vue d'ensemble des Données Filtrées</h2>", 
             unsafe_allow_html=True)
 
 # KPIs dynamiques avec meilleur design
 col1, col2, col3, col4, col5, col6 = st.columns(6)
 
 with col1:
-    st.metric("📊 Accidents", f"{len(df_filtered):,}", 
+    st.metric(" Accidents", f"{len(df_filtered):,}", 
               delta=f"{(len(df_filtered)/len(df)*100):.1f}%", delta_color="off")
 
 with col2:
     victimes = df_filtered['nombre_victimes'].sum()
-    st.metric("👥 Victimes", f"{victimes:,}", 
+    st.metric(" Victimes", f"{victimes:,}", 
               delta=f"{(victimes/df['nombre_victimes'].sum()*100):.1f}%", delta_color="off")
 
 with col3:
     graves = len(df_filtered[df_filtered['gravite'] >= 3])
     pct = (graves/len(df_filtered)*100) if len(df_filtered) > 0 else 0
-    st.metric("⚠️ Graves+", f"{graves:,}", 
+    st.metric(" Graves+", f"{graves:,}", 
               delta=f"{pct:.1f}%", delta_color="inverse")
 
 with col4:
     cout_moy = df_filtered['cout_assurance_annuel'].mean() if len(df_filtered) > 0 else 0
-    st.metric("💰 Assurance Moy", f"{cout_moy:.0f}€/an", 
+    st.metric(" Assurance Moy", f"{cout_moy:.0f}€/an", 
               delta=f"{(cout_moy/df['cout_assurance_annuel'].mean()-1)*100:.1f}%", delta_color="off")
 
 with col5:
     age_moy = df_filtered['age'].mean() if len(df_filtered) > 0 else 0
-    st.metric("👤 Âge Moyen", f"{age_moy:.0f} ans", 
+    st.metric(" Âge Moyen", f"{age_moy:.0f} ans", 
               delta=f"{(age_moy/df['age'].mean()-1)*100:.1f}%", delta_color="off")
 
 with col6:
     exp_moy = df_filtered['experience'].mean() if len(df_filtered) > 0 else 0
-    st.metric("📅 Expérience Moy", f"{exp_moy:.1f} ans", 
+    st.metric(" Expérience Moy", f"{exp_moy:.1f} ans", 
               delta=f"{(exp_moy/df['experience'].mean()-1)*100:.1f}%", delta_color="off")
 
 st.markdown("---")
 
 # Tabs pour navigation
-st.markdown("<h2 style='margin-bottom: 20px;'>🔍 Analyses Détaillées</h2>", unsafe_allow_html=True)
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["📈 Tendances", "👤 Démographie", "💰 Assurance", "🔗 Causalité", "⚠️ Risque", "💡 Insights"])
+st.markdown("<h2 style='margin-bottom: 20px;'> Analyses Détaillées</h2>", unsafe_allow_html=True)
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([" Tendances", " Démographie", " Assurance", " Causalité", " Risque", " Insights"])
 
 # ============================================================================
 # TAB 1: TENDANCES
 # ============================================================================
 
 with tab1:
-    st.subheader("📈 Tendances Temporelles")
+    st.subheader(" Tendances Temporelles")
     
     col1, col2 = st.columns(2)
     
@@ -776,7 +776,7 @@ with tab1:
 # ============================================================================
 
 with tab2:
-    st.subheader("👤 Analyse Démographique")
+    st.subheader(" Analyse Démographique")
     
     col1, col2 = st.columns(2)
     
@@ -840,7 +840,7 @@ with tab2:
 # ============================================================================
 
 with tab3:
-    st.subheader("💰 Analyse Coûts Assurance")
+    st.subheader(" Analyse Coûts Assurance")
     
     col1, col2 = st.columns(2)
     
@@ -892,7 +892,7 @@ with tab3:
     
     st.markdown("---")
     st.info("""
-    **💡 Facteurs de Coût Assurance**:
+    ** Facteurs de Coût Assurance**:
     - **Âge**: Jeunes (18-24) x2.0 | Seniors (65+) x1.8
     - **Expérience**: Novice (<2ans) +50% | Expert (>10ans) -30%
     - **Historique**: Graves +30% | Modérés +10%
@@ -904,7 +904,7 @@ with tab3:
 # ============================================================================
 
 with tab4:
-    st.subheader("🔗 Liens de Causalité")
+    st.subheader(" Liens de Causalité")
     
     col1, col2 = st.columns(2)
     
@@ -959,7 +959,7 @@ with tab4:
 # ============================================================================
 
 with tab5:
-    st.subheader("⚡ Analyse Facteurs de Risque")
+    st.subheader(" Analyse Facteurs de Risque")
     
     col1, col2 = st.columns(2)
     
@@ -980,7 +980,7 @@ with tab5:
     
     st.markdown("---")
     
-    st.subheader("📊 Tableau Facteurs Risque")
+    st.subheader(" Tableau Facteurs Risque")
     
     facteurs_df = pd.DataFrame({
         'Facteur': ['Alcool', 'Fatigue', 'Nuit', 'Mauvais Temps', 'Vitesse >80', 'Jeunes <25', 'Novices <2ans', 'Seniors >70'],
@@ -1006,7 +1006,7 @@ with tab5:
 # ============================================================================
 
 with tab6:
-    st.subheader("💡 Insights & Recommandations")
+    st.subheader(" Insights & Recommandations")
     
     if len(df_filtered) > 0:
         # Classe d'âge la plus accidentée
@@ -1020,7 +1020,7 @@ with tab6:
         
         with col1:
             st.info(f"""
-            **👤 Classe d'Âge Critique: {classe_max}**
+            ** Classe d'Âge Critique: {classe_max}**
             
             {classe_accidents[classe_max]} accidents
             
@@ -1029,7 +1029,7 @@ with tab6:
         
         with col2:
             st.warning(f"""
-            **💰 Coût Assurance Moyen: {cout_moyen:.0f}€/an**
+            ** Coût Assurance Moyen: {cout_moyen:.0f}€/an**
             
             Min: {df_filtered['cout_assurance_annuel'].min():.0f}€
             Max: {df_filtered['cout_assurance_annuel'].max():.0f}€
@@ -1040,7 +1040,7 @@ with tab6:
         with col3:
             age_moyen = df_filtered['age'].mean()
             st.info(f"""
-            **👤 Âge Moyen: {age_moyen:.0f} ans**
+            ** Âge Moyen: {age_moyen:.0f} ans**
             
             Expérience: {df_filtered['experience'].mean():.1f} ans
             
@@ -1049,7 +1049,7 @@ with tab6:
         
         # Profil accident grave
         st.markdown("---")
-        st.subheader("⚠️ Profil Type: Accident GRAVE")
+        st.subheader(" Profil Type: Accident GRAVE")
         
         df_grave = df_filtered[df_filtered['gravite'] >= 3]
         
@@ -1057,13 +1057,13 @@ with tab6:
             col1, col2, col3, col4 = st.columns(4)
             
             with col1:
-                st.metric("👤 Âge Moyen", f"{df_grave['age'].mean():.0f} ans")
+                st.metric(" Âge Moyen", f"{df_grave['age'].mean():.0f} ans")
             with col2:
-                st.metric("⚡ Expérience", f"{df_grave['experience'].mean():.1f} ans")
+                st.metric(" Expérience", f"{df_grave['experience'].mean():.1f} ans")
             with col3:
-                st.metric("🍺 Alcool %", f"{(df_grave['alcoolémie'].sum()/len(df_grave)*100):.0f}%")
+                st.metric(" Alcool %", f"{(df_grave['alcoolémie'].sum()/len(df_grave)*100):.0f}%")
             with col4:
-                st.metric("💰 Coût Ass.", f"{df_grave['cout_assurance_annuel'].mean():.0f}€")
+                st.metric(" Coût Ass.", f"{df_grave['cout_assurance_annuel'].mean():.0f}€")
             
             st.error(f"""
             **Profil Complet Accident Grave**:
@@ -1076,12 +1076,12 @@ with tab6:
             - Victimes moyenne: {df_grave['nombre_victimes'].mean():.1f}
             """)
     else:
-        st.warning("⚠️ Aucune donnée ne correspond à ces filtres")
+        st.warning(" Aucune donnée ne correspond à ces filtres")
 
 st.markdown("---")
 st.markdown("""
 <div class="footer-text">
-    <strong>📊 Dashboard Accidents Routiers - Advanced Edition</strong><br>
+    <strong> Dashboard Accidents Routiers - Advanced Edition</strong><br>
     Analyse complète • Démographie • Assurance • Intelligence Artificielle<br>
     <small>Phase 5 Production Ready | UX/UI Enhanced | 85% Test Coverage</small>
 </div>

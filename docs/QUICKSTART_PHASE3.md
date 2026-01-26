@@ -1,6 +1,6 @@
-# 🚀 Guide de Démarrage Rapide - Phase 3 (PostgreSQL)
+#  Guide de Démarrage Rapide - Phase 3 (PostgreSQL)
 
-## 1️⃣ Prérequis
+## 1⃣ Prérequis
 
 ```bash
 # PostgreSQL doit être installé et lancé
@@ -11,7 +11,7 @@ psql -U postgres -c "SELECT version();"
 pip install psycopg2-binary sqlalchemy pandas
 ```
 
-## 2️⃣ Configuration Environnement
+## 2⃣ Configuration Environnement
 
 Créer `.env` depuis `.env.example`:
 
@@ -36,7 +36,7 @@ API_PORT=8000
 DATA_SOURCE=data.gouv.fr
 ```
 
-## 3️⃣ Créer la Base de Données PostgreSQL
+## 3⃣ Créer la Base de Données PostgreSQL
 
 ```bash
 # Option 1: Via SQL
@@ -57,7 +57,7 @@ conn.close()
 "
 ```
 
-## 4️⃣ Charger les Données Nettoyées
+## 4⃣ Charger les Données Nettoyées
 
 **Prérequis:** Avoir exécuté Phase 1 & 2 (CSV nettoyés dans `data/cleaned/`)
 
@@ -66,10 +66,10 @@ conn.close()
 python src/database/load_postgresql.py
 
 # Résultat attendu:
-# ✓ Schéma PostgreSQL créé
-# ✓ 68,432 accidents chargés
-# ✓ 12,234 communes chargées
-# ✓ Scores de danger calculés
+#  Schéma PostgreSQL créé
+#  68,432 accidents chargés
+#  12,234 communes chargées
+#  Scores de danger calculés
 ```
 
 **Options:**
@@ -81,7 +81,7 @@ python src/database/load_postgresql.py --force
 python src/database/load_postgresql.py --skip-communes
 ```
 
-## 5️⃣ Vérifier les Données
+## 5⃣ Vérifier les Données
 
 ```bash
 # Via psql
@@ -98,7 +98,7 @@ print(db.generate_data_report())
 "
 ```
 
-## 6️⃣ Requêtes Simples
+## 6⃣ Requêtes Simples
 
 ```python
 from src.database import DatabaseManager
@@ -129,7 +129,7 @@ print(df[['age', 'nombre_usagers', 'nombre_deces']])
 db.close_pool()
 ```
 
-## 7️⃣ Validations
+## 7⃣ Validations
 
 ```python
 from src.database import DatabaseManager
@@ -146,7 +146,7 @@ print(f"Doublons détectés: {stats['doublons']}")
 print(db.generate_data_report())
 ```
 
-## 8️⃣ Troubleshooting
+## 8⃣ Troubleshooting
 
 ### Erreur: "psycopg2.OperationalError: could not connect to server"
 
@@ -182,7 +182,7 @@ ANALYZE;
 "
 ```
 
-## 📊 Exemples d'Analyses
+##  Exemples d'Analyses
 
 ### Accidents graves par département
 
@@ -225,12 +225,12 @@ for _, row in df.iterrows():
     ).add_to(m)
 
 m.save('heatmap_accidents.html')
-print("✓ Heatmap créée: heatmap_accidents.html")
+print(" Heatmap créée: heatmap_accidents.html")
 ```
 
 ---
 
-## ✅ Checklist Démarrage Phase 3
+##  Checklist Démarrage Phase 3
 
 - [ ] PostgreSQL installé et lancé
 - [ ] `.env` configuré (DB_HOST, DB_USER, DB_PASSWORD)
@@ -241,7 +241,7 @@ print("✓ Heatmap créée: heatmap_accidents.html")
 
 ---
 
-## 🔗 Fichiers Associés
+##  Fichiers Associés
 
 - **Schema**: `src/database/schema.sql` (544 lignes)
 - **Chargement**: `src/database/load_postgresql.py` (650 lignes)
@@ -251,5 +251,5 @@ print("✓ Heatmap créée: heatmap_accidents.html")
 
 ---
 
-**Phase 3 Complétée! ✅**
+**Phase 3 Complétée! **
 Prêt pour Phase 4 (API FastAPI)

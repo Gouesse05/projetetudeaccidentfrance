@@ -39,14 +39,14 @@ def run_pipeline(force_download: bool = False, skip_download: bool = False) -> b
     """
     
     logger.info("\n" + "=" * 80)
-    logger.info("🚀 DÉMARRAGE PIPELINE ETL - ACCIDENTS ROUTIERS")
+    logger.info(" DÉMARRAGE PIPELINE ETL - ACCIDENTS ROUTIERS")
     logger.info("=" * 80)
     logger.info(f"Heure: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     try:
         # Étape 1: Téléchargement
         if not skip_download:
-            logger.info("\n📥 ÉTAPE 1: TÉLÉCHARGEMENT")
+            logger.info("\n ÉTAPE 1: TÉLÉCHARGEMENT")
             logger.info("-" * 80)
             
             results = download_all_datasets(force=force_download)
@@ -54,34 +54,34 @@ def run_pipeline(force_download: bool = False, skip_download: bool = False) -> b
             # Vérifier si au moins un dataset a réussi
             success_count = sum(1 for r in results.values() if r.get("success"))
             if success_count == 0:
-                logger.error("✗ Aucun téléchargement réussi")
+                logger.error(" Aucun téléchargement réussi")
                 return False
             
-            logger.info(f"✓ {success_count}/{len(results)} datasets téléchargés")
+            logger.info(f" {success_count}/{len(results)} datasets téléchargés")
         else:
-            logger.info("\n⏭️  Téléchargement ignoré (--skip-download)")
+            logger.info("\n⏭  Téléchargement ignoré (--skip-download)")
         
         # Étape 2: Exploration et nettoyage
-        logger.info("\n🔍 ÉTAPE 2: EXPLORATION ET NETTOYAGE")
+        logger.info("\n ÉTAPE 2: EXPLORATION ET NETTOYAGE")
         logger.info("-" * 80)
         
         success = explore_and_clean()
         
         if not success:
-            logger.error("✗ Erreur lors de l'exploration/nettoyage")
+            logger.error(" Erreur lors de l'exploration/nettoyage")
             return False
         
         # Succès
         logger.info("\n" + "=" * 80)
-        logger.info("✅ PIPELINE COMPLÉTÉ AVEC SUCCÈS")
+        logger.info(" PIPELINE COMPLÉTÉ AVEC SUCCÈS")
         logger.info("=" * 80)
-        logger.info("\n📂 Données nettoyées disponibles dans: data/clean/")
-        logger.info("📋 Logs disponibles dans: pipeline.log")
+        logger.info("\n Données nettoyées disponibles dans: data/clean/")
+        logger.info(" Logs disponibles dans: pipeline.log")
         
         return True
         
     except Exception as e:
-        logger.error(f"\n✗ ERREUR PIPELINE: {e}", exc_info=True)
+        logger.error(f"\n ERREUR PIPELINE: {e}", exc_info=True)
         return False
 
 

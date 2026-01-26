@@ -1,11 +1,11 @@
-# 📋 CAHIER DE CHARGES
+#  CAHIER DE CHARGES
 
 ## Projet: Plateforme d'Analyse des Accidents Routiers en France
 
 **Version**: 1.0  
 **Date**: Janvier 2026  
 **Auteur**: Business Analysis Team  
-**Statut**: ✅ Approuvé
+**Statut**:  Approuvé
 
 ---
 
@@ -15,10 +15,10 @@
 
 La sécurité routière est un enjeu majeur en France avec environ **3,200 décès annuels** et **70,000 accidents graves**. 
 Une analyse intelligente des données peut:
-- 📊 Identifier les patterns de risque
-- 🎯 Cibler les interventions de prévention
-- 💰 Optimiser l'allocation des ressources
-- 🚨 Prédire les zones/moments à risque
+-  Identifier les patterns de risque
+-  Cibler les interventions de prévention
+-  Optimiser l'allocation des ressources
+-  Prédire les zones/moments à risque
 
 ### 1.2 Objectif Principal
 
@@ -41,47 +41,47 @@ Une analyse intelligente des données peut:
 
 ### 2.1 Inclus (IN Scope)
 
-✅ Pipeline ETL automatisé  
-✅ API REST avec 25+ endpoints  
-✅ Dashboard Streamlit interactif  
-✅ Analyses statistiques (corrélation, régression, clustering)  
-✅ Filtres multidimensionnels  
-✅ Visualisations Plotly  
-✅ Tests unitaires complets  
-✅ Documentation code  
-✅ Déploiement GitHub  
+ Pipeline ETL automatisé  
+ API REST avec 25+ endpoints  
+ Dashboard Streamlit interactif  
+ Analyses statistiques (corrélation, régression, clustering)  
+ Filtres multidimensionnels  
+ Visualisations Plotly  
+ Tests unitaires complets  
+ Documentation code  
+ Déploiement GitHub  
 
 ### 2.2 Exclus (OUT Scope)
 
-❌ Données en temps réel (données historiques simulées)  
-❌ Déploiement cloud (local/on-premise)  
-❌ Mobile app  
-❌ Prédiction ML avancée  
-❌ Export automatisé des rapports  
+ Données en temps réel (données historiques simulées)  
+ Déploiement cloud (local/on-premise)  
+ Mobile app  
+ Prédiction ML avancée  
+ Export automatisé des rapports  
 
 ---
 
 ## 3. LIVRABLES
 
-### Phase 1: Infrastructure (✅ COMPLÉTÉE)
+### Phase 1: Infrastructure ( COMPLÉTÉE)
 - [ ] Pipeline ETL modularisé
 - [ ] 4 modules d'analyse (nettoyage, stats, dimensionnalité, ML)
 - [ ] Tests unitaires pytest
 - [ ] Documentation code
 
-### Phase 2: API REST (✅ COMPLÉTÉE)
+### Phase 2: API REST ( COMPLÉTÉE)
 - [ ] 25+ endpoints FastAPI
 - [ ] Authentification (basic)
 - [ ] Validation des entrées
 - [ ] Gestion erreurs
 
-### Phase 3: Dashboard Streamlit (✅ COMPLÉTÉE)
+### Phase 3: Dashboard Streamlit ( COMPLÉTÉE)
 - [ ] Page d'accueil avec KPIs
 - [ ] Filtres avancés (15+ critères)
 - [ ] 6 onglets d'analyse
 - [ ] Visualisations interactives
 
-### Phase 4: Documentation BA (🔄 EN COURS)
+### Phase 4: Documentation BA ( EN COURS)
 - [ ] Cahier de charges
 - [ ] Spécifications fonctionnelles
 - [ ] Spécifications techniques
@@ -102,7 +102,7 @@ Une analyse intelligente des données peut:
 
 ### 4.2 Contraintes Business
 - Budget: Minimal (open-source)
-- Timeline: 4 semaines ✅ RESPECTÉE
+- Timeline: 4 semaines  RESPECTÉE
 - Équipe: 1 Data Engineer/Analyst
 
 ### 4.3 Dépendances Externes
@@ -116,13 +116,13 @@ Une analyse intelligente des données peut:
 
 | Critère | Baseline | Cible | Statut |
 |---------|----------|-------|--------|
-| **Performance API** | N/A | <200ms/requête | ✅ OK |
-| **Dashboard UX** | N/A | <3s chargement | ✅ OK |
-| **Couverture tests** | N/A | >80% | ✅ 85% |
-| **Filtres opérationnels** | N/A | 15+ critères | ✅ 15 |
-| **Visualisations** | N/A | 20+ graphiques | ✅ 25+ |
-| **Documentation** | N/A | 100% code | 🟡 90% |
-| **Anomalies détectées** | N/A | Documentées | ✅ OK |
+| **Performance API** | N/A | <200ms/requête |  OK |
+| **Dashboard UX** | N/A | <3s chargement |  OK |
+| **Couverture tests** | N/A | >80% |  85% |
+| **Filtres opérationnels** | N/A | 15+ critères |  15 |
+| **Visualisations** | N/A | 20+ graphiques |  25+ |
+| **Documentation** | N/A | 100% code |  90% |
+| **Anomalies détectées** | N/A | Documentées |  OK |
 
 ---
 
@@ -157,9 +157,9 @@ Une analyse intelligente des données peut:
 ## 8. GOUVERNANCE
 
 ### 8.1 Approbation
-- ✅ Analysé et approuvé
-- ✅ Aligné avec les objectifs de sécurité routière
-- ✅ Prêt pour développement
+-  Analysé et approuvé
+-  Aligné avec les objectifs de sécurité routière
+-  Prêt pour développement
 
 ### 8.2 Pilotage
 - Weekly Reviews des livrables
@@ -181,4 +181,4 @@ Une analyse intelligente des données peut:
 
 ---
 
-**Signature Digital**: ✅ Document approuvé - 26/01/2026
+**Signature Digital**:  Document approuvé - 26/01/2026

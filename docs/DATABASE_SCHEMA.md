@@ -1,45 +1,45 @@
-# 📊 Phase 3: Schéma PostgreSQL et Chargement des Données
+#  Phase 3: Schéma PostgreSQL et Chargement des Données
 
 ## Vue d'ensemble
 
 Phase 3 implémente la **couche persistence** du projet avec :
-- ✅ Schéma PostgreSQL complet (5 tables + référentiels)
-- ✅ Scripts de chargement avec validation
-- ✅ Requêtes d'analyse pré-compilées
-- ✅ Cache analytique (scores de danger)
-- ✅ Vues pour faciliter les analyses
+-  Schéma PostgreSQL complet (5 tables + référentiels)
+-  Scripts de chargement avec validation
+-  Requêtes d'analyse pré-compilées
+-  Cache analytique (scores de danger)
+-  Vues pour faciliter les analyses
 
 **Objectif**: Transformer les CSV nettoyés → Base de données relationnelle optimisée pour les analyses d'assurance.
 
 ---
 
-## 📐 Architecture du Schéma
+##  Architecture du Schéma
 
 ### Tables Principales
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    SCHÉMA POSTGRESQL                     │
-│         accidents_schema (publique, 8 tables)            │
-└─────────────────────────────────────────────────────────┘
+
+                    SCHÉMA POSTGRESQL                     
+         accidents_schema (publique, 8 tables)            
+
 
 RÉFÉRENTIELS:
-├── departements      (référenciel + données INSEE)
-├── communes          (géolocalisation + densité)
+ departements      (référenciel + données INSEE)
+ communes          (géolocalisation + densité)
 
 DONNÉES TRANSACTIONNELLES:
-├── accidents         (table principale, ~60k-80k rows)
-├── caracteristiques  (conditions de l'accident)
-├── lieux            (géolocalisation précise)
-├── usagers          (données des personnes impliquées)
-└── vehicules        (données des véhicules)
+ accidents         (table principale, ~60k-80k rows)
+ caracteristiques  (conditions de l'accident)
+ lieux            (géolocalisation précise)
+ usagers          (données des personnes impliquées)
+ vehicules        (données des véhicules)
 
 ANALYTIQUE:
-└── score_danger_commune (cache de scores composites)
+ score_danger_commune (cache de scores composites)
 
 VUES:
-├── v_accidents_enrichis (join de toutes les tables)
-└── v_resume_communes    (agrégations par commune)
+ v_accidents_enrichis (join de toutes les tables)
+ v_resume_communes    (agrégations par commune)
 ```
 
 ### Diagramme Relationnel
@@ -47,14 +47,14 @@ VUES:
 ```
 departements (code_dept PK)
     ↓ (id_dept FK)
-communes (code_com PK) ──┐
-    ↓ (id_com FK)        │
-accidents (num_acc PK) ←─┘
+communes (code_com PK) 
+    ↓ (id_com FK)        
+accidents (num_acc PK) ←
     ↓ (id_accident FK)
-    ├── caracteristiques
-    ├── lieux
-    ├── usagers
-    └── vehicules
+     caracteristiques
+     lieux
+     usagers
+     vehicules
     
 score_danger_commune
     ↓ (id_com FK)
@@ -111,15 +111,15 @@ CREATE TABLE accidents (
     
     -- Date/Temps (INDEXÉE pour analyses temporelles)
     date_accident DATE NOT NULL,
-    annee INTEGER NOT NULL,                      -- ⭐ Indexé
+    annee INTEGER NOT NULL,                      --  Indexé
     mois INTEGER CHECK (1-12),
     jour_mois INTEGER CHECK (1-31),
     jour_semaine INTEGER CHECK (1-7),            -- 1=Lundi, 7=Dimanche
-    heure INTEGER CHECK (0-23),                  -- ⭐ Indexé
+    heure INTEGER CHECK (0-23),                  --  Indexé
     minute INTEGER CHECK (0-59),
     
     -- Localisation (INDEXÉE)
-    id_com INTEGER FK REFERENCES communes,      -- ⭐ Indexé
+    id_com INTEGER FK REFERENCES communes,      --  Indexé
     
     -- Caractéristiques
     nombre_vehicules INTEGER CHECK (>0),
@@ -189,7 +189,7 @@ CREATE TABLE lieux (
     id_lieu SERIAL PRIMARY KEY,
     id_accident INTEGER FK REFERENCES accidents (CASCADE),
     
-    -- Géolocalisation ⭐ INDEXÉE pour heatmaps
+    -- Géolocalisation  INDEXÉE pour heatmaps
     latitude DECIMAL(10, 8),
     longitude DECIMAL(10, 8),
     
@@ -221,7 +221,7 @@ CREATE TABLE usagers (
     
     -- Démographie (INDEXÉE pour analyses)
     date_naissance DATE,
-    age INTEGER,                                 -- ⭐ Indexé
+    age INTEGER,                                 --  Indexé
     sexe VARCHAR(1),                             -- '1'=M, '2'=F, 'Unknown'
     
     -- Sécurité
@@ -286,7 +286,7 @@ CREATE TABLE score_danger_commune (
     gravite_moyenne DECIMAL(5, 2),
     
     -- Score Composite (0-100)
-    score_danger DECIMAL(5, 2),                  -- ⭐ Indexé pour tri rapide
+    score_danger DECIMAL(5, 2),                  --  Indexé pour tri rapide
     score_frequence DECIMAL(5, 2),               -- 50% du score
     score_gravite DECIMAL(5, 2),                 -- 30% du score
     score_personnes DECIMAL(5, 2),               -- 20% du score
@@ -318,16 +318,16 @@ UTILISATION:
 
 ---
 
-## 🔍 Vues Analytiques
+##  Vues Analytiques
 
 ### 1. **v_accidents_enrichis** (Jointure Complète)
 
 ```sql
 VIEW: v_accidents_enrichis
-├── Accidents enrichis avec toutes les dimensions
-├── Colonnes: num_acc, date, lieu (commune, région, densité), 
-│             gravité, conditions (jour/heure), geolocalisation
-└── Usage: Base pour toutes les analyses ad-hoc
+ Accidents enrichis avec toutes les dimensions
+ Colonnes: num_acc, date, lieu (commune, région, densité), 
+             gravité, conditions (jour/heure), geolocalisation
+ Usage: Base pour toutes les analyses ad-hoc
 
 SELECT * FROM accidents_schema.v_accidents_enrichis
 WHERE annee = 2022 
@@ -340,11 +340,11 @@ ORDER BY gravite_max DESC;
 
 ```sql
 VIEW: v_resume_communes
-├── Une ligne par commune
-├── Colonnes: statistics (accidents, personnes, gravité moyenne, max)
-│            démographie (population, densité)
-├── Usage: Dashboard, comparaisons communes
-└── Index implicite: nom_com, densité
+ Une ligne par commune
+ Colonnes: statistics (accidents, personnes, gravité moyenne, max)
+            démographie (population, densité)
+ Usage: Dashboard, comparaisons communes
+ Index implicite: nom_com, densité
 
 SELECT * FROM accidents_schema.v_resume_communes
 ORDER BY nombre_accidents DESC
@@ -353,7 +353,7 @@ LIMIT 50;
 
 ---
 
-## 📊 Procédures Stockées
+##  Procédures Stockées
 
 ### **calculer_scores_danger()** (Recalcul des Scores)
 
@@ -367,7 +367,7 @@ SELECT * FROM accidents_schema.calculer_scores_danger();
 
 ---
 
-## 🚀 Installation et Utilisation
+##  Installation et Utilisation
 
 ### 1. **Créer le Schéma**
 
@@ -394,7 +394,7 @@ python src/database/load_postgresql.py --skip-communes
 
 **Résultat Attendu:**
 ```
-✓ Schéma PostgreSQL créé avec succès!
+ Schéma PostgreSQL créé avec succès!
 
 Tables créées:
   - departements (référentiel)
@@ -452,7 +452,7 @@ db.close_pool()
 
 ---
 
-## 📈 Cas d'Usage Analytiques
+##  Cas d'Usage Analytiques
 
 ### 1. **Analyse de Risque par Région**
 
@@ -505,7 +505,7 @@ df = db.get_accidents_near(latitude=48.8566, longitude=2.3522, distance_km=5)
 
 ---
 
-## 🔒 Sécurité et Permissions
+##  Sécurité et Permissions
 
 ```sql
 -- Permissions par défaut (PUBLIC peut READ)
@@ -521,7 +521,7 @@ GRANT UPDATE ON accidents_schema.* TO app_user;
 
 ---
 
-## 📊 Performances Attendues
+##  Performances Attendues
 
 | Requête | Temps | Rows |
 |---------|-------|------|
@@ -538,7 +538,7 @@ GRANT UPDATE ON accidents_schema.* TO app_user;
 
 ---
 
-## 📝 Prochaines Étapes (Phase 4)
+##  Prochaines Étapes (Phase 4)
 
 1. **API FastAPI** : Endpoints REST sur requêtes ci-dessus
 2. **Matérialisation Vues** : Pour très grandes analyses
@@ -547,7 +547,7 @@ GRANT UPDATE ON accidents_schema.* TO app_user;
 
 ---
 
-## 📚 Fichiers Livérés
+##  Fichiers Livérés
 
 - `src/database/schema.sql` (544 lignes) - DDL complet
 - `src/database/load_postgresql.py` (650 lignes) - Chargeur

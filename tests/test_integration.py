@@ -37,7 +37,7 @@ def create_sample_data():
     """Crée des fichiers CSV de test"""
     
     logger.info("\n" + "=" * 80)
-    logger.info("📝 CRÉATION DE DONNÉES DE TEST")
+    logger.info(" CRÉATION DE DONNÉES DE TEST")
     logger.info("=" * 80)
     
     RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -58,7 +58,7 @@ def create_sample_data():
     }
     df_accidents = pd.DataFrame(accidents_data)
     df_accidents.to_csv(RAW_DATA_DIR / "accidents.csv", index=False)
-    logger.info("✓ accidents.csv créé (6 lignes, 1 doublon)")
+    logger.info(" accidents.csv créé (6 lignes, 1 doublon)")
     
     # Sample caracteristiques
     caracteristiques_data = {
@@ -72,7 +72,7 @@ def create_sample_data():
     }
     df_caract = pd.DataFrame(caracteristiques_data)
     df_caract.to_csv(RAW_DATA_DIR / "caracteristiques.csv", index=False)
-    logger.info("✓ caracteristiques.csv créé (5 lignes)")
+    logger.info(" caracteristiques.csv créé (5 lignes)")
     
     # Sample lieux
     lieux_data = {
@@ -86,7 +86,7 @@ def create_sample_data():
     }
     df_lieux = pd.DataFrame(lieux_data)
     df_lieux.to_csv(RAW_DATA_DIR / "lieux.csv", index=False)
-    logger.info("✓ lieux.csv créé (5 lignes)")
+    logger.info(" lieux.csv créé (5 lignes)")
     
     # Sample usagers
     usagers_data = {
@@ -102,7 +102,7 @@ def create_sample_data():
     }
     df_usagers = pd.DataFrame(usagers_data)
     df_usagers.to_csv(RAW_DATA_DIR / "usagers.csv", index=False)
-    logger.info("✓ usagers.csv créé (5 lignes)")
+    logger.info(" usagers.csv créé (5 lignes)")
     
     # Sample vehicules
     vehicules_data = {
@@ -114,7 +114,7 @@ def create_sample_data():
     }
     df_vehicules = pd.DataFrame(vehicules_data)
     df_vehicules.to_csv(RAW_DATA_DIR / "vehicules.csv", index=False)
-    logger.info("✓ vehicules.csv créé (5 lignes)")
+    logger.info(" vehicules.csv créé (5 lignes)")
     
     return True
 
@@ -123,17 +123,17 @@ def test_pipeline():
     """Test complet du pipeline"""
     
     logger.info("\n" + "=" * 80)
-    logger.info("🧪 TEST PIPELINE ETL")
+    logger.info(" TEST PIPELINE ETL")
     logger.info("=" * 80)
     
     # Créer données de test
     if not create_sample_data():
-        logger.error("✗ Erreur création données de test")
+        logger.error(" Erreur création données de test")
         return False
     
     # Tester exploration et nettoyage
     logger.info("\n" + "=" * 80)
-    logger.info("🧹 NETTOYAGE ET VALIDATION")
+    logger.info(" NETTOYAGE ET VALIDATION")
     logger.info("=" * 80)
     
     CLEAN_DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -152,10 +152,10 @@ def test_pipeline():
         file_path = RAW_DATA_DIR / filename
         
         if not file_path.exists():
-            logger.warning(f"⚠ {filename} non trouvé")
+            logger.warning(f" {filename} non trouvé")
             continue
         
-        logger.info(f"\n📂 Traitement: {filename}")
+        logger.info(f"\n Traitement: {filename}")
         logger.info("-" * 60)
         
         # Charger
@@ -180,32 +180,32 @@ def test_pipeline():
     
     # Résumé
     logger.info("\n" + "=" * 80)
-    logger.info("✅ RÉSUMÉ TEST")
+    logger.info(" RÉSUMÉ TEST")
     logger.info("=" * 80)
     
     for name, result in results.items():
         if result["success"]:
-            logger.info(f"✓ {name:20} | {result['rows']:4} lignes | {result['columns']:3} colonnes")
+            logger.info(f" {name:20} | {result['rows']:4} lignes | {result['columns']:3} colonnes")
         else:
-            logger.info(f"✗ {name:20} | Erreur")
+            logger.info(f" {name:20} | Erreur")
     
-    logger.info("\n📂 Fichiers nettoyés dans: " + str(CLEAN_DATA_DIR))
+    logger.info("\n Fichiers nettoyés dans: " + str(CLEAN_DATA_DIR))
     
     # Vérification finale
     all_success = all(r.get("success") for r in results.values())
     
     if all_success:
-        logger.info("\n✅ TOUS LES TESTS PASSÉS")
+        logger.info("\n TOUS LES TESTS PASSÉS")
         return True
     else:
-        logger.error("\n❌ CERTAINS TESTS ONT ÉCHOUÉ")
+        logger.error("\n CERTAINS TESTS ONT ÉCHOUÉ")
         return False
 
 
 def cleanup_test_data():
     """Nettoie les données de test"""
     logger.info("\n" + "=" * 80)
-    logger.info("🧹 NETTOYAGE DES DONNÉES DE TEST")
+    logger.info(" NETTOYAGE DES DONNÉES DE TEST")
     logger.info("=" * 80)
     
     import shutil
@@ -217,7 +217,7 @@ def cleanup_test_data():
                     file.unlink()
                     logger.info(f"  Supprimé: {file.name}")
     
-    logger.info("✓ Nettoyage terminé")
+    logger.info(" Nettoyage terminé")
 
 
 if __name__ == "__main__":

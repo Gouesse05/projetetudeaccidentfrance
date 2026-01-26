@@ -59,13 +59,13 @@ def task_download_data(**context):
     Télécharger les données depuis data.gouv.fr
     Télécharge les fichiers CSV dans data/raw/
     """
-    print("🔄 Démarrage téléchargement données...")
+    print(" Démarrage téléchargement données...")
     try:
         download_data()
-        print("✅ Téléchargement réussi")
+        print(" Téléchargement réussi")
         return {'status': 'success', 'stage': 'download'}
     except Exception as e:
-        print(f"❌ Erreur téléchargement: {str(e)}")
+        print(f" Erreur téléchargement: {str(e)}")
         raise
 
 
@@ -74,13 +74,13 @@ def task_clean_data(**context):
     Nettoyer et normaliser les données
     Traite les fichiers CSV et les exporte en données propres
     """
-    print("🧹 Démarrage nettoyage données...")
+    print(" Démarrage nettoyage données...")
     try:
         clean_data()
-        print("✅ Nettoyage réussi")
+        print(" Nettoyage réussi")
         return {'status': 'success', 'stage': 'clean'}
     except Exception as e:
-        print(f"❌ Erreur nettoyage: {str(e)}")
+        print(f" Erreur nettoyage: {str(e)}")
         raise
 
 
@@ -89,13 +89,13 @@ def task_load_postgresql(**context):
     Charger les données nettoyées dans PostgreSQL
     Crée les tables et insère les données
     """
-    print("📊 Démarrage chargement PostgreSQL...")
+    print(" Démarrage chargement PostgreSQL...")
     try:
         load_postgresql()
-        print("✅ Chargement réussi")
+        print(" Chargement réussi")
         return {'status': 'success', 'stage': 'load'}
     except Exception as e:
-        print(f"❌ Erreur chargement: {str(e)}")
+        print(f" Erreur chargement: {str(e)}")
         raise
 
 
@@ -107,7 +107,7 @@ def task_validate_data(**context):
     import psycopg2
     from src.config import DB_CONFIG
     
-    print("✔️  Validation des données...")
+    print("  Validation des données...")
     try:
         conn = psycopg2.connect(**DB_CONFIG)
         cursor = conn.cursor()
@@ -131,19 +131,19 @@ def task_validate_data(**context):
             'vehicules': count_vehicules,
         }
         
-        print(f"📈 Statistiques:")
+        print(f" Statistiques:")
         print(f"   Accidents: {count_accidents:,}")
         print(f"   Usagers: {count_usagers:,}")
         print(f"   Véhicules: {count_vehicules:,}")
         
         if count_accidents > 0 and count_usagers > 0 and count_vehicules > 0:
-            print("✅ Validation réussie")
+            print(" Validation réussie")
             return results
         else:
             raise ValueError("Données insuffisantes après chargement")
             
     except Exception as e:
-        print(f"❌ Erreur validation: {str(e)}")
+        print(f" Erreur validation: {str(e)}")
         raise
 
 
@@ -153,7 +153,7 @@ def task_validate_data(**context):
 
 task_start = BashOperator(
     task_id='start_pipeline',
-    bash_command='echo "🚀 Démarrage du pipeline ETL à $(date)"',
+    bash_command='echo " Démarrage du pipeline ETL à $(date)"',
     dag=dag,
 )
 
@@ -161,8 +161,8 @@ task_verify_dirs = BashOperator(
     task_id='verify_directories',
     bash_command='''
     echo "Vérification des répertoires..."
-    [ -d "/home/sdd/projetetudeapi/data/raw" ] && echo "✓ data/raw existe" || mkdir -p /home/sdd/projetetudeapi/data/raw
-    [ -d "/home/sdd/projetetudeapi/data/clean" ] && echo "✓ data/clean existe" || mkdir -p /home/sdd/projetetudeapi/data/clean
+    [ -d "/home/sdd/projetetudeapi/data/raw" ] && echo " data/raw existe" || mkdir -p /home/sdd/projetetudeapi/data/raw
+    [ -d "/home/sdd/projetetudeapi/data/clean" ] && echo " data/clean existe" || mkdir -p /home/sdd/projetetudeapi/data/clean
     ls -lh /home/sdd/projetetudeapi/data/
     ''',
     dag=dag,
@@ -176,7 +176,7 @@ task_cleanup_temp = BashOperator(
 
 task_end = BashOperator(
     task_id='end_pipeline',
-    bash_command='echo "✅ Pipeline terminé à $(date)"',
+    bash_command='echo " Pipeline terminé à $(date)"',
     dag=dag,
 )
 

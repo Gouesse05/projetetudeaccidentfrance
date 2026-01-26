@@ -180,6 +180,6 @@ def validate_config():
             missing_urls.append(name)
     
     if missing_urls:
-        print(f"⚠️  URLs à mettre à jour: {missing_urls}")
+        print(f"  URLs à mettre à jour: {missing_urls}")
         return False
     return True

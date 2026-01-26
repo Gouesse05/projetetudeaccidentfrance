@@ -1,46 +1,46 @@
-# 📦 Archive - Fichiers Anciens/Obsolètes
+#  Archive - Fichiers Anciens/Obsolètes
 
 Ce dossier contient les fichiers qui ont été **archivés et ne sont plus utilisés**.
 
-## 📋 Contenu
+##  Contenu
 
 ### Orchestration Files (Airflow & Dagster)
 
 **analysis_pipeline.py** (13 KB)
 - Ancien DAG Airflow pour orchestration des analyses
-- Statut: ✗ Deprecated (remplacé par run_pipeline.py)
+- Statut:  Deprecated (remplacé par run_pipeline.py)
 
 **analysis_pipeline_dagster.py** (11 KB)
 - DAG Dagster (tentative de migration)
-- Statut: ✗ Deprecated (conflit Pydantic)
+- Statut:  Deprecated (conflit Pydantic)
 
 **accidents_pipeline.py** (7 KB)
 - Ancien DAG Airflow pour pipeline accidents
-- Statut: ✗ Deprecated
+- Statut:  Deprecated
 
 **maintenance.py** (7 KB)
 - Tâches de maintenance Airflow
-- Statut: ✗ Deprecated
+- Statut:  Deprecated
 
 **setup_airflow.sh** (7 KB)
 - Script de setup Airflow
-- Statut: ✗ Deprecated
+- Statut:  Deprecated
 
-## ❌ Pourquoi archivé?
+##  Pourquoi archivé?
 
 ### Airflow
-- ❌ Trop de dépendances conflictuelles
-- ❌ Complexe pour un small project
-- ❌ Overhead d'installation importante
-- ✅ Remplacé par: `run_pipeline.py`
+-  Trop de dépendances conflictuelles
+-  Complexe pour un small project
+-  Overhead d'installation importante
+-  Remplacé par: `run_pipeline.py`
 
 ### Dagster
-- ❌ Conflit avec Pydantic 2.x
-- ❌ dbt-semantic-interfaces nécessite Pydantic 1.x
-- ❌ FastAPI nécessite Pydantic 2.x
-- ✅ Remplacé par: `run_pipeline.py`
+-  Conflit avec Pydantic 2.x
+-  dbt-semantic-interfaces nécessite Pydantic 1.x
+-  FastAPI nécessite Pydantic 2.x
+-  Remplacé par: `run_pipeline.py`
 
-## 🚀 Nouvelle Solution
+##  Nouvelle Solution
 
 Tous les orchestrateurs ont été remplacés par:
 
@@ -49,15 +49,15 @@ Tous les orchestrateurs ont été remplacés par:
 ```
 
 **Avantages:**
-- ✅ Aucune dépendance externe
-- ✅ Exécution simple et directe
-- ✅ Logs détaillés
-- ✅ Model persistence
-- ✅ Report generation
-- ✅ Step-by-step execution
-- ✅ CLI arguments support
+-  Aucune dépendance externe
+-  Exécution simple et directe
+-  Logs détaillés
+-  Model persistence
+-  Report generation
+-  Step-by-step execution
+-  CLI arguments support
 
-## 📖 Comment Utiliser
+##  Comment Utiliser
 
 ```bash
 # Pipeline complet
@@ -70,14 +70,14 @@ python run_pipeline.py --step data_cleaning
 python run_pipeline.py --help
 ```
 
-## 📚 Références
+##  Références
 
 Pour plus d'informations:
 - `PIPELINE_README.md` - Guide d'utilisation
 - `ANALYSIS_REPORT.md` - Analyse du projet
 - `run_pipeline.py` - Code source (335 lignes)
 
-## 🔄 Migration Future
+##  Migration Future
 
 Si vous avez besoin d'orchestration avancée à l'avenir:
 1. Intégrer **Prefect** (plus moderne)
@@ -88,4 +88,4 @@ Si vous avez besoin d'orchestration avancée à l'avenir:
 
 **Archivé:** 2026-01-23  
 **Raison:** Simplification et élimination des conflits de dépendances  
-**Status:** ✅ Nettoyage complet du projet
+**Status:**  Nettoyage complet du projet

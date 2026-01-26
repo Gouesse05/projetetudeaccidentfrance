@@ -1,4 +1,4 @@
-# 🚀 Phase 5: Déploiement sur Render - Guide Complet
+#  Phase 5: Déploiement sur Render - Guide Complet
 
 **Date**: Janvier 2026  
 **Objectif**: Déployer l'API FastAPI sur Render via GitHub  
@@ -6,20 +6,20 @@
 
 ---
 
-## 📋 Vue d'ensemble
+##  Vue d'ensemble
 
 **Phase 5** déploiera l'API Phase 4 sur **Render**, une plateforme PaaS moderne qui:
-- ✅ Déploie directement depuis GitHub
-- ✅ Fournit PostgreSQL géré
-- ✅ Supporte Python/FastAPI nativement
-- ✅ Auto-scaling inclus
-- ✅ HTTPS gratuit
-- ✅ Custom domains
-- ✅ Monitoring inclus
+-  Déploie directement depuis GitHub
+-  Fournit PostgreSQL géré
+-  Supporte Python/FastAPI nativement
+-  Auto-scaling inclus
+-  HTTPS gratuit
+-  Custom domains
+-  Monitoring inclus
 
 ---
 
-## 🎯 Objectifs Phase 5
+##  Objectifs Phase 5
 
 ### Objectifs Principaux
 - [ ] Créer compte Render
@@ -31,36 +31,36 @@
 - [ ] Documenter processus
 
 ### Livrables Attendus
-- ✅ API en ligne sur `https://accidents-api-prod.onrender.com`
-- ✅ PostgreSQL hébergée sur Render
-- ✅ CI/CD depuis GitHub automatisé
-- ✅ Monitoring et logs actifs
-- ✅ Documentation déploiement
-- ✅ Guide maintenance
+-  API en ligne sur `https://accidents-api-prod.onrender.com`
+-  PostgreSQL hébergée sur Render
+-  CI/CD depuis GitHub automatisé
+-  Monitoring et logs actifs
+-  Documentation déploiement
+-  Guide maintenance
 
 ---
 
-## 🔧 Architecture Déploiement
+##  Architecture Déploiement
 
 ```
-┌─────────────────┐
-│   GitHub Repo   │ (projetetudeaccidentfrance)
-└────────┬────────┘
-         │
-         │ (Git Push)
-         ▼
-┌─────────────────┐
-│   Render.com    │ (CI/CD + Hosting)
-└────────┬────────┘
-         │
-    ┌────┴────┐
-    ▼         ▼
-┌────────┐ ┌──────────────┐
-│ Web    │ │ PostgreSQL   │
-│Service │ │ (Managed DB) │
-└────┬───┘ └──────────────┘
-     │
-     ▼
+
+   GitHub Repo    (projetetudeaccidentfrance)
+
+         
+          (Git Push)
+         
+
+   Render.com     (CI/CD + Hosting)
+
+         
+    
+             
+ 
+ Web      PostgreSQL   
+Service   (Managed DB) 
+ 
+     
+     
 https://accidents-api-prod.onrender.com
 
 Client Requests
@@ -74,7 +74,7 @@ PostgreSQL Database
 
 ---
 
-## 📦 Prérequis
+##  Prérequis
 
 ### Compte & Access
 - [ ] Compte GitHub (déjà créé: Gouesse05)
@@ -109,7 +109,7 @@ uvicorn src.api.main:app --reload  # Accessible sur :8000
 
 ---
 
-## 🎬 Étape 1: Créer Compte Render
+##  Étape 1: Créer Compte Render
 
 ### 1.1 Inscription
 ```
@@ -123,18 +123,18 @@ uvicorn src.api.main:app --reload  # Accessible sur :8000
 ### 1.2 Configuration de Base
 ```
 Dashboard Render
-  ├── Account Settings
-  │   ├── GitHub Connection (vérifier)
-  │   ├── Email & Notifications
-  │   └── Billing (optionnel pour tier gratuit)
-  └── Create New
-      ├── Web Service
-      └── PostgreSQL Database
+   Account Settings
+      GitHub Connection (vérifier)
+      Email & Notifications
+      Billing (optionnel pour tier gratuit)
+   Create New
+       Web Service
+       PostgreSQL Database
 ```
 
 ---
 
-## 📊 Étape 2: Créer PostgreSQL sur Render
+##  Étape 2: Créer PostgreSQL sur Render
 
 ### 2.1 Créer Database
 
@@ -211,7 +211,7 @@ psql -h accidents-db-prod.c99xyz.postgres.render.com \
 
 ---
 
-## 🌐 Étape 3: Créer Web Service sur Render
+##  Étape 3: Créer Web Service sur Render
 
 ### 3.1 Connecter Repository
 
@@ -285,7 +285,7 @@ Installing dependencies from requirements.txt
 
 ---
 
-## ✅ Étape 4: Vérifier Déploiement
+##  Étape 4: Vérifier Déploiement
 
 ### 4.1 Tester Endpoints
 
@@ -312,10 +312,10 @@ curl "$BASE_URL/docs"
 Naviguer à: https://accidents-api-prod.onrender.com/docs
 
 Vérifier:
-  ✅ Tous les endpoints visibles
-  ✅ Données chargées correctement
-  ✅ Réponses JSON valides
-  ✅ Pas d'erreurs 500
+   Tous les endpoints visibles
+   Données chargées correctement
+   Réponses JSON valides
+   Pas d'erreurs 500
 ```
 
 ### 4.3 Logs Production
@@ -330,7 +330,7 @@ Vérifier:
 
 ---
 
-## 🔄 Étape 5: Configurer Auto-Deploy
+##  Étape 5: Configurer Auto-Deploy
 
 ### 5.1 GitHub Actions (Optionnel)
 
@@ -382,7 +382,7 @@ RENDER_DEPLOY_KEY:  rnd_••••••••••••••  (from Render
 
 ---
 
-## 📊 Étape 6: Monitoring & Logs
+##  Étape 6: Monitoring & Logs
 
 ### 6.1 Logs Render
 
@@ -390,9 +390,9 @@ RENDER_DEPLOY_KEY:  rnd_••••••••••••••  (from Render
 
 ```
 Options:
-  ├── Live tail (logs en temps réel)
-  ├── Older logs (historique)
-  └── Download logs (télécharger)
+   Live tail (logs en temps réel)
+   Older logs (historique)
+   Download logs (télécharger)
 ```
 
 **Commandes utiles**:
@@ -414,9 +414,9 @@ curl "https://accidents-api-prod.onrender.com/api/v1/health" -v
 
 ```
 Configure:
-  ├── Deployment notifications (on)
-  ├── Error notifications (on)
-  └── Email: your_email@example.com
+   Deployment notifications (on)
+   Error notifications (on)
+   Email: your_email@example.com
 ```
 
 ### 6.3 Monitoring API
@@ -439,7 +439,7 @@ async def get_metrics():
 
 ---
 
-## 🌍 Étape 7: Custom Domain (Optionnel)
+##  Étape 7: Custom Domain (Optionnel)
 
 ### 7.1 Ajouter Domain
 
@@ -464,7 +464,7 @@ Ajouter DNS record:
 
 ---
 
-## 🔐 Sécurité Production
+##  Sécurité Production
 
 ### Checklist Sécurité
 
@@ -494,7 +494,7 @@ app.add_middleware(
 
 ---
 
-## 📈 Performance Optimization
+##  Performance Optimization
 
 ### Render Tier Comparison
 
@@ -545,7 +545,7 @@ app.add_middleware(GZIPMiddleware, minimum_size=1000)
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Problème 1: Build Échoue
 
@@ -622,7 +622,7 @@ async def close_db():
 
 ---
 
-## 📝 Checklist Déploiement
+##  Checklist Déploiement
 
 ### Avant Déploiement
 - [ ] Phase 4 commits pushés sur main
@@ -651,7 +651,7 @@ async def close_db():
 
 ---
 
-## 🚀 Commandes de Référence
+##  Commandes de Référence
 
 ### Local Development
 ```bash
@@ -684,7 +684,7 @@ render deploy --key $RENDER_DEPLOY_KEY
 
 ---
 
-## 📚 Documentation URLs
+##  Documentation URLs
 
 ### Après Déploiement
 ```
@@ -703,7 +703,7 @@ Health Check:       https://accidents-api-prod.onrender.com/api/v1/health
 
 ---
 
-## 🎯 Prochaines Étapes (Phase 5b)
+##  Prochaines Étapes (Phase 5b)
 
 Après déploiement successful:
 
@@ -736,17 +736,17 @@ Après déploiement successful:
 
 ---
 
-## 📋 Résumé
+##  Résumé
 
 **Phase 5** déploie l'API sur Render:
 
 ### Livrables
-- ✅ API production sur Render
-- ✅ PostgreSQL géréé sur Render
-- ✅ CI/CD depuis GitHub automatisé
-- ✅ HTTPS activé
-- ✅ Monitoring actif
-- ✅ Documentation mise à jour
+-  API production sur Render
+-  PostgreSQL géréé sur Render
+-  CI/CD depuis GitHub automatisé
+-  HTTPS activé
+-  Monitoring actif
+-  Documentation mise à jour
 
 ### URL Production
 ```
@@ -758,4 +758,4 @@ https://accidents-api-prod.onrender.com
 
 ---
 
-**Status: PRÊT POUR DÉPLOIEMENT** ✅
+**Status: PRÊT POUR DÉPLOIEMENT** 

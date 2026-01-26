@@ -19,13 +19,13 @@ plt.rcParams['figure.figsize'] = (14, 8)
 # ============================================================================
 
 print("\n" + "="*80)
-print("📊 ANALYSES ACCIDENTS ROUTIERS - EXEMPLE")
+print(" ANALYSES ACCIDENTS ROUTIERS - EXEMPLE")
 print("="*80)
 
 # À adapter à vos chemins
 DATA_DIR = "../../data/clean/"
 
-print("\n1️⃣  Chargement des données...")
+print("\n1⃣  Chargement des données...")
 
 try:
     df_accidents = pd.read_csv(f"{DATA_DIR}clean_accidents.csv")
@@ -34,14 +34,14 @@ try:
     df_usagers = pd.read_csv(f"{DATA_DIR}clean_usagers.csv")
     df_vehicules = pd.read_csv(f"{DATA_DIR}clean_vehicules.csv")
     
-    print(f"  ✓ accidents: {len(df_accidents)} lignes")
-    print(f"  ✓ caracteristiques: {len(df_caracteristiques)} lignes")
-    print(f"  ✓ lieux: {len(df_lieux)} lignes")
-    print(f"  ✓ usagers: {len(df_usagers)} lignes")
-    print(f"  ✓ vehicules: {len(df_vehicules)} lignes")
+    print(f"   accidents: {len(df_accidents)} lignes")
+    print(f"   caracteristiques: {len(df_caracteristiques)} lignes")
+    print(f"   lieux: {len(df_lieux)} lignes")
+    print(f"   usagers: {len(df_usagers)} lignes")
+    print(f"   vehicules: {len(df_vehicules)} lignes")
     
 except FileNotFoundError:
-    print("  ✗ Erreur: fichiers non trouvés")
+    print("   Erreur: fichiers non trouvés")
     print("  Exécutez d'abord: python src/pipeline/run_pipeline.py")
     exit(1)
 
@@ -49,7 +49,7 @@ except FileNotFoundError:
 # 2. EXPLORATION INITIALE
 # ============================================================================
 
-print("\n2️⃣  Exploration initiale...")
+print("\n2⃣  Exploration initiale...")
 
 print("\nStructure df_accidents:")
 print(df_accidents.info())
@@ -65,7 +65,7 @@ print(df_accidents.isnull().sum())
 # ============================================================================
 
 print("\n" + "="*80)
-print("📈 ANALYSE UNIVARIÉE")
+print(" ANALYSE UNIVARIÉE")
 print("="*80)
 
 # Evolution temporelle
@@ -129,7 +129,7 @@ plt.show()
 # ============================================================================
 
 print("\n" + "="*80)
-print("🔄 ANALYSE BIVARIÉE")
+print(" ANALYSE BIVARIÉE")
 print("="*80)
 
 # Gravité par jour
@@ -146,7 +146,7 @@ print(crosstab)
 
 # Test Chi-2
 chi2, p_val, _, _ = stats.chi2_contingency(crosstab.iloc[:-1, :-1])
-print(f"\n🔬 Chi-2: {chi2:.2f}, p-value: {p_val:.4f}")
+print(f"\n Chi-2: {chi2:.2f}, p-value: {p_val:.4f}")
 if p_val < 0.05:
     print("   → Relation SIGNIFICATIVE entre jour et gravité")
 else:
@@ -170,7 +170,7 @@ plt.show()
 # ============================================================================
 
 print("\n" + "="*80)
-print("🗺️  ANALYSE SPATIALE")
+print("  ANALYSE SPATIALE")
 print("="*80)
 
 print("\n5a) Top 10 communes les plus accidentogènes:")
@@ -198,7 +198,7 @@ plt.show()
 # ============================================================================
 
 print("\n" + "="*80)
-print("📊 ANALYSE DE CORRÉLATION")
+print(" ANALYSE DE CORRÉLATION")
 print("="*80)
 
 numeric_cols = df_accidents.select_dtypes(include=[np.number]).columns
@@ -220,7 +220,7 @@ plt.show()
 # ============================================================================
 
 print("\n" + "="*80)
-print("⚠️  SCORE DE DANGER")
+print("  SCORE DE DANGER")
 print("="*80)
 
 # Calcul
@@ -248,7 +248,7 @@ scores['score_danger'] = (
 
 scores = scores.sort_values('score_danger', ascending=False)
 
-print("\n🔴 Top 15 communes les plus dangereuses:")
+print("\n Top 15 communes les plus dangereuses:")
 print(scores[['nombre_accidents', 'gravite_moyenne', 'score_danger']].head(15))
 
 # Visualisation
@@ -270,35 +270,35 @@ plt.show()
 # ============================================================================
 
 print("\n" + "="*80)
-print("📋 RÉSUMÉ EXECUTIF")
+print(" RÉSUMÉ EXECUTIF")
 print("="*80)
 
 resume = f"""
 
-📊 VOLUME ET COUVERTURE
+ VOLUME ET COUVERTURE
    • Total accidents: {len(df_accidents):,}
    • Période: {int(df_accidents['an'].min())}-{int(df_accidents['an'].max())}
    • Personnes impliquées: {int(df_accidents['nbp'].sum()):,}
    • Communes affectées: {df_accidents['com'].nunique():,}
 
-💀 GRAVITÉ
+ GRAVITÉ
    • Gravité moyenne: {df_accidents['grav'].mean():.2f}/4
    • % accidents graves (grav≥3): {((df_accidents['grav']>=3).sum() / len(df_accidents) * 100):.1f}%
 
-🗺️  GÉOGRAPHIE
+  GÉOGRAPHIE
    • Top 10 communes: {(df_accidents.groupby('com').size().nlargest(10).sum() / len(df_accidents) * 100):.1f}% des accidents
    • Concentration: données concentrées ou dispersées?
 
-📈 TENDANCES
+ TENDANCES
    • Évolution annuelle: analyse tendance
    • Pics mensuels/hebdomadaires: variations saisonnières?
 
-⚠️  FACTEURS DE RISQUE
+  FACTEURS DE RISQUE
    • Jour de semaine: différences significatives
    • Nombre véhicules: impact sur gravité?
    • Nombre personnes: corrélation avec accidents?
 
-🎯 RECOMMANDATIONS
+ RECOMMANDATIONS
    • Géographique: focus zones rouge (score > 70)
    • Temporelle: campagnes prévention jours/heures critiques
    • Tarification: surprimes communes dangereuses
@@ -307,6 +307,6 @@ resume = f"""
 print(resume)
 
 print("\n" + "="*80)
-print("✅ Analyses complétées!")
+print(" Analyses complétées!")
 print("="*80)
 print(f"Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")

@@ -1,34 +1,34 @@
-# 🎯 Phase 5 - Analyses Avancées Intégrées
+#  Phase 5 - Analyses Avancées Intégrées
 
-## 📋 Résumé des Changements
+##  Résumé des Changements
 
 Ton notebook d'analyse de 147 cellules a été entièrement **refactorisé** en modules Python réutilisables, intégrés dans l'API FastAPI et orchestrés par Airflow.
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 projetetudeapi/
-├── src/
-│   ├── analyses/                    # 📊 Modules d'analyse
-│   │   ├── data_cleaning.py        # Nettoyage des données
-│   │   ├── statistical_analysis.py # Analyses statistiques
-│   │   ├── dimensionality_reduction.py  # PCA, LDA, clustering
-│   │   └── machine_learning.py     # Random Forest, H2O
-│   │
-│   └── api/
-│       ├── main.py                 # FastAPI app (MODIFIÉ)
-│       └── analysis_endpoints.py   # 🆕 25+ endpoints d'analyse
-│
-├── dags/
-│   └── analysis_pipeline.py        # 🆕 DAG Airflow pour analyses
-│
-├── docs/
-│   └── ANALYSIS_ENDPOINTS.md       # 🆕 Documentation complète
-│
-└── requirements.txt                # 🆕 prince, h2o, statsmodels
+ src/
+    analyses/                    #  Modules d'analyse
+       data_cleaning.py        # Nettoyage des données
+       statistical_analysis.py # Analyses statistiques
+       dimensionality_reduction.py  # PCA, LDA, clustering
+       machine_learning.py     # Random Forest, H2O
+   
+    api/
+        main.py                 # FastAPI app (MODIFIÉ)
+        analysis_endpoints.py   #  25+ endpoints d'analyse
+
+ dags/
+    analysis_pipeline.py        #  DAG Airflow pour analyses
+
+ docs/
+    ANALYSIS_ENDPOINTS.md       #  Documentation complète
+
+ requirements.txt                #  prince, h2o, statsmodels
 ```
 
-## 📦 Fichiers Créés
+##  Fichiers Créés
 
 ### 1. **src/analyses/data_cleaning.py** (180 lignes)
 Charge et nettoie les 5 DataFrames d'accidents:
@@ -141,7 +141,7 @@ from src.api.analysis_endpoints import router as analysis_router
 app.include_router(analysis_router)
 ```
 
-## 🚀 Utilisation Rapide
+##  Utilisation Rapide
 
 ### 1. Installer les dépendances
 ```bash
@@ -189,7 +189,7 @@ ls -la data/reports/
 ls -la data/models/
 ```
 
-## 📊 Fonctionnalités par Endpoint
+##  Fonctionnalités par Endpoint
 
 | Endpoint | Méthode | Paramètres | Retour |
 |----------|---------|-----------|--------|
@@ -209,21 +209,21 @@ ls -la data/models/
 | `/feature-selection` | POST | file, target, features | top_features, importance |
 | `/model-comparison` | POST | file, target, features | RF vs H2O GLM |
 
-## 🔗 Intégration avec le Projet
+##  Intégration avec le Projet
 
-### Phase 4 (FastAPI) ✅
+### Phase 4 (FastAPI) 
 Les endpoints s'ajoutent au routeur existant. Compatible avec :
 - `/api/v1/accidents` - Données brutes
 - `/api/v1/stats/communes` - Statistiques existantes
 - `/api/v1/analyses/*` - **NOUVEAU** - Analyses avancées
 
-### Phase 5 (Render Deployment) 🔄
+### Phase 5 (Render Deployment) 
 Prêt pour déployer sur Render:
 ```bash
 # Render détectera requirements.txt avec prince, h2o, statsmodels
 ```
 
-### Phase 5b (SDK) 🚀 (Prochaine étape)
+### Phase 5b (SDK)  (Prochaine étape)
 Le SDK pourra exposer:
 ```python
 from accidents_sdk import AccidentsAnalysis
@@ -234,7 +234,7 @@ rf = analysis.train_classifier(df, target='outcome')
 clusters = analysis.kmeans(df, n_clusters=4)
 ```
 
-### Phase 7 (Dashboard) 📈 (Futur)
+### Phase 7 (Dashboard)  (Futur)
 Dashboard pourra utiliser les endpoints:
 ```javascript
 // Appels API depuis le dashboard
@@ -243,34 +243,34 @@ fetch('/api/v1/analyses/elbow-curve')
 fetch('/api/v1/analyses/random-forest-classifier')
 ```
 
-## 📈 Caractéristiques Clés
+##  Caractéristiques Clés
 
-### ✅ Modularité
+###  Modularité
 - Chaque analyse dans son propre module
 - Réutilisable indépendamment
 - Testable isolément
 
-### ✅ Scalabilité
+###  Scalabilité
 - Support datasets 100k+ lignes
 - Optimisation: vectorisée NumPy/Pandas
 - Parallèle: Airflow tasks parallèles
 
-### ✅ Documentation
+###  Documentation
 - Docstrings complètes
 - Exemples dans ANALYSIS_ENDPOINTS.md
 - Types hints Python
 
-### ✅ Robustesse
+###  Robustesse
 - Gestion erreurs dans endpoints
 - Validations Pydantic
 - Try/except dans tasks Airflow
 
-### ✅ Traçabilité
+###  Traçabilité
 - Modèles sauvegardés avec timestamps
 - Rapports JSON par analyse
 - Logs Airflow détaillés
 
-## 🎓 Correspondance Notebook → Code
+##  Correspondance Notebook → Code
 
 | Notebook | Modules | Endpoints |
 |----------|---------|-----------|
@@ -287,7 +287,7 @@ fetch('/api/v1/analyses/random-forest-classifier')
 | H2O GLM | `machine_learning.py` | `/model-comparison` |
 | Feature selection | `machine_learning.py` | `/feature-selection` |
 
-## 📝 Prochaines Étapes Recommandées
+##  Prochaines Étapes Recommandées
 
 1. **Tester les endpoints** (5-10 min)
    ```bash
@@ -315,7 +315,7 @@ fetch('/api/v1/analyses/random-forest-classifier')
    - Appels aux endpoints d'analyse
    - Heatmaps, scatter plots PCA
 
-## 🆘 Troubleshooting
+##  Troubleshooting
 
 ### "ModuleNotFoundError: No module named 'prince'"
 ```bash
@@ -334,15 +334,15 @@ pip install prince
 - Vérifier PATH dans DAG (ligne 13-16)
 - Relancer: `airflow dags unpause accidents_analysis_pipeline`
 
-## 📚 Ressources
+##  Ressources
 
-- 📖 [ANALYSIS_ENDPOINTS.md](./docs/ANALYSIS_ENDPOINTS.md) - Doc complète
-- 🔗 [Scikit-learn](https://scikit-learn.org) - ML
-- 📊 [Statsmodels](https://www.statsmodels.org) - Stats
-- 👑 [Prince](https://github.com/MaxHalford/prince) - MCA/CA
-- 🎯 [H2O](https://h2o.ai) - ML distribué
+-  [ANALYSIS_ENDPOINTS.md](./docs/ANALYSIS_ENDPOINTS.md) - Doc complète
+-  [Scikit-learn](https://scikit-learn.org) - ML
+-  [Statsmodels](https://www.statsmodels.org) - Stats
+-  [Prince](https://github.com/MaxHalford/prince) - MCA/CA
+-  [H2O](https://h2o.ai) - ML distribué
 
-## ✨ Statistiques
+##  Statistiques
 
 - **4 modules** d'analyse (600+ lignes)
 - **25+ endpoints** API (520 lignes)
@@ -353,6 +353,6 @@ pip install prince
 
 ---
 
-**Status**: ✅ Complet et prêt à l'emploi!
+**Status**:  Complet et prêt à l'emploi!
 
-N'hésitez pas à explorer les endpoints ou à me demander des clarifications. 🚀
+N'hésitez pas à explorer les endpoints ou à me demander des clarifications. 

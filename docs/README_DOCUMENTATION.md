@@ -1,10 +1,10 @@
-# 📚 GUIDE DOCUMENTATION - Pour le Recruteur
+#  GUIDE DOCUMENTATION - Pour le Recruteur
 
 Bienvenue! Voici votre guide complet pour naviguer la documentation du projet.
 
 ---
 
-## 🎯 DÉMARRAGE RAPIDE (5 min)
+##  DÉMARRAGE RAPIDE (5 min)
 
 ### Pour les Impatients
 1. **LISEZ CECI D'ABORD**: `docs/EXECUTIVE_SUMMARY.md`
@@ -24,7 +24,7 @@ Bienvenue! Voici votre guide complet pour naviguer la documentation du projet.
 
 ---
 
-## 📖 DOCUMENTATION STRUCTURÉE (Par Rôle)
+##  DOCUMENTATION STRUCTURÉE (Par Rôle)
 
 ### Pour un DIRECTEUR TECHNIQUE / CTO
 
@@ -127,10 +127,10 @@ Bienvenue! Voici votre guide complet pour naviguer la documentation du projet.
 2. **CODE REVIEW**:
    ```
    Structure:
-   ├── src/analyses/            ✅ 4 modules clean
-   ├── api.py                   ✅ FastAPI 25+ endpoints
-   ├── streamlit_app.py         ✅ 734 lignes, structured
-   └── tests/                   ✅ 85% coverage
+    src/analyses/             4 modules clean
+    api.py                    FastAPI 25+ endpoints
+    streamlit_app.py          734 lignes, structured
+    tests/                    85% coverage
    ```
 
 3. **05_ANOMALIES.md**
@@ -170,90 +170,90 @@ Bienvenue! Voici votre guide complet pour naviguer la documentation du projet.
    - **Temps**: 10 min
 
 **Talking Points**:
-- ✅ Removed Airflow intelligently
-- ✅ Fixed 5 critical bugs
-- ✅ Built complete BA documentation
-- ✅ 85% test coverage
-- ✅ 20/20 user stories completed
-- ✅ Production-ready in 4 weeks
+-  Removed Airflow intelligently
+-  Fixed 5 critical bugs
+-  Built complete BA documentation
+-  85% test coverage
+-  20/20 user stories completed
+-  Production-ready in 4 weeks
 
 **Verdict en**: 25 min | **Decision**: Cultural fit + capability?
 
 ---
 
-## 📄 TOUS LES DOCUMENTS
+##  TOUS LES DOCUMENTS
 
 ### BUSINESS ANALYST DOCUMENTS (NEW - Phase 5)
 
 ```
 01_CAHIER_DE_CHARGES.md
-   ├── Contexte & objectifs
-   ├── Portée (IN/OUT scope)
-   ├── Livrables par phase
-   ├── Contraintes & dépendances
-   ├── Critères de succès
-   ├── Risques & mitigation
-   ├── Budget & ressources
-   └── Gouvernance
+    Contexte & objectifs
+    Portée (IN/OUT scope)
+    Livrables par phase
+    Contraintes & dépendances
+    Critères de succès
+    Risques & mitigation
+    Budget & ressources
+    Gouvernance
 
 02_SPECIFICATIONS_FONCTIONNELLES.md
-   ├── Description système
-   ├── Dashboard (A1-A3)
-   ├── API REST (FUNC-B1)
-   ├── Exigences données
-   ├── Exigences non-fonctionnelles
-   └── Critères acceptation
+    Description système
+    Dashboard (A1-A3)
+    API REST (FUNC-B1)
+    Exigences données
+    Exigences non-fonctionnelles
+    Critères acceptation
 
 03_SPECIFICATIONS_TECHNIQUES.md
-   ├── Architecture générale
-   ├── Stack technologique
-   ├── Structure fichiers
-   ├── Modules détaillés
-   ├── API REST specification
-   ├── DB schema logique
-   ├── Intégration Streamlit
-   ├── Gestion erreurs
-   ├── Tests
-   ├── Déploiement
-   ├── Sécurité
-   └── Monitoring
+    Architecture générale
+    Stack technologique
+    Structure fichiers
+    Modules détaillés
+    API REST specification
+    DB schema logique
+    Intégration Streamlit
+    Gestion erreurs
+    Tests
+    Déploiement
+    Sécurité
+    Monitoring
 
 04_EPICS_USER_STORIES.md
-   ├── 4 Épics (EPIC-001 to 004)
-   ├── 20 User Stories (US-001 to US-020)
-   ├── Chaque US: Description, AC, Notes
-   └── Tableau de bord status
+    4 Épics (EPIC-001 to 004)
+    20 User Stories (US-001 to US-020)
+    Chaque US: Description, AC, Notes
+    Tableau de bord status
 
 05_ANOMALIES.md
-   ├── ANO-001: Airflow dependency (FIXED)
-   ├── ANO-002: Import mismatches (FIXED)
-   ├── ANO-003: Generic variables (FIXED)
-   ├── ANO-004: Unormalized probas (FIXED)
-   ├── ANO-005: Pandas warnings (PARTIAL)
-   ├── ANO-006: Real data missing (PENDING)
-   ├── ANO-007: Doc incomplete (FIXED)
-   ├── ANO-008: Flaky tests (FIXED)
-   └── Tableau récapitulatif
+    ANO-001: Airflow dependency (FIXED)
+    ANO-002: Import mismatches (FIXED)
+    ANO-003: Generic variables (FIXED)
+    ANO-004: Unormalized probas (FIXED)
+    ANO-005: Pandas warnings (PARTIAL)
+    ANO-006: Real data missing (PENDING)
+    ANO-007: Doc incomplete (FIXED)
+    ANO-008: Flaky tests (FIXED)
+    Tableau récapitulatif
 
 06_PRODUCT_BACKLOG.md
-   ├── Priorités & roadmap
-   ├── 20 US Phase 5 (DONE)
-   ├── 5 US Phase 6 (PLANNED)
-   ├── Dépendances
-   ├── Forecast capacité
-   ├── Release plan
-   └── Success metrics
+    Priorités & roadmap
+    20 US Phase 5 (DONE)
+    5 US Phase 6 (PLANNED)
+    Dépendances
+    Forecast capacité
+    Release plan
+    Success metrics
 
 EXECUTIVE_SUMMARY.md
-   ├── Le défi & la solution
-   ├── Compétences démontrées
-   ├── Deliverables
-   ├── Métriques
-   ├── Domaines couverts
-   ├── Décisions clés
-   ├── Roadmap Phase 6
-   ├── Valeurs pour recruteur
-   └── Checklist qualification
+    Le défi & la solution
+    Compétences démontrées
+    Deliverables
+    Métriques
+    Domaines couverts
+    Décisions clés
+    Roadmap Phase 6
+    Valeurs pour recruteur
+    Checklist qualification
 ```
 
 ### AUTRES DOCUMENTS (Phases antérieures)
@@ -273,7 +273,7 @@ PIPELINE_GUIDE.md             → Guide pipeline ETL
 
 ---
 
-## 🔍 COMMENT NAVIGUER PAR QUESTION
+##  COMMENT NAVIGUER PAR QUESTION
 
 ### "Pourquoi avez retiré Airflow?"
 → Lire: `05_ANOMALIES.md` → ANO-001
@@ -301,7 +301,7 @@ PIPELINE_GUIDE.md             → Guide pipeline ETL
 
 ---
 
-## ⏱️ READING TIME BY ROLE
+## ⏱ READING TIME BY ROLE
 
 | Rôle | Essentiels | Temps | Deep Dive | Total |
 |------|-----------|-------|-----------|-------|
@@ -313,7 +313,7 @@ PIPELINE_GUIDE.md             → Guide pipeline ETL
 
 ---
 
-## 🎓 LEARNING PATH (If you have 2 hours)
+##  LEARNING PATH (If you have 2 hours)
 
 1. **EXECUTIVE_SUMMARY.md** (13 min)
    - Get the overview
@@ -341,19 +341,19 @@ PIPELINE_GUIDE.md             → Guide pipeline ETL
 
 ---
 
-## 📊 DOCUMENT STATISTICS
+##  DOCUMENT STATISTICS
 
 ```
 Documents: 17 total
-├── New BA Docs: 7 (Phase 5)
-│   ├── 01_CAHIER_DE_CHARGES.md      5.2 KB
-│   ├── 02_SPECIFICATIONS_FONCTIONNELLES.md   12 KB
-│   ├── 03_SPECIFICATIONS_TECHNIQUES.md      16 KB
-│   ├── 04_EPICS_USER_STORIES.md     12 KB
-│   ├── 05_ANOMALIES.md              12 KB
-│   ├── 06_PRODUCT_BACKLOG.md        9.4 KB
-│   └── EXECUTIVE_SUMMARY.md         13 KB
-└── Previous Docs: 10 (Phases 1-4)
+ New BA Docs: 7 (Phase 5)
+    01_CAHIER_DE_CHARGES.md      5.2 KB
+    02_SPECIFICATIONS_FONCTIONNELLES.md   12 KB
+    03_SPECIFICATIONS_TECHNIQUES.md      16 KB
+    04_EPICS_USER_STORIES.md     12 KB
+    05_ANOMALIES.md              12 KB
+    06_PRODUCT_BACKLOG.md        9.4 KB
+    EXECUTIVE_SUMMARY.md         13 KB
+ Previous Docs: 10 (Phases 1-4)
 
 Total Documentation: ~150 KB
 Total Words: ~25,000
@@ -368,11 +368,11 @@ By Role Reading Time:
 
 ---
 
-## ✅ QUALITY CHECKLIST (For Document Review)
+##  QUALITY CHECKLIST (For Document Review)
 
 - [x] All documents follow professional standards
 - [x] Each document has clear sections & IDs
-- [x] Status indicators (✅/🟡/❌) throughout
+- [x] Status indicators (//) throughout
 - [x] Metrics & numbers (not vague language)
 - [x] User story acceptance criteria detailed
 - [x] Bug resolution documented with root cause
@@ -383,7 +383,7 @@ By Role Reading Time:
 
 ---
 
-## 🚀 START HERE (Different Entry Points)
+##  START HERE (Different Entry Points)
 
 ### 1-Minute Summary
 → `EXECUTIVE_SUMMARY.md` → Read: "Executive Summary" section only
@@ -405,7 +405,7 @@ By Role Reading Time:
 
 ---
 
-## 📞 QUESTIONS?
+##  QUESTIONS?
 
 For recruiters asking about:
 - **Project scope**: See `01_CAHIER_DE_CHARGES.md`
@@ -418,22 +418,22 @@ For recruiters asking about:
 
 ---
 
-## 📈 PROJECT METRICS AT A GLANCE
+##  PROJECT METRICS AT A GLANCE
 
 | What | Count | Status |
 |------|-------|--------|
-| User Stories | 20 | ✅ 100% Done |
-| Épics | 4 | ✅ Completed |
-| Story Points | 75 | ✅ Delivered |
-| Tests | 85% coverage | ✅ Good |
-| Code Lines | 3,300+ | ✅ Clean |
-| Documentation | 25K words | ✅ Excellent |
-| Bugs Found | 8 | ✅ 6 Fixed, 1 Partial, 1 Pending |
-| Critical Issues | 0 | ✅ None |
-| Deployments | 10 commits | ✅ Clean history |
+| User Stories | 20 |  100% Done |
+| Épics | 4 |  Completed |
+| Story Points | 75 |  Delivered |
+| Tests | 85% coverage |  Good |
+| Code Lines | 3,300+ |  Clean |
+| Documentation | 25K words |  Excellent |
+| Bugs Found | 8 |  6 Fixed, 1 Partial, 1 Pending |
+| Critical Issues | 0 |  None |
+| Deployments | 10 commits |  Clean history |
 
 ---
 
 **Last Updated**: 26 Janvier 2026  
-**Status**: ✅ COMPLETE & READY FOR REVIEW  
+**Status**:  COMPLETE & READY FOR REVIEW  
 **Next Step**: Choose your learning path above & start reading!

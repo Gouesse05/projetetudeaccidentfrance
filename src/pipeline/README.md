@@ -1,8 +1,8 @@
-# 🚗 Pipeline Données Accidents Routiers
+#  Pipeline Données Accidents Routiers
 
 Pipeline ETL complet pour ingestion, exploration et nettoyage des données d'accidents routiers France.
 
-## 📋 Contenu
+##  Contenu
 
 - `download_data.py` - Téléchargement automatique avec vérification de hash
 - `explore_and_clean.py` - Exploration et nettoyage des données
@@ -10,7 +10,7 @@ Pipeline ETL complet pour ingestion, exploration et nettoyage des données d'acc
 - `data_config.py` - Configuration centralisée des datasets
 - `run_pipeline.py` - Orchestration du pipeline ETL complet
 
-## 🚀 Utilisation rapide
+##  Utilisation rapide
 
 ### 1. Explorer les sources de données
 
@@ -54,7 +54,7 @@ python run_pipeline.py --force-download
 python run_pipeline.py --skip-download  # Sauter téléchargement
 ```
 
-## 📊 Flux du pipeline
+##  Flux du pipeline
 
 ```
 data.gouv.fr
@@ -70,7 +70,7 @@ data/clean/*.csv
 (prêt pour PostgreSQL)
 ```
 
-## 🔧 Configuration
+##  Configuration
 
 Éditer `data_config.py` pour:
 - Ajouter/modifier les URLs des datasets
@@ -78,16 +78,16 @@ data/clean/*.csv
 - Définir les validations
 - Configurer l'import PostgreSQL
 
-## 📝 Fonctionnalités
+##  Fonctionnalités
 
 ### `download_data.py`
 
-✅ Téléchargement depuis data.gouv.fr
-✅ Vérification de hash MD5
-✅ Détection des changements
-✅ Métadonnées de tracking
-✅ Gestion des erreurs réseau
-✅ Barre de progression
+ Téléchargement depuis data.gouv.fr
+ Vérification de hash MD5
+ Détection des changements
+ Métadonnées de tracking
+ Gestion des erreurs réseau
+ Barre de progression
 
 **Métadonnées sauvegardées**:
 - Hash du fichier (MD5)
@@ -98,13 +98,13 @@ data/clean/*.csv
 
 ### `explore_and_clean.py`
 
-✅ Exploration complète des CSV
-✅ Statistiques descriptives
-✅ Détection des valeurs manquantes
-✅ Suppression des doublons
-✅ Normalisation des noms de colonnes
-✅ Conversion des types de données
-✅ Rapport de qualité
+ Exploration complète des CSV
+ Statistiques descriptives
+ Détection des valeurs manquantes
+ Suppression des doublons
+ Normalisation des noms de colonnes
+ Conversion des types de données
+ Rapport de qualité
 
 **Nettoyages appliqués**:
 - Supprimer les doublons
@@ -117,37 +117,37 @@ data/clean/*.csv
 
 ### `explore_datasources.py`
 
-✅ Exploration de l'API data.gouv.fr
-✅ Lister les datasets de Sécurité Routière
-✅ Récupérer les URLs de ressources
-✅ Informations de mise à jour
+ Exploration de l'API data.gouv.fr
+ Lister les datasets de Sécurité Routière
+ Récupérer les URLs de ressources
+ Informations de mise à jour
 
-## 📂 Structure des données
+##  Structure des données
 
 ### Raw (avant nettoyage)
 
 ```
 data/raw/
-├── accidents.csv          # Données d'accidents
-├── caracteristiques.csv   # Caractéristiques des accidents
-├── lieux.csv             # Lieux (coordonnées, routes)
-├── usagers.csv           # Données des usagers
-├── vehicules.csv         # Données des véhicules
-└── .metadata.json        # Métadonnées de téléchargement
+ accidents.csv          # Données d'accidents
+ caracteristiques.csv   # Caractéristiques des accidents
+ lieux.csv             # Lieux (coordonnées, routes)
+ usagers.csv           # Données des usagers
+ vehicules.csv         # Données des véhicules
+ .metadata.json        # Métadonnées de téléchargement
 ```
 
 ### Clean (après nettoyage)
 
 ```
 data/clean/
-├── clean_accidents.csv
-├── clean_caracteristiques.csv
-├── clean_lieux.csv
-├── clean_usagers.csv
-└── clean_vehicules.csv
+ clean_accidents.csv
+ clean_caracteristiques.csv
+ clean_lieux.csv
+ clean_usagers.csv
+ clean_vehicules.csv
 ```
 
-## 🔑 Colonnes principales
+##  Colonnes principales
 
 ### accidents
 - `Num_Acc` - Numéro d'accident (clé primaire)
@@ -196,12 +196,12 @@ data/clean/
 - `catv` - Catégorie véhicule
 - `occus` - Nombre occupants
 
-## 📊 Exemple de rapport de qualité
+##  Exemple de rapport de qualité
 
 ```
-📊 RAPPORT DE QUALITÉ DES DONNÉES
+ RAPPORT DE QUALITÉ DES DONNÉES
 
-📁 accidents.csv
+ accidents.csv
   Lignes: 1,234,567
   Colonnes: 28
   Taille: 245.50 MB
@@ -212,7 +212,7 @@ data/clean/
     - atm: 2,345 (0.2%)
 ```
 
-## 🛠️ Logs
+##  Logs
 
 Les logs sont écrits dans:
 - `pipeline.log` - Fichier de log
@@ -220,7 +220,7 @@ Les logs sont écrits dans:
 
 Niveau: INFO (tous les détails)
 
-## ⚙️ Requirements
+##  Requirements
 
 ```
 pandas>=1.3.0
@@ -230,33 +230,33 @@ psycopg2-binary>=2.9.0
 python-dotenv>=0.19.0
 ```
 
-## 🚨 Troubleshooting
+##  Troubleshooting
 
 ### Erreur de téléchargement
 ```
-✗ Erreur téléchargement: Connection timeout
+ Erreur téléchargement: Connection timeout
 ```
 → Vérifier la connexion réseau et les URLs
 
 ### Fichier non trouvé
 ```
-⚠ Aucun fichier CSV trouvé dans data/raw/
+ Aucun fichier CSV trouvé dans data/raw/
 ```
 → Exécuter d'abord `python download_data.py`
 
 ### Erreur d'encodage
 ```
-✗ Erreur lors de l'exploration: 'utf-8' codec can't decode
+ Erreur lors de l'exploration: 'utf-8' codec can't decode
 ```
 → Modifier l'encodage dans `data_config.py`
 
-## 📈 Prochaines étapes
+##  Prochaines étapes
 
-1. ✅ Téléchargement + nettoyage
-2. ⏭️ Import PostgreSQL
-3. ⏭️ API FastAPI
-4. ⏭️ Analyses et dashboards
+1.  Téléchargement + nettoyage
+2. ⏭ Import PostgreSQL
+3. ⏭ API FastAPI
+4. ⏭ Analyses et dashboards
 
-## 📞 Support
+##  Support
 
 Voir le README principal: `../../README.md`

@@ -1,14 +1,14 @@
-# 📊 RÉSUMÉ EXÉCUTIF - PORTFOLIO PROFESSIONNEL
+#  RÉSUMÉ EXÉCUTIF - PORTFOLIO PROFESSIONNEL
 
 ## Plateforme d'Analyse des Accidents Routiers en France
 
 **Réalisé par**: Data & Business Analyst  
 **Durée**: 4 semaines (Janvier 2026)  
-**Statut**: ✅ **PRODUCTION READY** (Phase 5 Complétée)
+**Statut**:  **PRODUCTION READY** (Phase 5 Complétée)
 
 ---
 
-## 🎯 EXECUTIVE SUMMARY
+##  EXECUTIVE SUMMARY
 
 ### Le Défi
 Transformer un notebook Jupyter de **147 cellules** en une **plateforme production-ready** 
@@ -16,60 +16,60 @@ d'analyse de données accidents routiers avec visualisations interactives et ins
 
 ### La Solution
 Architecture moderne à 3 niveaux:
-- 🎨 **Frontend**: Dashboard Streamlit (6 onglets, 15+ filtres)
-- 🔌 **Backend**: API REST FastAPI (25+ endpoints)
-- 🔧 **ETL**: Pipeline modulaire avec 4 modules d'analyse
+-  **Frontend**: Dashboard Streamlit (6 onglets, 15+ filtres)
+-  **Backend**: API REST FastAPI (25+ endpoints)
+-  **ETL**: Pipeline modulaire avec 4 modules d'analyse
 
 ### Les Résultats
-- ✅ **0 dépendances critiques** (Airflow/Dagster retirées intelligemment)
-- ✅ **85% test coverage** (3,300 lignes code, ~2,700 en tests)
-- ✅ **25+ visualisations** interactives avec Plotly
-- ✅ **20 User Stories** complétées (75 story points)
-- ✅ **5 anomalies critiques détectées & résolues**
-- ✅ **Documentation BA complète** (7 documents professionnels)
+-  **0 dépendances critiques** (Airflow/Dagster retirées intelligemment)
+-  **85% test coverage** (3,300 lignes code, ~2,700 en tests)
+-  **25+ visualisations** interactives avec Plotly
+-  **20 User Stories** complétées (75 story points)
+-  **5 anomalies critiques détectées & résolues**
+-  **Documentation BA complète** (7 documents professionnels)
 
 ---
 
-## 💼 COMPÉTENCES DÉMONTRÉES
+##  COMPÉTENCES DÉMONTRÉES
 
 ### 1. ARCHITECTURE & DESIGN
 ```python
-✅ Architecture en couches (MVC-like)
-✅ Modularité sans dépendances circulaires
-✅ Séparation concerns (ETL ≠ Analyse ≠ API ≠ UI)
-✅ Pipeline robuste (gestion erreurs, validation)
-✅ Design decisions documentées (vs Airflow removal)
+ Architecture en couches (MVC-like)
+ Modularité sans dépendances circulaires
+ Séparation concerns (ETL ≠ Analyse ≠ API ≠ UI)
+ Pipeline robuste (gestion erreurs, validation)
+ Design decisions documentées (vs Airflow removal)
 ```
 
 ### 2. FULL-STACK DATA ENGINEERING
 ```
 ETL Layer (src/analyses/)
-├── data_cleaning.py         ✅ 180 lignes
-├── statistical_analysis.py  ✅ 210 lignes
-├── dimensionality_reduction ✅ 314 lignes
-└── machine_learning.py      ✅ 310 lignes
+ data_cleaning.py          180 lignes
+ statistical_analysis.py   210 lignes
+ dimensionality_reduction  314 lignes
+ machine_learning.py       310 lignes
 
 API Layer (api.py)
-└── FastAPI + 25+ endpoints  ✅ Production-grade
+ FastAPI + 25+ endpoints   Production-grade
 
 Frontend Layer (streamlit_app.py)
-└── Dashboard interactif     ✅ 734 lignes
+ Dashboard interactif      734 lignes
 
 Testing Layer (tests/)
-└── Pytest + fixtures        ✅ 85% coverage
+ Pytest + fixtures         85% coverage
 ```
 
 **Total Codebase**: 3,300+ lignes | Tous testés & documentés
 
 ### 3. BUSINESS ANALYSIS
 ```
-📋 Cahier de Charges        ✅ Complet (specs claires)
-📊 Specs Fonctionnelles     ✅ 6 sections + 25 détails
-🛠️  Specs Techniques        ✅ Architecture, APIs, DB schema
-🚀 Épics & User Stories     ✅ 4 épics, 20 US, 75 points
-🐛 Log Anomalies           ✅ 8 anomalies, 6 résolues
-📦 Product Backlog         ✅ 25 items, roadmap Q2-H2 2026
-📈 Dashboards de projet    ✅ Métriques, velocity, forecast
+ Cahier de Charges         Complet (specs claires)
+ Specs Fonctionnelles      6 sections + 25 détails
+  Specs Techniques         Architecture, APIs, DB schema
+ Épics & User Stories      4 épics, 20 US, 75 points
+ Log Anomalies            8 anomalies, 6 résolues
+ Product Backlog          25 items, roadmap Q2-H2 2026
+ Dashboards de projet     Métriques, velocity, forecast
 ```
 
 **Qualité Documentation**: **Niveau Senior** 
@@ -80,115 +80,115 @@ Testing Layer (tests/)
 
 ### 4. TECHNICAL PROBLEM SOLVING
 ```
-🔴 Problème 1: Airflow dependency hell
-   → Solution: Removal intelligent + pipeline manuel ✅
+ Problème 1: Airflow dependency hell
+   → Solution: Removal intelligent + pipeline manuel 
 
-🔴 Problème 2: Import signature mismatches  
-   → Solution: Systematic signature alignment ✅
+ Problème 2: Import signature mismatches  
+   → Solution: Systematic signature alignment 
 
-🔴 Problème 3: Generic variable names (numeric_col1)
-   → Solution: Métier-centric refactoring ✅
+ Problème 3: Generic variable names (numeric_col1)
+   → Solution: Métier-centric refactoring 
 
-🔴 Problème 4: Unormalized probabilities (crash)
-   → Solution: Runtime normalization ✅
+ Problème 4: Unormalized probabilities (crash)
+   → Solution: Runtime normalization 
 
-🔴 Problème 5: Flaky tests (random behavior)
-   → Solution: Fixed seeds + deterministic fixtures ✅
+ Problème 5: Flaky tests (random behavior)
+   → Solution: Fixed seeds + deterministic fixtures 
 ```
 
 ### 5. STAKEHOLDER MANAGEMENT
 ```
-✅ Communicated complexity clearly
-✅ Made pragmatic architecture choices
-✅ Delivered fast without cutting corners
-✅ Documented for future maintainers
-✅ Anticipates next phase needs
+ Communicated complexity clearly
+ Made pragmatic architecture choices
+ Delivered fast without cutting corners
+ Documented for future maintainers
+ Anticipates next phase needs
 ```
 
 ### 6. QUALITY ASSURANCE
 ```
 Tests (Pytest)
-├── Unit tests: 85% coverage ✅
-├── Integration tests: E2E ✅
-├── Fixtures: Deterministic ✅
-└── CI-ready: No flaky tests ✅
+ Unit tests: 85% coverage 
+ Integration tests: E2E 
+ Fixtures: Deterministic 
+ CI-ready: No flaky tests 
 
 Code Quality
-├── No critical warnings ✅
-├── Proper error handling ✅
-├── Performance validated ✅
-└── Security basics: ✅ Input validation
+ No critical warnings 
+ Proper error handling 
+ Performance validated 
+ Security basics:  Input validation
 ```
 
 ---
 
-## 🏆 DELIVERABLES & ARTIFACTS
+##  DELIVERABLES & ARTIFACTS
 
 ### Code Artifacts (GitHub)
 ```
 projetetudeaccidentfrance/
-├── src/analyses/            (1,014 lignes) ✅
-├── tests/                   (163+ lignes) ✅
-├── streamlit_app.py         (734 lignes) ✅
-├── api.py                   (Endpoints) ✅
-├── run_pipeline.py          (335 lignes) ✅
-├── docs/                    (7 documents) ✅
-├── requirements.txt         (25 packages) ✅
-└── README.md                (Complet) ✅
+ src/analyses/            (1,014 lignes) 
+ tests/                   (163+ lignes) 
+ streamlit_app.py         (734 lignes) 
+ api.py                   (Endpoints) 
+ run_pipeline.py          (335 lignes) 
+ docs/                    (7 documents) 
+ requirements.txt         (25 packages) 
+ README.md                (Complet) 
 
 Git History: 10 commits
-✅ fada9d9: Dashboard with interpretations
-✅ 88a9d5b: Interactive filters + 5 tabs
-✅ 8756ab7: Demographics + insurance costs
-✅ 9112d9b: Bug fixes + normalization
+ fada9d9: Dashboard with interpretations
+ 88a9d5b: Interactive filters + 5 tabs
+ 8756ab7: Demographics + insurance costs
+ 9112d9b: Bug fixes + normalization
 ```
 
 ### Documentation Artifacts
 ```
 docs/
-├── 01_CAHIER_DE_CHARGES.md              (8 sections)
-├── 02_SPECIFICATIONS_FONCTIONNELLES.md  (14 sections)
-├── 03_SPECIFICATIONS_TECHNIQUES.md      (13 sections)
-├── 04_EPICS_USER_STORIES.md            (20 US détaillées)
-├── 05_ANOMALIES.md                      (8 bugs, solutions)
-└── 06_PRODUCT_BACKLOG.md               (25 items roadmap)
+ 01_CAHIER_DE_CHARGES.md              (8 sections)
+ 02_SPECIFICATIONS_FONCTIONNELLES.md  (14 sections)
+ 03_SPECIFICATIONS_TECHNIQUES.md      (13 sections)
+ 04_EPICS_USER_STORIES.md            (20 US détaillées)
+ 05_ANOMALIES.md                      (8 bugs, solutions)
+ 06_PRODUCT_BACKLOG.md               (25 items roadmap)
 
 Total: ~15,000 words de documentation professionnelle
 ```
 
 ### Business Artifacts
 ```
-✅ 4 Épics définies
-✅ 20 User Stories avec acceptance criteria
-✅ 8 Anomalies loggées + résolutions
-✅ Product roadmap 18 mois (Phase 6-7)
-✅ Risk register (mitigation plan)
-✅ Success metrics (KPIs)
-✅ Stakeholder feedback anticipé
+ 4 Épics définies
+ 20 User Stories avec acceptance criteria
+ 8 Anomalies loggées + résolutions
+ Product roadmap 18 mois (Phase 6-7)
+ Risk register (mitigation plan)
+ Success metrics (KPIs)
+ Stakeholder feedback anticipé
 ```
 
 ---
 
-## 📊 MÉTRIQUES DE SUCCÈS
+##  MÉTRIQUES DE SUCCÈS
 
 ### Code Metrics
 | Métrique | Cible | Réalisé | Status |
 |----------|-------|---------|--------|
-| Test Coverage | 80% | 85% | ✅ Dépassé |
-| Code Duplication | <5% | 0% | ✅ Excellent |
-| Critical Bugs | 0 | 0 | ✅ Perfect |
-| Performance | <3s | 2.5s | ✅ Better |
-| Documentation | 70% | 90% | ✅ Excellent |
+| Test Coverage | 80% | 85% |  Dépassé |
+| Code Duplication | <5% | 0% |  Excellent |
+| Critical Bugs | 0 | 0 |  Perfect |
+| Performance | <3s | 2.5s |  Better |
+| Documentation | 70% | 90% |  Excellent |
 
 ### Project Metrics
 | Métrique | Valeur | Status |
 |----------|--------|--------|
-| User Stories Completed | 20/20 | ✅ 100% |
-| Story Points | 75/75 | ✅ 100% |
-| Sprints | 4 | ✅ On time |
-| Velocity | 27.5 pts/sprint | ✅ Consistent |
-| Critical Issues | 0 | ✅ None |
-| Documentation Completeness | 95% | ✅ Excellent |
+| User Stories Completed | 20/20 |  100% |
+| Story Points | 75/75 |  100% |
+| Sprints | 4 |  On time |
+| Velocity | 27.5 pts/sprint |  Consistent |
+| Critical Issues | 0 |  None |
+| Documentation Completeness | 95% |  Excellent |
 
 ### Business Metrics
 | Métrique | Impact |
@@ -201,86 +201,86 @@ Total: ~15,000 words de documentation professionnelle
 
 ---
 
-## 🎓 TECHNICAL DEPTH
+##  TECHNICAL DEPTH
 
 ### Domaines Couverts
 
 #### Data Engineering
-- ✅ ETL pipeline design
-- ✅ Data validation & quality
-- ✅ Pandas data manipulation (advanced)
-- ✅ NumPy array operations
-- ✅ CSV/JSON handling
+-  ETL pipeline design
+-  Data validation & quality
+-  Pandas data manipulation (advanced)
+-  NumPy array operations
+-  CSV/JSON handling
 
 #### Statistics & Analytics
-- ✅ Descriptive statistics (mean, median, std)
-- ✅ Correlation analysis (Pearson, Spearman)
-- ✅ Chi-square independence tests
-- ✅ Linear regression (OLS)
-- ✅ Logistic regression (classification)
+-  Descriptive statistics (mean, median, std)
+-  Correlation analysis (Pearson, Spearman)
+-  Chi-square independence tests
+-  Linear regression (OLS)
+-  Logistic regression (classification)
 
 #### Machine Learning
-- ✅ Random Forest (classification & regression)
-- ✅ K-Means clustering
-- ✅ Dimensionality reduction (PCA, MCA, CA)
-- ✅ Feature selection (importance ranking)
-- ✅ Feature engineering
+-  Random Forest (classification & regression)
+-  K-Means clustering
+-  Dimensionality reduction (PCA, MCA, CA)
+-  Feature selection (importance ranking)
+-  Feature engineering
 
 #### Web Development
-- ✅ Streamlit frontend (interactive)
-- ✅ FastAPI backend (REST API)
-- ✅ Plotly visualizations (interactive charts)
-- ✅ HTTP & REST principles
-- ✅ API design best practices
+-  Streamlit frontend (interactive)
+-  FastAPI backend (REST API)
+-  Plotly visualizations (interactive charts)
+-  HTTP & REST principles
+-  API design best practices
 
 #### DevOps & Git
-- ✅ Git version control (10 commits)
-- ✅ GitHub workflow (PR, commits, documentation)
-- ✅ Virtual environments (venv)
-- ✅ Package management (pip, requirements.txt)
-- ✅ Testing automation (pytest)
+-  Git version control (10 commits)
+-  GitHub workflow (PR, commits, documentation)
+-  Virtual environments (venv)
+-  Package management (pip, requirements.txt)
+-  Testing automation (pytest)
 
 #### Business Analysis
-- ✅ Requirement gathering
-- ✅ Use case mapping
-- ✅ User story writing (Agile)
-- ✅ Epic definition
-- ✅ Risk management
-- ✅ Stakeholder communication
-- ✅ Documentation standards
+-  Requirement gathering
+-  Use case mapping
+-  User story writing (Agile)
+-  Epic definition
+-  Risk management
+-  Stakeholder communication
+-  Documentation standards
 
 ---
 
-## 💡 DECISION HIGHLIGHTS
+##  DECISION HIGHLIGHTS
 
 ### 1. Removal of Airflow/Dagster
 **Decision**: Non-orchestration pour ce scope simple  
 **Why**: Airflow = over-engineering pour 1 pipeline  
-**Result**: Simpler, faster, maintainable ✅
+**Result**: Simpler, faster, maintainable 
 
 ### 2. Meaningful Variable Names
 **Decision**: Métier-centric naming over generic  
 **Why**: "nombre_victimes" > "numeric_col1"  
-**Result**: Dashboard 100% compréhensible ✅
+**Result**: Dashboard 100% compréhensible 
 
 ### 3. Dynamic Probability Normalization
 **Decision**: Runtime normalization vs pre-calculated  
 **Why**: Flexible pattern factors + correctness  
-**Result**: Zero crashes, patterns realistic ✅
+**Result**: Zero crashes, patterns realistic 
 
 ### 4. 85% Not 100% Coverage
 **Decision**: Acceptable coverage threshold  
 **Why**: 100% = diminishing returns on time  
-**Result**: Good safety + pragmatic delivery ✅
+**Result**: Good safety + pragmatic delivery 
 
 ### 5. Detailed Documentation for Future
 **Decision**: 7 documents for next team  
 **Why**: Technical debt prevention  
-**Result**: Smooth Phase 6 onboarding ✅
+**Result**: Smooth Phase 6 onboarding 
 
 ---
 
-## 🚀 NEXT PHASE (Phase 6 - Q2 2026)
+##  NEXT PHASE (Phase 6 - Q2 2026)
 
 Roadmap déjà planifiée:
 - Real data integration (DGCN/SNCDA)
@@ -293,7 +293,7 @@ Roadmap déjà planifiée:
 
 ---
 
-## 💼 VALEURS DÉMONTRÉES
+##  VALEURS DÉMONTRÉES
 
 ### Pour un Recruteur/Manager
 
@@ -310,27 +310,27 @@ Roadmap déjà planifiée:
 
 ---
 
-## 📈 PORTFOLIO HIGHLIGHTS FOR RECRUITER
+##  PORTFOLIO HIGHLIGHTS FOR RECRUITER
 
 ### "Show Don't Tell"
 ```
-❌ "Je sais faire du data engineering"
-✅ 4 modules d'analyse (1,014 lignes), 85% tested
+ "Je sais faire du data engineering"
+ 4 modules d'analyse (1,014 lignes), 85% tested
 
-❌ "Je comprends Agile"
-✅ 4 épics, 20 US, 75 points, velocity tracking
+ "Je comprends Agile"
+ 4 épics, 20 US, 75 points, velocity tracking
 
-❌ "Je documente bien"
-✅ 7 documents professionnels (15K words), niveau conseil
+ "Je documente bien"
+ 7 documents professionnels (15K words), niveau conseil
 
-❌ "Je gère les bugs"
-✅ 8 anomalies loggées, root cause analysis, solutions documentées
+ "Je gère les bugs"
+ 8 anomalies loggées, root cause analysis, solutions documentées
 
-❌ "Je sais Streamlit"
-✅ Dashboard complet: 6 onglets, 15+ filtres, 25+ visualisations
+ "Je sais Streamlit"
+ Dashboard complet: 6 onglets, 15+ filtres, 25+ visualisations
 
-❌ "API REST"
-✅ 25+ endpoints FastAPI, validation, error handling
+ "API REST"
+ 25+ endpoints FastAPI, validation, error handling
 ```
 
 ### Key Talking Points
@@ -342,7 +342,7 @@ Roadmap déjà planifiée:
 
 ---
 
-## 🎯 POUR L'ENTRETIEN TECHNIQUE
+##  POUR L'ENTRETIEN TECHNIQUE
 
 ### Questions Probables & Réponses
 
@@ -375,7 +375,7 @@ Roadmap déjà planifiée:
 
 ---
 
-## 📋 CHECKLIST RECRUTEUR
+##  CHECKLIST RECRUTEUR
 
 - [x] **Code Quality**: 85% coverage, 0 critical bugs
 - [x] **Architecture**: Modulaire, scalable, clean
@@ -388,11 +388,11 @@ Roadmap déjà planifiée:
 - [x] **Communication**: Specs clairs, decisions documentées
 - [x] **Delivery**: On-time, on-scope, on-budget
 
-**VERDICT**: ✅ **SENIOR-LEVEL CAPABILITY**
+**VERDICT**:  **SENIOR-LEVEL CAPABILITY**
 
 ---
 
-## 🏅 FINAL STATEMENT
+##  FINAL STATEMENT
 
 This project demonstrates **end-to-end ownership**:
 - Analyzed requirements (BA documents)
@@ -409,7 +409,7 @@ This project demonstrates **end-to-end ownership**:
 ---
 
 **Portfolio Date**: 26 Janvier 2026  
-**Status**: ✅ READY FOR RECRUITMENT REVIEW
+**Status**:  READY FOR RECRUITMENT REVIEW
 
 **GitHub**: https://github.com/Gouesse05/projetetudeaccidentfrance  
 **Demo**: Available (Streamlit: port 8503)

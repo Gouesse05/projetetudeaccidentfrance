@@ -1,4 +1,4 @@
-# 🛠️ SPÉCIFICATIONS TECHNIQUES
+#  SPÉCIFICATIONS TECHNIQUES
 
 ## Plateforme d'Analyse des Accidents Routiers
 
@@ -14,35 +14,35 @@
 ### 1.1 Architecture Système
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    UTILISATEUR FINAL                     │
-└────────────────────────┬────────────────────────────────┘
-                         │
-         ┌───────────────┼───────────────┐
-         │               │               │
-         ▼               ▼               ▼
-    ┌─────────┐   ┌──────────┐   ┌───────────┐
-    │Streamlit│   │  FastAPI │   │ Jupyter   │
-    │Dashboard│   │   REST   │   │ Notebook  │
-    │(Port 85)│   │(Port 80) │   │           │
-    └────┬────┘   └─────┬────┘   └─────┬─────┘
-         │              │              │
-         └──────────────┼──────────────┘
-                        │
-         ┌──────────────┴──────────────┐
-         │                             │
-         ▼                             ▼
-    ┌─────────────────┐      ┌──────────────────┐
-    │  ETL Pipeline   │      │  Analysis Modules│
-    │  (data_cleaning)│      │  (4 modules)     │
-    └────────┬────────┘      └────────┬─────────┘
-             │                        │
-             └────────────┬───────────┘
-                          │
-                   ┌──────▼──────┐
-                   │   Data      │
-                   │  (Pandas)   │
-                   └─────────────┘
+
+                    UTILISATEUR FINAL                     
+
+                         
+         
+                                       
+                                       
+          
+    Streamlit     FastAPI     Jupyter   
+    Dashboard      REST       Notebook  
+    (Port 85)   (Port 80)               
+          
+                                     
+         
+                        
+         
+                                      
+                                      
+          
+      ETL Pipeline           Analysis Modules
+      (data_cleaning)        (4 modules)     
+          
+                                     
+             
+                          
+                   
+                      Data      
+                     (Pandas)   
+                   
 ```
 
 ### 1.2 Composants Principaux
@@ -65,26 +65,26 @@
 
 ```
 Python: 3.12
-├── Data Processing
-│   ├── pandas==1.5.3
-│   ├── numpy==1.26.0
-│   └── scipy==1.14.0
-├── Visualization
-│   ├── plotly==5.x
-│   └── streamlit==1.x
-├── Analytics
-│   ├── scikit-learn==1.5.0
-│   ├── statsmodels==0.14.0
-│   └── prince==0.10.0 (MCA)
-├── API
-│   ├── fastapi==0.104.1
-│   └── uvicorn==0.24.0
-├── Testing
-│   ├── pytest==7.4.3
-│   └── pytest-cov==4.1.0
-└── Code Quality
-    ├── black==23.12.0
-    └── flake8==6.1.0
+ Data Processing
+    pandas==1.5.3
+    numpy==1.26.0
+    scipy==1.14.0
+ Visualization
+    plotly==5.x
+    streamlit==1.x
+ Analytics
+    scikit-learn==1.5.0
+    statsmodels==0.14.0
+    prince==0.10.0 (MCA)
+ API
+    fastapi==0.104.1
+    uvicorn==0.24.0
+ Testing
+    pytest==7.4.3
+    pytest-cov==4.1.0
+ Code Quality
+     black==23.12.0
+     flake8==6.1.0
 ```
 
 ### 2.2 Versions Minimales
@@ -96,10 +96,10 @@ Python: 3.12
 
 ### 2.3 Absence Intentionnelle
 
-❌ **Airflow** - Orchestration complexe non nécessaire  
-❌ **Dagster** - Alternative orchestration retirée  
-❌ **TensorFlow** - Deep Learning non requis  
-❌ **Spark** - Big Data non applicable  
+ **Airflow** - Orchestration complexe non nécessaire  
+ **Dagster** - Alternative orchestration retirée  
+ **TensorFlow** - Deep Learning non requis  
+ **Spark** - Big Data non applicable  
 
 ---
 
@@ -107,58 +107,58 @@ Python: 3.12
 
 ```
 /home/sdd/projetetudeapi/
-├── streamlit_app.py                    # Application Streamlit (734 lignes)
-├── api.py                              # API FastAPI (25+ endpoints)
-├── run_pipeline.py                     # Orchestrateur pipeline (335 lignes)
-│
-├── src/
-│   ├── analyses/
-│   │   ├── __init__.py
-│   │   ├── data_cleaning.py           # Nettoyage données (180 lignes)
-│   │   ├── statistical_analysis.py    # Analyses stats (210 lignes)
-│   │   ├── dimensionality_reduction.py# PCA/MCA/CA (314 lignes)
-│   │   └── machine_learning.py        # ML models (310 lignes)
-│   └── utils/
-│       ├── __init__.py
-│       └── helpers.py                 # Fonctions utilitaires
-│
-├── tests/
-│   ├── __init__.py
-│   ├── test_pipeline.py              # Tests e2e (163 lignes)
-│   ├── test_data_cleaning.py
-│   ├── test_statistical.py
-│   └── test_ml.py
-│
-├── docs/
-│   ├── 01_CAHIER_DE_CHARGES.md       # THIS FILE
-│   ├── 02_SPECIFICATIONS_FONCTIONNELLES.md
-│   ├── 03_SPECIFICATIONS_TECHNIQUES.md
-│   ├── 04_BACKLOG.md
-│   ├── 05_USER_STORIES.md
-│   ├── 06_EPICS.md
-│   ├── 07_ANOMALIES.md
-│   └── ANALYSIS_REPORT.md
-│
-├── data/
-│   └── accidents_sample.csv          # Données exemple
-│
-├── venv_clean/                        # Virtual environment
-│   └── bin/
-│       ├── activate
-│       ├── python
-│       ├── pip
-│       ├── streamlit
-│       └── uvicorn
-│
-├── .gitignore
-├── requirements.txt                   # Dépendances (25 packages)
-├── README.md                          # Documentation principale
-├── PIPELINE_README.md                 # Guide pipeline
-├── DASHBOARD_README.md                # Guide dashboard
-├── LICENSE
-└── .github/
-    └── workflows/
-        └── ci.yml                    # CI/CD pipeline (optionnel)
+ streamlit_app.py                    # Application Streamlit (734 lignes)
+ api.py                              # API FastAPI (25+ endpoints)
+ run_pipeline.py                     # Orchestrateur pipeline (335 lignes)
+
+ src/
+    analyses/
+       __init__.py
+       data_cleaning.py           # Nettoyage données (180 lignes)
+       statistical_analysis.py    # Analyses stats (210 lignes)
+       dimensionality_reduction.py# PCA/MCA/CA (314 lignes)
+       machine_learning.py        # ML models (310 lignes)
+    utils/
+        __init__.py
+        helpers.py                 # Fonctions utilitaires
+
+ tests/
+    __init__.py
+    test_pipeline.py              # Tests e2e (163 lignes)
+    test_data_cleaning.py
+    test_statistical.py
+    test_ml.py
+
+ docs/
+    01_CAHIER_DE_CHARGES.md       # THIS FILE
+    02_SPECIFICATIONS_FONCTIONNELLES.md
+    03_SPECIFICATIONS_TECHNIQUES.md
+    04_BACKLOG.md
+    05_USER_STORIES.md
+    06_EPICS.md
+    07_ANOMALIES.md
+    ANALYSIS_REPORT.md
+
+ data/
+    accidents_sample.csv          # Données exemple
+
+ venv_clean/                        # Virtual environment
+    bin/
+        activate
+        python
+        pip
+        streamlit
+        uvicorn
+
+ .gitignore
+ requirements.txt                   # Dépendances (25 packages)
+ README.md                          # Documentation principale
+ PIPELINE_README.md                 # Guide pipeline
+ DASHBOARD_README.md                # Guide dashboard
+ LICENSE
+ .github/
+     workflows/
+         ci.yml                    # CI/CD pipeline (optionnel)
 ```
 
 **Total Lines of Code**: ~2,500 (production) + ~800 (tests) = **3,300 lignes**
@@ -385,20 +385,20 @@ CREATE TABLE accidents (
 
 ```python
 # streamlit_app.py (734 lignes)
-├── Configuration
-│   └── st.set_page_config()
-├── Data Generation
-│   └── @st.cache_data generate_smart_accident_data()
-├── Sidebar Filters (15+ critères)
-├── Main Dashboard
-│   ├── KPI Row (6 metrics)
-│   ├── Tabs Container
-│   │   ├── Tab 1: Tendances (4 charts)
-│   │   ├── Tab 2: Démographie (4 charts)
-│   │   ├── Tab 3: Assurance (4 charts + table)
-│   │   ├── Tab 4: Causalité (6 charts + interpretations)
-│   │   ├── Tab 5: Facteurs Risque (3 charts + table)
-│   │   └── Tab 6: Insights (3 info boxes + profile)
+ Configuration
+    st.set_page_config()
+ Data Generation
+    @st.cache_data generate_smart_accident_data()
+ Sidebar Filters (15+ critères)
+ Main Dashboard
+    KPI Row (6 metrics)
+    Tabs Container
+       Tab 1: Tendances (4 charts)
+       Tab 2: Démographie (4 charts)
+       Tab 3: Assurance (4 charts + table)
+       Tab 4: Causalité (6 charts + interpretations)
+       Tab 5: Facteurs Risque (3 charts + table)
+       Tab 6: Insights (3 info boxes + profile)
 ```
 
 ### 7.2 Caching Strategy
@@ -451,17 +451,17 @@ logger.error("Failed to load CSV", exc_info=True)
 
 ```
 Unit Tests (85% coverage)
-├── test_data_cleaning.py (45 tests)
-├── test_statistical_analysis.py (30 tests)
-├── test_dimensionality_reduction.py (25 tests)
-└── test_machine_learning.py (20 tests)
+ test_data_cleaning.py (45 tests)
+ test_statistical_analysis.py (30 tests)
+ test_dimensionality_reduction.py (25 tests)
+ test_machine_learning.py (20 tests)
 
 Integration Tests
-├── test_pipeline.py (163 lignes)
-└── test_api.py (API endpoints)
+ test_pipeline.py (163 lignes)
+ test_api.py (API endpoints)
 
 E2E Tests (Manual)
-└── User journey testing
+ User journey testing
 ```
 
 ### 9.2 Exemple Test
@@ -523,9 +523,9 @@ WantedBy=multi-user.target
 
 | Service | Port | Status |
 |---------|------|--------|
-| Streamlit Dashboard | 8503 | ✅ Active |
-| FastAPI | 8000 | ✅ Available |
-| Jupyter | 8888 | ✅ Available |
+| Streamlit Dashboard | 8503 |  Active |
+| FastAPI | 8000 |  Available |
+| Jupyter | 8888 |  Available |
 
 ---
 
@@ -545,9 +545,9 @@ def validate_age(age):
 
 ### 11.2 Gestion Données Sensibles
 
-- ❌ Pas de données personnelles loggées
-- ✓ Données anonymisées
-- ✓ Pas d'export CSV raw (agrégations)
+-  Pas de données personnelles loggées
+-  Données anonymisées
+-  Pas d'export CSV raw (agrégations)
 
 ---
 
@@ -596,4 +596,4 @@ def get_metrics():
 
 **Approuvé par**: Technical Lead  
 **Date**: 26/01/2026  
-**Statut**: ✅ FINAL
+**Statut**:  FINAL

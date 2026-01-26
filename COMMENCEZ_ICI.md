@@ -1,4 +1,4 @@
-# 🚀 COMMENCEZ ICI
+#  COMMENCEZ ICI
 
 Bienvenue! Vous êtes un recruteur, manager, ou développeur intéressé par ce projet?
 
@@ -6,9 +6,9 @@ Bienvenue! Vous êtes un recruteur, manager, ou développeur intéressé par ce 
 
 ---
 
-## 🎯 QUI ÊTES-VOUS? (Choisissez votre rôle)
+##  QUI ÊTES-VOUS? (Choisissez votre rôle)
 
-### 👔 RECRUTEUR / RESPONSABLE RH
+###  RECRUTEUR / RESPONSABLE RH
 **Objectif**: Évaluer rapidement les compétences du candidat
 **Temps**: 20 minutes
 
@@ -19,11 +19,11 @@ Bienvenue! Vous êtes un recruteur, manager, ou développeur intéressé par ce 
 
 **Questions clés à couvrir**: Voyez "Interview Talking Points" dans EXECUTIVE_SUMMARY.md
 
-**Verdict**: "Est-ce le bon candidat?" → ✅ OUI (voir métriques)
+**Verdict**: "Est-ce le bon candidat?" →  OUI (voir métriques)
 
 ---
 
-### 👨‍💼 CTO / TECH LEAD / ARCHITECTE
+###  CTO / TECH LEAD / ARCHITECTE
 **Objectif**: Évaluer architecture technique et qualité code
 **Temps**: 45-60 minutes
 
@@ -38,11 +38,11 @@ Bienvenue! Vous êtes un recruteur, manager, ou développeur intéressé par ce 
 
 **Questions clés**: Architecture decisions, test strategy, deployment readiness
 
-**Verdict**: "Qualité code OK?" → ✅ OUI (85% coverage, good structure)
+**Verdict**: "Qualité code OK?" →  OUI (85% coverage, good structure)
 
 ---
 
-### 📊 PRODUCT MANAGER / SCRUM MASTER
+###  PRODUCT MANAGER / SCRUM MASTER
 **Objectif**: Évaluer méthodologie Agile et livraison
 **Temps**: 45 minutes
 
@@ -54,11 +54,11 @@ Bienvenue! Vous êtes un recruteur, manager, ou développeur intéressé par ce 
 
 **Questions clés**: Sprint planning? Velocity? Delivery capability?
 
-**Verdict**: "Peut gérer projets?" → ✅ OUI (20/20 US delivered, velocity tracked)
+**Verdict**: "Peut gérer projets?" →  OUI (20/20 US delivered, velocity tracked)
 
 ---
 
-### 💻 DÉVELOPPEUR / ENGINEER
+###  DÉVELOPPEUR / ENGINEER
 **Objectif**: Évaluer qualité code et architectural decisions
 **Temps**: 60-90 minutes
 
@@ -82,11 +82,11 @@ Bienvenue! Vous êtes un recruteur, manager, ou développeur intéressé par ce 
 
 **Questions clés**: Code style? Test approach? Debugging capability?
 
-**Verdict**: "Peut écrire bon code?" → ✅ OUI (85% coverage, good practices)
+**Verdict**: "Peut écrire bon code?" →  OUI (85% coverage, good practices)
 
 ---
 
-### 📈 DATA SCIENTIST / ANALYST
+###  DATA SCIENTIST / ANALYST
 **Objectif**: Évaluer compétences data & ML
 **Temps**: 60-90 minutes
 
@@ -105,11 +105,11 @@ Bienvenue! Vous êtes un recruteur, manager, ou développeur intéressé par ce 
 
 **Questions clés**: Statistical rigor? ML approach? Data handling?
 
-**Verdict**: "Compétent en data?" → ✅ OUI (4 modules d'analyse, good statistics)
+**Verdict**: "Compétent en data?" →  OUI (4 modules d'analyse, good statistics)
 
 ---
 
-## 📖 DOCUMENTS CLÉS PAR RÔLE
+##  DOCUMENTS CLÉS PAR RÔLE
 
 ### Pour Recruteurs:
 ```
@@ -176,7 +176,7 @@ Verdict en 90 minutes
 
 ---
 
-## ⚡ VERSION ULTRA-RAPIDE (5 minutes)
+##  VERSION ULTRA-RAPIDE (5 minutes)
 
 Si vous n'avez que **5 minutes**:
 
@@ -185,15 +185,15 @@ Si vous n'avez que **5 minutes**:
 3. Regardez: "Demonstrated Competencies" tableau
 
 **Bottom line**: 
-- ✅ 20/20 user stories livrées
-- ✅ 85% test coverage
-- ✅ 7 documents BA professionnels
-- ✅ 0 bugs critiques
-- ✅ Architecture propre
+-  20/20 user stories livrées
+-  85% test coverage
+-  7 documents BA professionnels
+-  0 bugs critiques
+-  Architecture propre
 
 ---
 
-## 📊 CHIFFRES CLÉS À RETENIR
+##  CHIFFRES CLÉS À RETENIR
 
 | Métrique | Valeur |
 |----------|--------|
@@ -203,11 +203,11 @@ Si vous n'avez que **5 minutes**:
 | **User Stories** | 20/20 complétées |
 | **Bugs** | 8 trouvés, 6 résolus |
 | **Commits** | 13 (clean history) |
-| **Status** | ✅ Production Ready |
+| **Status** |  Production Ready |
 
 ---
 
-## 🔗 RESSOURCES
+##  RESSOURCES
 
 ### Documents Essentiels
 - **`PHASE5B_RESUME_FINAL.md`** ← Vous êtes ici!
@@ -241,7 +241,7 @@ python api.py
 
 ---
 
-## ❓ FAQ RAPIDE
+##  FAQ RAPIDE
 
 **Q: Combien de temps ça prend à reviewer?**  
 A: 5 min (recruteur) à 90 min (deep code review). Choisissez votre rôle ci-dessus.
@@ -266,22 +266,22 @@ A: Du vrai code avec data générée. Prêt pour intégration de données réell
 
 ---
 
-## 🎯 VERDICT RAPIDE
+##  VERDICT RAPIDE
 
 **En une phrase**:  
 Candidat démontre expertise en full-stack data + leadership technique + communication professionnelle. 20/20 user stories, 85% test coverage, 7 documents BA. Production-ready.
 
 **Recommandation**: 
-- ✅ Technique capable? **OUI** (85% coverage, clean code)
-- ✅ Peut livrer? **OUI** (20/20 US, on-time)
-- ✅ Soft skills? **OUI** (7 doc BA, clear communication)
-- ✅ Peut grandir? **OUI** (roadmap planifiée, leadership evident)
+-  Technique capable? **OUI** (85% coverage, clean code)
+-  Peut livrer? **OUI** (20/20 US, on-time)
+-  Soft skills? **OUI** (7 doc BA, clear communication)
+-  Peut grandir? **OUI** (roadmap planifiée, leadership evident)
 
-→ **HIRE?** ✅ **YES**
+→ **HIRE?**  **YES**
 
 ---
 
-## 📱 PROCHAINES ÉTAPES
+##  PROCHAINES ÉTAPES
 
 1. **Lisez le bon document** pour votre rôle (voir ci-dessus)
 2. **Explorez le code** (clone + review)
@@ -292,6 +292,6 @@ Candidat démontre expertise en full-stack data + leadership technique + communi
 ---
 
 **Bon review!**  
-**Status**: ✅ Ready for evaluation  
+**Status**:  Ready for evaluation  
 **Date**: 26 janvier 2026  
 **Contact**: [Email du candidat]

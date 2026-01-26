@@ -1,21 +1,21 @@
-# 🚀 Phase 4: API REST FastAPI - Guide Démarrage
+#  Phase 4: API REST FastAPI - Guide Démarrage
 
-## 📋 Vue d'ensemble
+##  Vue d'ensemble
 
 **Phase 4** fournit une **API REST complète** pour accéder aux données d'accidents et analyses.
 
 **Features:**
-- ✅ 15+ endpoints analytiques
-- ✅ Swagger/ReDoc auto-généré
-- ✅ Pydantic models (validation + docs)
-- ✅ Connection pooling à PostgreSQL
-- ✅ Error handling professionnel
-- ✅ CORS enabled
-- ✅ Tests complets (pytest)
+-  15+ endpoints analytiques
+-  Swagger/ReDoc auto-généré
+-  Pydantic models (validation + docs)
+-  Connection pooling à PostgreSQL
+-  Error handling professionnel
+-  CORS enabled
+-  Tests complets (pytest)
 
 ---
 
-## 🎯 Endpoints Disponibles
+##  Endpoints Disponibles
 
 ### Health & Monitoring
 
@@ -112,14 +112,14 @@ POST /api/v1/analyze    # Analyses personnalisées
 
 ---
 
-## 🚀 Installation & Démarrage
+##  Installation & Démarrage
 
 ### 1. Prérequis
 
 ```bash
-✓ PostgreSQL lancé
-✓ Données chargées (Phase 3)
-✓ .env configuré
+ PostgreSQL lancé
+ Données chargées (Phase 3)
+ .env configuré
 ```
 
 ### 2. Installer dépendances
@@ -179,7 +179,7 @@ curl "http://localhost:8000/api/v1/danger-scores?limit=10"
 
 ---
 
-## 📚 Documentation Interactive
+##  Documentation Interactive
 
 Une fois lancé, accéder à:
 
@@ -188,7 +188,7 @@ Une fois lancé, accéder à:
 http://localhost:8000/docs
 ```
 
-✨ Interface interactive pour:
+ Interface interactive pour:
 - Voir tous les endpoints
 - Tester directement dans le navigateur
 - Voir les réponses en temps réel
@@ -210,7 +210,7 @@ Pour intégrations programmatiques
 
 ---
 
-## 🧪 Tests
+##  Tests
 
 ### Lancer tests API
 
@@ -235,7 +235,7 @@ tests/test_api.py::test_swagger_docs PASSED
 
 ---
 
-## 💡 Exemples Pratiques
+##  Exemples Pratiques
 
 ### 1. **Top 10 communes les plus dangereuses**
 
@@ -305,7 +305,7 @@ nearby = resp.json()
 
 ---
 
-## 🔧 Configuration Avancée
+##  Configuration Avancée
 
 ### CORS (Cross-Origin Requests)
 
@@ -340,23 +340,23 @@ from fastapi.security import HTTPBearer
 
 ---
 
-## 📊 Structure Fichiers
+##  Structure Fichiers
 
 ```
 src/api/
-├── __init__.py        # Module metadata
-├── main.py            # Application FastAPI + config
-├── models.py          # Schémas Pydantic (validation + docs)
-├── routes.py          # Tous les endpoints (1000+ lignes)
-└── __pycache__/
+ __init__.py        # Module metadata
+ main.py            # Application FastAPI + config
+ models.py          # Schémas Pydantic (validation + docs)
+ routes.py          # Tous les endpoints (1000+ lignes)
+ __pycache__/
 
 tests/
-└── test_api.py        # Tests avec TestClient (250+ lignes)
+ test_api.py        # Tests avec TestClient (250+ lignes)
 ```
 
 ---
 
-## ⚙️ Performance & Scalabilité
+##  Performance & Scalabilité
 
 ### Connection Pooling
 
@@ -388,7 +388,7 @@ GET /api/v1/accidents?page=1&page_size=100
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Erreur: "Connection refused"
 
@@ -418,7 +418,7 @@ uvicorn src.api.main:app --reload
 
 ---
 
-## 📈 Métriques & Monitoring
+##  Métriques & Monitoring
 
 À implémenter (Phase 5):
 
@@ -434,7 +434,7 @@ Endpoints:
 
 ---
 
-## 🚀 Déploiement
+##  Déploiement
 
 ### Docker (À créer)
 
@@ -465,7 +465,7 @@ pip install mangum
 
 ---
 
-## ✅ Checklist Démarrage
+##  Checklist Démarrage
 
 - [ ] PostgreSQL lancé et données chargées
 - [ ] `.env` configuré correctement
@@ -478,7 +478,7 @@ pip install mangum
 
 ---
 
-## 📞 Prochaines Étapes (Phase 5)
+##  Prochaines Étapes (Phase 5)
 
 1. **SDK Python**: Client library pour consommer l'API
 2. **Authentication**: JWT tokens
@@ -489,5 +489,5 @@ pip install mangum
 
 ---
 
-**Phase 4 Complète! ✅**  
+**Phase 4 Complète! **  
 API Production-Ready prête pour consumption

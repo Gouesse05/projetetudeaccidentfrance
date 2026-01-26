@@ -31,7 +31,7 @@ def load_accident_data(data_path: str) -> Dict[str, pd.DataFrame]:
         try:
             data[key] = pd.read_csv(f"{data_path}/{filename}", delimiter=";")
         except FileNotFoundError:
-            print(f"⚠️ Warning: {filename} not found")
+            print(f" Warning: {filename} not found")
             data[key] = pd.DataFrame()
     
     return data

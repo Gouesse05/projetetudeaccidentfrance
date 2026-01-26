@@ -38,7 +38,7 @@ def explore_csv(file_path: Path) -> Dict:
         Dict avec infos sur le fichier
     """
     try:
-        logger.info(f"\n📂 Exploration: {file_path.name}")
+        logger.info(f"\n Exploration: {file_path.name}")
         logger.info("-" * 60)
         
         df = pd.read_csv(file_path, encoding='utf-8', low_memory=False)
@@ -60,25 +60,25 @@ def explore_csv(file_path: Path) -> Dict:
         logger.info(f"  Taille: {info['size_mb']:.2f} MB")
         logger.info(f"  Doublons: {info['duplicates']}")
         
-        logger.info(f"\n  📋 Colonnes:")
+        logger.info(f"\n   Colonnes:")
         for col in df.columns:
             missing = df[col].isnull().sum()
             missing_pct = (missing / len(df)) * 100
             dtype = df[col].dtype
             logger.info(f"    - {col:30} | {str(dtype):15} | Missing: {missing:6} ({missing_pct:5.2f}%)")
         
-        logger.info(f"\n  📊 Statistiques descriptives (numériques):")
+        logger.info(f"\n   Statistiques descriptives (numériques):")
         numeric_cols = df.select_dtypes(include=[np.number]).columns
         if len(numeric_cols) > 0:
             logger.info(df[numeric_cols].describe().to_string())
         
-        logger.info(f"\n  🔤 Exemples de données (5 premières lignes):")
+        logger.info(f"\n   Exemples de données (5 premières lignes):")
         logger.info(df.head().to_string())
         
         return df, info
         
     except Exception as e:
-        logger.error(f"✗ Erreur lors de l'exploration: {e}")
+        logger.error(f" Erreur lors de l'exploration: {e}")
         return None, None
 
 
@@ -88,13 +88,13 @@ def explore_all_datasets():
     ensure_clean_data_dir()
     
     logger.info("\n" + "=" * 80)
-    logger.info("🔍 EXPLORATION DONNÉES BRUTES")
+    logger.info(" EXPLORATION DONNÉES BRUTES")
     logger.info("=" * 80)
     
     csv_files = list(RAW_DATA_DIR.glob("*.csv"))
     
     if not csv_files:
-        logger.warning("⚠ Aucun fichier CSV trouvé dans data/raw/")
+        logger.warning(" Aucun fichier CSV trouvé dans data/raw/")
         return {}
     
     exploration_results = {}
@@ -120,7 +120,7 @@ def clean_accidents_data(df: pd.DataFrame) -> pd.DataFrame:
     Returns:
         DataFrame nettoyé
     """
-    logger.info("\n🧹 Nettoyage données accidents")
+    logger.info("\n Nettoyage données accidents")
     logger.info("-" * 60)
     
     df = df.copy()
@@ -160,13 +160,13 @@ def clean_accidents_data(df: pd.DataFrame) -> pd.DataFrame:
             df[col] = pd.to_datetime(df[col], errors='coerce')
             logger.info(f"  {col} converti en datetime")
         except Exception as e:
-            logger.warning(f"  ⚠ Erreur conversion {col}: {e}")
+            logger.warning(f"   Erreur conversion {col}: {e}")
     
     # Supprimer les espaces des colonnes texte
     for col in df.select_dtypes(include=['object']).columns:
         df[col] = df[col].str.strip()
     
-    logger.info(f"✓ Nettoyage terminé: {len(df)} lignes")
+    logger.info(f" Nettoyage terminé: {len(df)} lignes")
     
     return df
 
@@ -174,7 +174,7 @@ def clean_accidents_data(df: pd.DataFrame) -> pd.DataFrame:
 def clean_caracteristiques_data(df: pd.DataFrame) -> pd.DataFrame:
     """Nettoie les données de caractéristiques"""
     
-    logger.info("\n🧹 Nettoyage données caractéristiques")
+    logger.info("\n Nettoyage données caractéristiques")
     logger.info("-" * 60)
     
     df = df.copy()
@@ -192,7 +192,7 @@ def clean_caracteristiques_data(df: pd.DataFrame) -> pd.DataFrame:
         else:
             df[col] = df[col].fillna(0)
     
-    logger.info(f"✓ Nettoyage terminé: {len(df)} lignes")
+    logger.info(f" Nettoyage terminé: {len(df)} lignes")
     
     return df
 
@@ -200,7 +200,7 @@ def clean_caracteristiques_data(df: pd.DataFrame) -> pd.DataFrame:
 def clean_lieux_data(df: pd.DataFrame) -> pd.DataFrame:
     """Nettoie les données de lieux"""
     
-    logger.info("\n🧹 Nettoyage données lieux")
+    logger.info("\n Nettoyage données lieux")
     logger.info("-" * 60)
     
     df = df.copy()
@@ -216,7 +216,7 @@ def clean_lieux_data(df: pd.DataFrame) -> pd.DataFrame:
     for col in geo_cols:
         df[col] = pd.to_numeric(df[col], errors='coerce')
     
-    logger.info(f"✓ Nettoyage terminé: {len(df)} lignes")
+    logger.info(f" Nettoyage terminé: {len(df)} lignes")
     
     return df
 
@@ -224,7 +224,7 @@ def clean_lieux_data(df: pd.DataFrame) -> pd.DataFrame:
 def clean_usagers_data(df: pd.DataFrame) -> pd.DataFrame:
     """Nettoie les données d'usagers"""
     
-    logger.info("\n🧹 Nettoyage données usagers")
+    logger.info("\n Nettoyage données usagers")
     logger.info("-" * 60)
     
     df = df.copy()
@@ -235,7 +235,7 @@ def clean_usagers_data(df: pd.DataFrame) -> pd.DataFrame:
     # Supprimer doublons
     df = df.drop_duplicates()
     
-    logger.info(f"✓ Nettoyage terminé: {len(df)} lignes")
+    logger.info(f" Nettoyage terminé: {len(df)} lignes")
     
     return df
 
@@ -243,7 +243,7 @@ def clean_usagers_data(df: pd.DataFrame) -> pd.DataFrame:
 def clean_vehicules_data(df: pd.DataFrame) -> pd.DataFrame:
     """Nettoie les données de véhicules"""
     
-    logger.info("\n🧹 Nettoyage données véhicules")
+    logger.info("\n Nettoyage données véhicules")
     logger.info("-" * 60)
     
     df = df.copy()
@@ -254,7 +254,7 @@ def clean_vehicules_data(df: pd.DataFrame) -> pd.DataFrame:
     # Supprimer doublons
     df = df.drop_duplicates()
     
-    logger.info(f"✓ Nettoyage terminé: {len(df)} lignes")
+    logger.info(f" Nettoyage terminé: {len(df)} lignes")
     
     return df
 
@@ -268,10 +268,10 @@ def save_clean_data(df: pd.DataFrame, filename: str):
     
     try:
         df.to_csv(output_path, index=False, encoding='utf-8')
-        logger.info(f"✓ Fichier sauvegardé: {output_path.name}")
+        logger.info(f" Fichier sauvegardé: {output_path.name}")
         return output_path
     except Exception as e:
-        logger.error(f"✗ Erreur sauvegarde: {e}")
+        logger.error(f" Erreur sauvegarde: {e}")
         return None
 
 
@@ -287,12 +287,12 @@ def generate_quality_report(exploration_results: Dict) -> str:
     """
     
     report = "\n" + "=" * 80 + "\n"
-    report += "📊 RAPPORT DE QUALITÉ DES DONNÉES\n"
+    report += " RAPPORT DE QUALITÉ DES DONNÉES\n"
     report += "=" * 80 + "\n"
     
     for filename, data in exploration_results.items():
         info = data['info']
-        report += f"\n📁 {filename}\n"
+        report += f"\n {filename}\n"
         report += f"  Lignes: {info['rows']:,}\n"
         report += f"  Colonnes: {info['columns']}\n"
         report += f"  Taille: {info['size_mb']:.2f} MB\n"
@@ -315,19 +315,19 @@ def main():
     """Fonction principale"""
     
     logger.info("\n" + "=" * 80)
-    logger.info("🔍 EXPLORATION ET NETTOYAGE DONNÉES ACCIDENTS")
+    logger.info(" EXPLORATION ET NETTOYAGE DONNÉES ACCIDENTS")
     logger.info("=" * 80)
     
     # Étape 1: Explorer
     exploration_results = explore_all_datasets()
     
     if not exploration_results:
-        logger.error("✗ Aucune donnée à explorer")
+        logger.error(" Aucune donnée à explorer")
         return False
     
     # Étape 2: Nettoyer et sauvegarder
     logger.info("\n" + "=" * 80)
-    logger.info("🧹 NETTOYAGE DES DONNÉES")
+    logger.info(" NETTOYAGE DES DONNÉES")
     logger.info("=" * 80)
     
     cleaning_results = {}
@@ -362,7 +362,7 @@ def main():
     logger.info(generate_quality_report(exploration_results))
     
     logger.info("\n" + "=" * 80)
-    logger.info("✅ NETTOYAGE TERMINÉ")
+    logger.info(" NETTOYAGE TERMINÉ")
     logger.info("=" * 80)
     
     return True

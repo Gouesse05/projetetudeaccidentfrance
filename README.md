@@ -1,33 +1,33 @@
-# 🚗 Accidents Routiers - Analyse & API
+#  Accidents Routiers - Analyse & API
 
 **Plateforme complète d'analyse des accidents routiers en France**  
 Production-ready - Zero orchestrators, manual pipeline execution
 
 ---
 
-## 🎯 Vue d'ensemble
+##  Vue d'ensemble
 
 Ce projet implémente une **architecture analytique complète** pour les données d'accidents routiers:
 
 ```
-📊 Source Data (CSV files)
+ Source Data (CSV files)
         ↓
-🔄 Pipeline ETL (Data Cleaning)
+ Pipeline ETL (Data Cleaning)
         ↓
-📈 4 Analyses Modules (Stats, ML, Dimensionality, etc.)
+ 4 Analyses Modules (Stats, ML, Dimensionality, etc.)
         ↓
-🌐 API REST FastAPI (25+ endpoints)
+ API REST FastAPI (25+ endpoints)
         ↓
-🧪 Test Suite (pytest)
+ Test Suite (pytest)
         ↓
-🚀 Production Ready
+ Production Ready
 ```
 
-**Statut**: Phase 5 Complétée ✅ (Infrastructure 100%, Tests 95%, Docs 95%)
+**Statut**: Phase 5 Complétée  (Infrastructure 100%, Tests 95%, Docs 95%)
 
 ---
 
-## ⚡ Démarrage rapide
+##  Démarrage rapide
 
 ### Développement local
 
@@ -67,58 +67,58 @@ pytest tests/test_api.py -v
 
 ---
 
-## 📦 Structure du projet
+##  Structure du projet
 
 ```
 .
-├── data/                      # Stockage des données
-│   ├── raw/                   # CSVs téléchargés
-│   └── clean/                 # Données nettoyées
-├── src/
-│   ├── api/                   # API REST FastAPI (Phase 4)
-│   │   ├── main.py           # Configuration FastAPI
-│   │   ├── models.py         # Schémas Pydantic
-│   │   ├── routes.py         # 15+ endpoints
-│   │   └── __init__.py
-│   ├── database/              # PostgreSQL (Phase 3)
-│   │   ├── database_utils.py # DatabaseManager
-│   │   ├── load_postgresql.py # Chargement données
-│   │   └── schema.sql        # DDL (8 tables)
-│   ├── pipeline/              # ETL (Phase 1)
-│   │   ├── download_data.py  # Téléchargement data.gouv.fr
-│   │   ├── clean_data.py     # Nettoyage & normalisation
-│   │   └── run_pipeline.py   # Orchestration
-│   ├── analyses/              # Analyses (Phase 2)
-│   │   ├── analyses.py       # 50+ méthodes d'analyse
-│   │   └── example_analyses.py
-│   ├── config.py             # Configuration centralisée
-│   └── __init__.py
-├── tests/
-│   ├── test_api.py           # Tests des 15 endpoints
-│   ├── test_pipeline.py      # Tests ETL
-│   └── test_integration.py
-├── scripts/
-│   ├── migrate_to_render.py  # Utilitaire migration PostgreSQL
-│   └── setup_env.sh
-├── docs/                      # Documentation
-│   ├── PHASE5_RENDER_DEPLOYMENT.md # Guide Render
-│   ├── PHASE4_SUMMARY.md      # Vue d'ensemble API
-│   ├── QUICKSTART_PHASE4.md   # Guide déploiement API
-│   ├── DATABASE_SCHEMA.md     # Schéma PostgreSQL
-│   └── PIPELINE_GUIDE.md      # Documentation ETL
-├── .github/workflows/
-│   └── tests.yml             # CI/CD GitHub Actions
-├── requirements.txt          # Dépendances Python
-├── Procfile                  # Configuration Render
-├── render.yaml              # Spécification déploiement Render
-├── .env.example             # Modèle variables d'environnement
-├── DEPLOY_RENDER_QUICK.md  # Guide déploiement rapide
-└── README.md               # Ce fichier
+ data/                      # Stockage des données
+    raw/                   # CSVs téléchargés
+    clean/                 # Données nettoyées
+ src/
+    api/                   # API REST FastAPI (Phase 4)
+       main.py           # Configuration FastAPI
+       models.py         # Schémas Pydantic
+       routes.py         # 15+ endpoints
+       __init__.py
+    database/              # PostgreSQL (Phase 3)
+       database_utils.py # DatabaseManager
+       load_postgresql.py # Chargement données
+       schema.sql        # DDL (8 tables)
+    pipeline/              # ETL (Phase 1)
+       download_data.py  # Téléchargement data.gouv.fr
+       clean_data.py     # Nettoyage & normalisation
+       run_pipeline.py   # Orchestration
+    analyses/              # Analyses (Phase 2)
+       analyses.py       # 50+ méthodes d'analyse
+       example_analyses.py
+    config.py             # Configuration centralisée
+    __init__.py
+ tests/
+    test_api.py           # Tests des 15 endpoints
+    test_pipeline.py      # Tests ETL
+    test_integration.py
+ scripts/
+    migrate_to_render.py  # Utilitaire migration PostgreSQL
+    setup_env.sh
+ docs/                      # Documentation
+    PHASE5_RENDER_DEPLOYMENT.md # Guide Render
+    PHASE4_SUMMARY.md      # Vue d'ensemble API
+    QUICKSTART_PHASE4.md   # Guide déploiement API
+    DATABASE_SCHEMA.md     # Schéma PostgreSQL
+    PIPELINE_GUIDE.md      # Documentation ETL
+ .github/workflows/
+    tests.yml             # CI/CD GitHub Actions
+ requirements.txt          # Dépendances Python
+ Procfile                  # Configuration Render
+ render.yaml              # Spécification déploiement Render
+ .env.example             # Modèle variables d'environnement
+ DEPLOY_RENDER_QUICK.md  # Guide déploiement rapide
+ README.md               # Ce fichier
 ```
 
 ---
 
-## 🌐 Endpoints API (15+)
+##  Endpoints API (15+)
 
 Tous les endpoints à `https://accidents-api-prod.onrender.com/api/v1/`
 
@@ -154,7 +154,7 @@ Tous les endpoints à `https://accidents-api-prod.onrender.com/api/v1/`
 
 ---
 
-## 🛠️ Technologies
+##  Technologies
 
 | Couche | Technologie | Utilité |
 |--------|------------|---------|
@@ -171,7 +171,7 @@ Tous les endpoints à `https://accidents-api-prod.onrender.com/api/v1/`
 
 ---
 
-## 📊 Données
+##  Données
 
 ### Source
 - **Fournisseur**: data.gouv.fr
@@ -191,7 +191,7 @@ Voir [DATABASE_SCHEMA.md](docs/DATABASE_SCHEMA.md) pour détails
 
 ---
 
-## 🚀 Déploiement
+##  Déploiement
 
 ### Actuel: Render.com (Production)
 
@@ -224,7 +224,7 @@ docker run -p 8000:8000 -e DATABASE_URL=... accidents-api
 
 ---
 
-## 🧪 Tests
+##  Tests
 
 ### Lancer tous les tests
 ```bash
@@ -252,7 +252,7 @@ Voir `.github/workflows/tests.yml`
 
 ---
 
-## 📚 Documentation
+##  Documentation
 
 | Document | Utilité |
 |----------|---------|
@@ -267,7 +267,7 @@ Voir `.github/workflows/tests.yml`
 
 ---
 
-## 🔄 Mises à jour continues
+##  Mises à jour continues
 
 ### Mises à jour automatiques données
 
@@ -282,7 +282,7 @@ Ou via GitHub Actions - voir `.github/workflows/tests.yml`
 
 ---
 
-## 🎓 Parcours d'apprentissage
+##  Parcours d'apprentissage
 
 **Phase 1**: Pipeline ETL
 - Traitement données Python
@@ -311,7 +311,7 @@ Ou via GitHub Actions - voir `.github/workflows/tests.yml`
 
 ---
 
-## 🤝 Contribution
+##  Contribution
 
 1. Cloner repo: `git clone https://github.com/Gouesse05/projetetudeaccidentfrance`
 2. Créer branche: `git checkout -b feature/votre-feature`
@@ -323,16 +323,16 @@ Les tests doivent passer avant merge!
 
 ---
 
-## 📈 Statut du Projet
+##  Statut du Projet
 
 ### Phases terminées
-- ✅ **Phase 1** (2 500 lignes): Pipeline ETL
-- ✅ **Phase 2** (1 200 lignes): Analyses Données  
-- ✅ **Phase 3** (1 776 lignes): PostgreSQL
-- ✅ **Phase 4** (1 862 lignes): FastAPI
+-  **Phase 1** (2 500 lignes): Pipeline ETL
+-  **Phase 2** (1 200 lignes): Analyses Données  
+-  **Phase 3** (1 776 lignes): PostgreSQL
+-  **Phase 4** (1 862 lignes): FastAPI
 
 ### En cours
-- 🔄 **Phase 5** (en attente): Déploiement Render
+-  **Phase 5** (en attente): Déploiement Render
 
 ### Prévues
 - ⏳ **Phase 6**: SDK + Authentification
@@ -342,7 +342,7 @@ Les tests doivent passer avant merge!
 
 ---
 
-## 🐛 Dépannage
+##  Dépannage
 
 ### L'API ne démarre pas
 ```bash
@@ -381,7 +381,7 @@ Voir [docs/PHASE5_RENDER_DEPLOYMENT.md](docs/PHASE5_RENDER_DEPLOYMENT.md#dépann
 
 ---
 
-## 📞 Support
+##  Support
 
 - **Problèmes GitHub**: [projetetudeaccidentfrance/issues](https://github.com/Gouesse05/projetetudeaccidentfrance/issues)
 - **Documentation**: Voir dossier `/docs`
@@ -389,13 +389,13 @@ Voir [docs/PHASE5_RENDER_DEPLOYMENT.md](docs/PHASE5_RENDER_DEPLOYMENT.md#dépann
 
 ---
 
-## 📄 Licence
+##  Licence
 
 Ce projet est open source. Voir fichier `LICENSE` pour détails.
 
 ---
 
-## 🙏 Remerciements
+##  Remerciements
 
 - **Source Données**: data.gouv.fr
 - **Frameworks**: FastAPI, PostgreSQL, Python
@@ -404,22 +404,22 @@ Ce projet est open source. Voir fichier `LICENSE` pour détails.
 
 ---
 
-**Prêt à explorer les données accidents? Commencez par les [Docs API](https://accidents-api-prod.onrender.com/docs)!** 🚀
+**Prêt à explorer les données accidents? Commencez par les [Docs API](https://accidents-api-prod.onrender.com/docs)!** 
 
 - [API Reference](docs/API.md)
 - [SDK Python Documentation](docs/SDK.md)
 
-## 🔑 Features
+##  Features
 
-- ✅ Téléchargement automatique avec vérification de hash
-- ✅ Normalisation et nettoyage des données
-- ✅ Base de données PostgreSQL optimisée
-- ✅ API REST avec documentation Swagger
-- ✅ SDK Python réutilisable
-- ✅ Mise à jour automatique
-- ✅ Analyses exploratoires
+-  Téléchargement automatique avec vérification de hash
+-  Normalisation et nettoyage des données
+-  Base de données PostgreSQL optimisée
+-  API REST avec documentation Swagger
+-  SDK Python réutilisable
+-  Mise à jour automatique
+-  Analyses exploratoires
 
-## 📊 Analyses possibles
+##  Analyses possibles
 
 - Évolution des accidents/morts/blessés par année
 - Zones à risque (heatmap spatial)
@@ -427,7 +427,7 @@ Ce projet est open source. Voir fichier `LICENSE` pour détails.
 - Score de danger par commune
 - Corrélations (heure, conditions météo, infrastructure)
 
-## 👨‍💼 Portfolio value
+##  Portfolio value
 
 Ce projet démontre:
 - Ingestion de données automatisée
@@ -437,10 +437,10 @@ Ce projet démontre:
 - SDK réutilisable
 - Analyses données sérieuses
 
-## 📞 Support
+##  Support
 
 Issues & discussions sur [GitHub](https://github.com)
 
 ---
 
-**Status**: En construction 🔨
+**Status**: En construction 

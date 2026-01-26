@@ -1,11 +1,11 @@
-# 🐛 LOG DES ANOMALIES & RÉSOLUTIONS
+#  LOG DES ANOMALIES & RÉSOLUTIONS
 
 ## Plateforme d'Analyse des Accidents Routiers
 
 **Version**: 1.0  
 **Date**: 26 Janvier 2026  
 **Auteur**: QA & Development Team  
-**Statut**: ✅ Maintenance active
+**Statut**:  Maintenance active
 
 ---
 
@@ -13,8 +13,8 @@
 
 ### ANO-001: Dépendances Orchestration Incompatibles
 
-**Sévérité**: 🔴 CRITIQUE  
-**Statut**: ✅ RÉSOLU  
+**Sévérité**:  CRITIQUE  
+**Statut**:  RÉSOLU  
 **Date Détection**: 10/01/2026  
 **Date Résolution**: 12/01/2026  
 
@@ -34,11 +34,11 @@ Conflicting packages:
 - pydantic 2.x incompatible with older sqlalchemy
 ```
 
-**Résolution Adoptée** ✅:
-- ❌ Retiré Airflow complètement
-- ❌ Retiré Dagster
-- ✅ Créé pipeline manuel simple `run_pipeline.py` (335 lignes)
-- ✅ Orchestration par shell/cron (à demande)
+**Résolution Adoptée** :
+-  Retiré Airflow complètement
+-  Retiré Dagster
+-  Créé pipeline manuel simple `run_pipeline.py` (335 lignes)
+-  Orchestration par shell/cron (à demande)
 
 **Apprentissage**:
 > Pour 1 projet simple, orchestration complète = over-engineering. 
@@ -50,14 +50,14 @@ Conflicting packages:
 - `archive/`: Vieille config Airflow préservée
 - `.gitignore`: Mises à jour
 
-**Statut Post-Fix**: ✅ Zéro dépendance issue depuis
+**Statut Post-Fix**:  Zéro dépendance issue depuis
 
 ---
 
 ### ANO-002: Imports Mal Alignés
 
-**Sévérité**: 🟡 MOYENNE  
-**Statut**: ✅ RÉSOLU  
+**Sévérité**:  MOYENNE  
+**Statut**:  RÉSOLU  
 **Date Détection**: 13/01/2026  
 **Date Résolution**: 14/01/2026  
 
@@ -80,24 +80,24 @@ TypeError: load_accident_data() missing 1 required positional argument: 'file_pa
 ```
 
 **Résolution**:
-- ✅ Reviewed toutes les signatures de fonction
-- ✅ Créé fixtures pytest avec bons types
-- ✅ Corrigé 17 calls de tests
-- ✅ Ajouté docstrings sur signatures
+-  Reviewed toutes les signatures de fonction
+-  Créé fixtures pytest avec bons types
+-  Corrigé 17 calls de tests
+-  Ajouté docstrings sur signatures
 
 **Fichiers Modifiés**:
 - `tests/test_pipeline.py`: 163 lignes refactorisées
 - `tests/test_data_cleaning.py`: Fixtures créées
 - `src/analyses/*.py`: Docstrings ajoutées
 
-**Statut Post-Fix**: ✅ Tous tests passent (85% coverage)
+**Statut Post-Fix**:  Tous tests passent (85% coverage)
 
 ---
 
 ### ANO-003: Variables Génériques Dans Dashboard
 
-**Sévérité**: 🟡 MOYENNE  
-**Statut**: ✅ RÉSOLU  
+**Sévérité**:  MOYENNE  
+**Statut**:  RÉSOLU  
 **Date Détection**: 18/01/2026  
 **Date Résolution**: 19/01/2026  
 
@@ -113,26 +113,26 @@ Dashboard initial avait des noms de variables génériques non-métier:
 - Feedback: "ne tourne pas" (était faux, juste peu intuitif)
 
 **Résolution**:
-- ✅ Renommé TOUTES variables en domaine métier:
+-  Renommé TOUTES variables en domaine métier:
   - `numeric_col1` → `nombre_victimes`
   - `numeric_col2` → `gravite`
   - `numeric_col3` → `vitesse`
   - etc.
-- ✅ Renommé graphiques avec labels métier
-- ✅ Onglets thématiques au lieu de "Tab 1, Tab 2"
-- ✅ Ajouté contexte domaine partout
+-  Renommé graphiques avec labels métier
+-  Onglets thématiques au lieu de "Tab 1, Tab 2"
+-  Ajouté contexte domaine partout
 
 **Fichiers Modifiés**:
 - `streamlit_app.py`: Refactorisé variable names (Commit fada9d9)
 
-**Statut Post-Fix**: ✅ Dashboard now business-readable
+**Statut Post-Fix**:  Dashboard now business-readable
 
 ---
 
 ### ANO-004: Probabilités Non Normalisées
 
-**Sévérité**: 🔴 CRITIQUE  
-**Statut**: ✅ RÉSOLU  
+**Sévérité**:  CRITIQUE  
+**Statut**:  RÉSOLU  
 **Date Détection**: 22/01/2026  
 **Date Résolution**: 22/01/2026  
 
@@ -152,13 +152,13 @@ gravite_prob = [0.35, 0.3, 0.2, 0.15]  # Sum = 1.0
 # Après modifications
 if age < 25:
     gravite_prob = [p * 0.8 if i < 2 else p * 1.4 for i, p in enumerate(gravite_prob)]
-    # → Sum = 0.95 + 0.42 + 0.28 + 0.21 = 1.86 ❌
+    # → Sum = 0.95 + 0.42 + 0.28 + 0.21 = 1.86 
 
 # Puis
 np.random.choice([1,2,3,4], p=gravite_prob)  # ERROR!
 ```
 
-**Résolution** ✅:
+**Résolution** :
 ```python
 # Ajouter normalisation avant usage
 gravite_prob = [p / sum(gravite_prob) for p in gravite_prob]
@@ -167,16 +167,16 @@ df.loc[idx, 'gravite'] = np.random.choice([1, 2, 3, 4], p=gravite_prob)
 
 **Fichiers Modifiés**:
 - `streamlit_app.py`: Ligne ~151 ajouté normalisation
-- Commit: 9112d9b "🔧 Fix: Normaliser probabilités"
+- Commit: 9112d9b " Fix: Normaliser probabilités"
 
-**Statut Post-Fix**: ✅ Dashboard lance correctement
+**Statut Post-Fix**:  Dashboard lance correctement
 
 ---
 
 ### ANO-005: SettingWithCopyWarning Pandas
 
-**Sévérité**: 🟢 FAIBLE  
-**Statut**: ⚠️ PARTIELLEMENT RÉSOLU  
+**Sévérité**:  FAIBLE  
+**Statut**:  PARTIELLEMENT RÉSOLU  
 **Date Détection**: 23/01/2026  
 **Date Résolution**: 23/01/2026  
 
@@ -195,10 +195,10 @@ df_filtered = df[df['saison'].isin(saisons_selected)]  # ← view, not copy
 df_filtered['exp_cat'] = pd.cut(...)  # ← Warning!
 ```
 
-**Résolution Partielle** ⚠️:
-- ✓ Ajouté `.copy()` sur quelques slices critiques
-- ⚠️ Warnings toujours présents (non-blocking)
-- 💡 Solution complète: Refactorer entire filtering logic
+**Résolution Partielle** :
+-  Ajouté `.copy()` sur quelques slices critiques
+-  Warnings toujours présents (non-blocking)
+-  Solution complète: Refactorer entire filtering logic
 
 **Recommandation Future**:
 ```python
@@ -218,8 +218,8 @@ df_filtered = df.query('saison in @saisons_selected')
 
 ### ANO-006: Pas de Données Réelles
 
-**Sévérité**: 🟡 MOYENNE  
-**Statut**: ❌ EN ATTENTE  
+**Sévérité**:  MOYENNE  
+**Statut**:  EN ATTENTE  
 **Date Détection**: Début du projet  
 **Date Cible Résolution**: Q2 2026  
 
@@ -233,9 +233,9 @@ Données réelles du Gouvernement (DGCN/SNCDA) non intégrées.
 - Validité métier = 70% (structure ok, nombres approximatifs)
 
 **Données Réelles Disponibles**:
-- 🇫🇷 SNCDA: Accidents graves signalés
-- 🚗 DGCN: Database nationale complète
-- 📊 INHESJ: Statistiques aggrégées
+-  SNCDA: Accidents graves signalés
+-  DGCN: Database nationale complète
+-  INHESJ: Statistiques aggrégées
 
 **Blockers pour Intégration**:
 1. Authentification API gouvernement (non-triviale)
@@ -256,8 +256,8 @@ Données réelles du Gouvernement (DGCN/SNCDA) non intégrées.
 
 ### ANO-007: Documentation Code Incomplète
 
-**Sévérité**: 🟢 FAIBLE  
-**Statut**: 🟡 PARTIELLEMENT RÉSOLUE  
+**Sévérité**:  FAIBLE  
+**Statut**:  PARTIELLEMENT RÉSOLUE  
 **Date Détection**: 15/01/2026  
 **Date Résolution**: 25/01/2026  
 
@@ -268,25 +268,25 @@ Données réelles du Gouvernement (DGCN/SNCDA) non intégrées.
 
 **Couverture Initiale**:
 ```
-✅ Data cleaning: 95% documentée
-⚠️ Statistical: 70% documentée
-⚠️ Dimensionality: 60% documentée
-⚠️ ML: 50% documentée
+ Data cleaning: 95% documentée
+ Statistical: 70% documentée
+ Dimensionality: 60% documentée
+ ML: 50% documentée
 ```
 
 **Résolution**:
-- ✅ Ajouté docstrings tous les modules
-- ✅ Créé ANALYSIS_REPORT.md (2000+ words)
-- ✅ Docstrings sur tous les fichiers .py
-- ✅ Commentaires sur logique complexe
+-  Ajouté docstrings tous les modules
+-  Créé ANALYSIS_REPORT.md (2000+ words)
+-  Docstrings sur tous les fichiers .py
+-  Commentaires sur logique complexe
 
 **Couverture Finale**:
 ```
-✅ Data cleaning: 100%
-✅ Statistical: 95%
-✅ Dimensionality: 90%
-✅ ML: 85%
-✅ Tests: 90%
+ Data cleaning: 100%
+ Statistical: 95%
+ Dimensionality: 90%
+ ML: 85%
+ Tests: 90%
 ```
 
 **Fichiers Modifiés**:
@@ -294,14 +294,14 @@ Données réelles du Gouvernement (DGCN/SNCDA) non intégrées.
 - `src/analyses/*.py`: Docstrings ajoutées
 - `tests/*.py`: Commentaires doctest
 
-**Statut**: ✅ 90%+ coverage (acceptable)
+**Statut**:  90%+ coverage (acceptable)
 
 ---
 
 ### ANO-008: Tests Flaky Intermittents
 
-**Sévérité**: 🟡 MOYENNE  
-**Statut**: ✅ RÉSOLU  
+**Sévérité**:  MOYENNE  
+**Statut**:  RÉSOLU  
 **Date Détection**: 20/01/2026  
 **Date Résolution**: 21/01/2026  
 
@@ -316,24 +316,24 @@ Certains tests échouaient aléatoirement:
 def test_kmeans_clustering():
     result1 = kmeans(df, k=3)  # Run 1: inertia=1234
     result2 = kmeans(df, k=3)  # Run 2: inertia=1456
-    # Different results! ❌
+    # Different results! 
 ```
 
 **Résolution**:
-- ✅ Fixé `np.random.seed(42)` en tests
-- ✅ Fixé `random.seed(42)` où applicable
-- ✅ Retiré assertions temporelles (timing)
-- ✅ Utilisé fixtures avec données déterministes
+-  Fixé `np.random.seed(42)` en tests
+-  Fixé `random.seed(42)` où applicable
+-  Retiré assertions temporelles (timing)
+-  Utilisé fixtures avec données déterministes
 
 **Code Before/After**:
 ```python
-# ❌ Before
+#  Before
 def test_kmeans():
     df = generate_random_data()  # Different each time
     result = kmeans(df, k=3)
     assert result.inertia < 1000  # Flaky
 
-# ✅ After
+#  After
 @pytest.fixture
 def fixed_data():
     np.random.seed(42)
@@ -349,7 +349,7 @@ def test_kmeans(fixed_data):
 - `tests/test_statistical.py`: Fixtures
 - `tests/conftest.py`: Fixtures partagées
 
-**Statut**: ✅ 100% test pass rate (reproducible)
+**Statut**:  100% test pass rate (reproducible)
 
 ---
 
@@ -357,16 +357,16 @@ def test_kmeans(fixed_data):
 
 ```
 ANOMALIE          SÉVÉRITÉ  STATUT       IMPACT
-─────────────────────────────────────────────────
-ANO-001: Airflow   🔴 CRIT  ✅ RÉSOLU    Bloquant
-ANO-002: Imports   🟡 MOYEN ✅ RÉSOLU    Tests
-ANO-003: Variables 🟡 MOYEN ✅ RÉSOLU    UX
-ANO-004: Probas    🔴 CRIT  ✅ RÉSOLU    Crash
-ANO-005: Warnings  🟢 FAIBLE ⚠️ PARTIEL   Cosmétique
-ANO-006: Real Data 🟡 MOYEN ❌ ATTENTE   Empirique
-ANO-007: Docs      🟢 FAIBLE ✅ RÉSOLU    Maintenabilité
-ANO-008: Flaky     🟡 MOYEN ✅ RÉSOLU    CI/CD
-─────────────────────────────────────────────────
+
+ANO-001: Airflow    CRIT   RÉSOLU    Bloquant
+ANO-002: Imports    MOYEN  RÉSOLU    Tests
+ANO-003: Variables  MOYEN  RÉSOLU    UX
+ANO-004: Probas     CRIT   RÉSOLU    Crash
+ANO-005: Warnings   FAIBLE  PARTIEL   Cosmétique
+ANO-006: Real Data  MOYEN  ATTENTE   Empirique
+ANO-007: Docs       FAIBLE  RÉSOLU    Maintenabilité
+ANO-008: Flaky      MOYEN  RÉSOLU    CI/CD
+
 RESOLVED: 6/8 (75%)
 IN PROGRESS: 1/8 (12%)
 PENDING: 1/8 (12%)
@@ -378,11 +378,11 @@ PENDING: 1/8 (12%)
 
 | Métrique | Initial | Final | Amélioration |
 |----------|---------|-------|--------------|
-| **Erreurs Critiques** | 2 | 0 | -100% ✅ |
-| **Warnings** | ~50 | ~3 | -94% ✅ |
-| **Test Coverage** | 0% | 85% | +85% ✅ |
-| **Doc Coverage** | 40% | 90% | +50% ✅ |
-| **Flaky Tests** | 25% | 0% | -100% ✅ |
+| **Erreurs Critiques** | 2 | 0 | -100%  |
+| **Warnings** | ~50 | ~3 | -94%  |
+| **Test Coverage** | 0% | 85% | +85%  |
+| **Doc Coverage** | 40% | 90% | +50%  |
+| **Flaky Tests** | 25% | 0% | -100%  |
 | **Performance** | TBD | 2.5s | Acceptable |
 
 ---
@@ -410,4 +410,4 @@ PENDING: 1/8 (12%)
 
 **Approuvé par**: QA Lead  
 **Date**: 26/01/2026  
-**Statut**: ✅ PRODUCTION READY (Known Issues: 0 Blockers)
+**Statut**:  PRODUCTION READY (Known Issues: 0 Blockers)

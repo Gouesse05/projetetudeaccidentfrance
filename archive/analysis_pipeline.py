@@ -71,7 +71,7 @@ os.makedirs(REPORTS_PATH, exist_ok=True)
 
 def task_load_and_clean_data():
     """Charge et nettoie tous les datasets"""
-    print("📊 Chargement et nettoyage des données d'accidents...")
+    print(" Chargement et nettoyage des données d'accidents...")
     
     try:
         data = clean_all_data(DATA_PATH)
@@ -83,18 +83,18 @@ def task_load_and_clean_data():
         with open(report_path, 'w') as f:
             json.dump(quality_report, f, indent=2)
         
-        print(f"✅ Données nettoyées et validées")
-        print(f"📁 Rapport sauvegardé: {report_path}")
+        print(f" Données nettoyées et validées")
+        print(f" Rapport sauvegardé: {report_path}")
         
         return {'status': 'success', 'report': report_path}
     except Exception as e:
-        print(f"❌ Erreur: {str(e)}")
+        print(f" Erreur: {str(e)}")
         raise
 
 
 def task_statistical_analysis():
     """Effectue les analyses statistiques descriptives"""
-    print("📈 Analyses statistiques descriptives...")
+    print(" Analyses statistiques descriptives...")
     
     try:
         import pandas as pd
@@ -127,18 +127,18 @@ def task_statistical_analysis():
         with open(report_path, 'w') as f:
             json.dump(report, f, indent=2, default=str)
         
-        print(f"✅ Analyses statistiques complétées")
-        print(f"📁 Rapport: {report_path}")
+        print(f" Analyses statistiques complétées")
+        print(f" Rapport: {report_path}")
         
         return {'status': 'success', 'report': report_path}
     except Exception as e:
-        print(f"❌ Erreur: {str(e)}")
+        print(f" Erreur: {str(e)}")
         raise
 
 
 def task_pca_analysis():
     """Effectue l'analyse PCA"""
-    print("🔍 Analyse en Composantes Principales (PCA)...")
+    print(" Analyse en Composantes Principales (PCA)...")
     
     try:
         import pandas as pd
@@ -180,18 +180,18 @@ def task_pca_analysis():
         with open(report_path, 'w') as f:
             json.dump(report, f, indent=2)
         
-        print(f"✅ PCA complétée ({pca_result['explained_variance_ratio'][0]:.2%} variance expliquée)")
-        print(f"📁 Modèle: {model_path}")
+        print(f" PCA complétée ({pca_result['explained_variance_ratio'][0]:.2%} variance expliquée)")
+        print(f" Modèle: {model_path}")
         
         return {'status': 'success', 'model_path': model_path}
     except Exception as e:
-        print(f"❌ Erreur: {str(e)}")
+        print(f" Erreur: {str(e)}")
         raise
 
 
 def task_clustering_analysis():
     """Effectue l'analyse de clustering"""
-    print("🎯 Analyse de Clustering (K-Means)...")
+    print(" Analyse de Clustering (K-Means)...")
     
     try:
         import pandas as pd
@@ -237,18 +237,18 @@ def task_clustering_analysis():
         with open(report_path, 'w') as f:
             json.dump(report, f, indent=2)
         
-        print(f"✅ Clustering complété (silhouette={kmeans_result.get('silhouette', 'N/A'):.3f})")
-        print(f"📁 Modèle: {model_path}")
+        print(f" Clustering complété (silhouette={kmeans_result.get('silhouette', 'N/A'):.3f})")
+        print(f" Modèle: {model_path}")
         
         return {'status': 'success', 'model_path': model_path}
     except Exception as e:
-        print(f"❌ Erreur: {str(e)}")
+        print(f" Erreur: {str(e)}")
         raise
 
 
 def task_ml_analysis():
     """Entraîne les modèles Machine Learning"""
-    print("🤖 Entraînement des modèles Machine Learning...")
+    print(" Entraînement des modèles Machine Learning...")
     
     try:
         import pandas as pd
@@ -283,20 +283,20 @@ def task_ml_analysis():
             with open(report_path, 'w') as f:
                 json.dump(feature_result, f, indent=2)
             
-            print(f"✅ Feature Selection complétée")
-            print(f"📁 Rapport: {report_path}")
+            print(f" Feature Selection complétée")
+            print(f" Rapport: {report_path}")
         else:
-            print("⚠️  Pas assez de features pour ML")
+            print("  Pas assez de features pour ML")
         
         return {'status': 'success'}
     except Exception as e:
-        print(f"⚠️  Erreur ML (non-bloquante): {str(e)}")
+        print(f"  Erreur ML (non-bloquante): {str(e)}")
         return {'status': 'skipped', 'reason': str(e)}
 
 
 def task_generate_summary_report():
     """Génère un rapport de synthèse"""
-    print("📋 Génération du rapport de synthèse...")
+    print(" Génération du rapport de synthèse...")
     
     try:
         # Lister tous les rapports générés
@@ -319,13 +319,13 @@ def task_generate_summary_report():
         with open(summary_path, 'w') as f:
             json.dump(summary, f, indent=2)
         
-        print(f"✅ Pipeline complété avec succès!")
-        print(f"📁 Synthèse: {summary_path}")
-        print(f"📊 Rapports générés: {len(reports)}")
+        print(f" Pipeline complété avec succès!")
+        print(f" Synthèse: {summary_path}")
+        print(f" Rapports générés: {len(reports)}")
         
         return {'status': 'success', 'summary_path': summary_path}
     except Exception as e:
-        print(f"❌ Erreur: {str(e)}")
+        print(f" Erreur: {str(e)}")
         raise
 
 
@@ -335,7 +335,7 @@ def task_generate_summary_report():
 
 start_task = PythonOperator(
     task_id='start_analysis_pipeline',
-    python_callable=lambda: print("🚀 Démarrage du pipeline d'analyse..."),
+    python_callable=lambda: print(" Démarrage du pipeline d'analyse..."),
     dag=dag
 )
 
@@ -377,7 +377,7 @@ summary_task = PythonOperator(
 
 end_task = PythonOperator(
     task_id='end_analysis_pipeline',
-    python_callable=lambda: print("✅ Pipeline d'analyse terminé!"),
+    python_callable=lambda: print(" Pipeline d'analyse terminé!"),
     dag=dag
 )
 
