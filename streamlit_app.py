@@ -94,12 +94,31 @@ CUSTOM_CSS = """
     }
     
     [data-testid="stSidebar"] label {
-        color: white !important;
+        color: #FFFFFF !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
     
     [data-testid="stSidebar"] input,
     [data-testid="stSidebar"] select {
-        color: white;
+        color: #2C3E50;
+        background-color: white !important;
+    }
+
+    [data-testid="stSidebar"] .stButton > button {
+        background: linear-gradient(135deg, #FF6B6B 0%, #E74C3C 100%);
+        color: white !important;
+        font-weight: 600 !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 12px 20px !important;
+        transition: all 0.3s ease;
+    }
+
+    [data-testid="stSidebar"] .stButton > button:hover {
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4) !important;
+        transform: translateY(-2px) !important;
     }
 
     /* CARDS & CONTAINERS */
