@@ -79,7 +79,7 @@ CUSTOM_CSS = """
 
     /* SIDEBAR STYLING */
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #2C3E50 0%, #34495E 100%);
+        background: linear-gradient(180deg, #7B3FF2 0%, #6A2FD9 100%);
         padding: 20px;
     }
 
@@ -91,6 +91,15 @@ CUSTOM_CSS = """
     [data-testid="stSidebar"] .stMultiSelect,
     [data-testid="stSidebar"] .stSlider {
         margin-bottom: 20px;
+    }
+    
+    [data-testid="stSidebar"] label {
+        color: white !important;
+    }
+    
+    [data-testid="stSidebar"] input,
+    [data-testid="stSidebar"] select {
+        color: white;
     }
 
     /* CARDS & CONTAINERS */
