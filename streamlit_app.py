@@ -93,19 +93,60 @@ CUSTOM_CSS = """
         margin-bottom: 20px;
     }
     
+    /* Labels avec fond noir et texte blanc */
     [data-testid="stSidebar"] label {
+        background-color: #000000 !important;
         color: #FFFFFF !important;
         font-weight: 600 !important;
         font-size: 14px !important;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        padding: 8px 12px !important;
+        border-radius: 6px !important;
+        display: inline-block !important;
+        margin-bottom: 8px !important;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
     
+    /* Titres et heading */
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3 {
+        background-color: #000000 !important;
+        color: #FFFFFF !important;
+        padding: 10px 12px !important;
+        border-radius: 6px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    /* Inputs et placeholders */
     [data-testid="stSidebar"] input,
-    [data-testid="stSidebar"] select {
-        color: #2C3E50;
-        background-color: white !important;
+    [data-testid="stSidebar"] select,
+    [data-testid="stSidebar"] textarea {
+        background-color: #000000 !important;
+        color: #FFFFFF !important;
+        border: 2px solid #FFFFFF !important;
+        border-radius: 6px !important;
     }
 
+    [data-testid="stSidebar"] input::placeholder,
+    [data-testid="stSidebar"] textarea::placeholder {
+        color: #CCCCCC !important;
+    }
+
+    /* Selectbox et multiselect */
+    [data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] {
+        background-color: #000000 !important;
+    }
+
+    [data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] input {
+        background-color: #000000 !important;
+        color: #FFFFFF !important;
+    }
+
+    [data-testid="stSidebar"] .stMultiSelect div[data-baseweb="multi_select"] {
+        background-color: #000000 !important;
+    }
+
+    /* Boutons */
     [data-testid="stSidebar"] .stButton > button {
         background: linear-gradient(135deg, #FF6B6B 0%, #E74C3C 100%);
         color: white !important;
