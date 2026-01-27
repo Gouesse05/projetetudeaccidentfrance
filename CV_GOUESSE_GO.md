@@ -86,12 +86,19 @@ Jira, Xray, HL7, MongoDB, SQL Server, PostgreSQL, MySQL, Git, Docker, Shell scri
 - Module Python pour requêtes SQL directes
 - Documentation README pour chaque composant
 
+**Distribution & Package**
+- **SDK Python publié sur PyPI** (`accidents-france-sdk`)
+- Package installable via `pip install` pour réutilisation facile
+- Documentation complète pour utilisateurs externes
+- Gestion sémantique des versions (SemVer)
+
 #### IMPACTS & RÉSULTATS
 
 - **Performance** : Traitement de 68,000+ accidents en moins de 30 secondes
 - **Scalabilité** : Architecture microservices prête pour production
-- **Réutilisabilité** : Modules modulaires et testés unitairement
-- **Documentation** : 7+ guides (Quickstart, API, Database, Deployment)
+- **Réutilisabilité** : SDK Python publié sur **PyPI** pour la communauté
+- **Distribution** : Package open-source téléchargeable via `pip install`
+- **Documentation** : 7+ guides (Quickstart, API, Database, SDK, Deployment)
 
 **TECHNOLOGIES UTILISÉES**
 
