@@ -9,27 +9,60 @@ Production-ready avec API FastAPI, dashboard Streamlit et notebooks Jupyter réu
 
 Ce projet implémente une **architecture analytique complète** pour les données d'accidents routiers:
 
-```
-📊 Source Data (data.gouv.fr CSV)
-        ↓
-🔄 Pipeline ETL (Nettoyage & Normalisation)
-        ↓
-🗄️ PostgreSQL Database (8 tables optimisées)
-        ↓
-📈 4 Modules d'Analyse (Stats, ML, Clustering, Visualisations)
-        ↓
-🚀 API REST FastAPI (25+ endpoints)
-        ↓
-📊 Dashboard Streamlit Interactif
-        ↓
-📓 Jupyter Notebooks (Exploration, Stats, ML, Viz)
-        ↓
-✅ Test Suite (pytest)
-        ↓
-🌐 Production Ready (Render.com)
+**Statut**: Production ✅ (Infrastructure 100%, Tests 95%, Docs 100%)
+
+### Architecture Globale
+
+```mermaid
+graph TB
+    subgraph "Sources de Données"
+        A[data.gouv.fr<br/>CSV Files] --> B[Pipeline ETL]
+    end
+    
+    subgraph "Pipeline ETL"
+        B --> C[Download<br/>download_data.py]
+        C --> D[Clean<br/>clean_data.py]
+        D --> E[Load<br/>load_postgresql.py]
+    end
+    
+    subgraph "Stockage"
+        E --> F[(PostgreSQL<br/>8 tables)]
+        F --> G[accidents]
+        F --> H[usagers]
+        F --> I[vehicules]
+        F --> J[lieux]
+    end
+    
+    subgraph "Couche Analyse"
+        F --> K[Statistical Analysis]
+        F --> L[Machine Learning]
+        F --> M[Dimensionality Reduction]
+        F --> N[Data Cleaning]
+    end
+    
+    subgraph "API REST"
+        K --> O[FastAPI<br/>25+ endpoints]
+        L --> O
+        M --> O
+        N --> O
+    end
+    
+    subgraph "Clients"
+        O --> P[Swagger UI]
+        O --> Q[Streamlit Dashboard]
+        O --> R[Jupyter Notebooks]
+        O --> S[HTTP Clients]
+    end
+    
+    style A fill:#e1f5ff
+    style F fill:#ffe1e1
+    style O fill:#e1ffe1
+    style P fill:#fff4e1
+    style Q fill:#fff4e1
+    style S fill:#fff4e1
 ```
 
-**Statut**: Production ✅ (Infrastructure 100%, Tests 95%, Docs 100%)
+📚 **Documentation complète**: [Architecture Diagrams](docs/ARCHITECTURE_DIAGRAMS.md)
 
 ---
 
