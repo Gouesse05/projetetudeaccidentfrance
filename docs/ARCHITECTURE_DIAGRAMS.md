@@ -54,35 +54,31 @@ graph TB
 ## Pipeline ETL - Flux de Données
 
 ```mermaid
-sequenceDiagram
-    participant DG as data.gouv.fr
-    participant DL as download_data.py
-    participant CL as clean_data.py
-    participant LD as load_postgresql.py
-    participant DB as PostgreSQL
+graph TD
+    A[data.gouv.fr] -->|CSV 2016-2024| B[download_data.py]
+    B -->|Verify checksums| C[data/raw/]
     
-    Note over DG,DB: Phase 1: Téléchargement
-    DL->>DG: GET CSV files (2016-2024)
-    DG-->>DL: Raw CSV files
-    DL->>DL: Verify checksums
-    DL->>DL: Save to data/raw/
+    C -->|Load CSV| D[clean_data.py]
+    D -->|Remove missing values| E[Handle data types]
+    E -->|Validate integrity| F[data/clean/]
     
-    Note over DG,DB: Phase 2: Nettoyage
-    CL->>CL: Load raw CSV
-    CL->>CL: Handle missing values
-    CL->>CL: Normalize data types
-    CL->>CL: Validate integrity
-    CL->>CL: Save to data/clean/
+    F -->|Read cleaned data| G[load_postgresql.py]
+    G -->|CREATE SCHEMA| H[(PostgreSQL)]
+    G -->|CREATE TABLES| H
+    G -->|CREATE INDEXES| H
+    G -->|BULK INSERT batches| H
+    G -->|CREATE VIEWS| H
+    G -->|ANALYZE| H
     
-    Note over DG,DB: Phase 3: Chargement
-    LD->>DB: CREATE SCHEMA
-    LD->>DB: CREATE TABLES
-    LD->>DB: CREATE INDEXES
-    LD->>LD: Read clean CSV
-    LD->>DB: BULK INSERT (batches)
-    DB-->>LD: Confirm loaded
-    LD->>DB: CREATE VIEWS
-    LD->>DB: ANALYZE tables
+    H -->|8 tables| I[accidents]
+    H -->|8 tables| J[usagers]
+    H -->|8 tables| K[vehicules]
+    H -->|8 tables| L[lieux]
+    
+    style A fill:#e1f5ff
+    style C fill:#fff4e1
+    style F fill:#ffe1e1
+    style H fill:#ffe1e1
 ```
 
 ## Architecture API
