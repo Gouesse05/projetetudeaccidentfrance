@@ -8,7 +8,7 @@ version = "1.0.0"
 description = "Plateforme d'analyse des accidents routiers en France - API + Dashboard + Analysis"
 readme = "README.md"
 requires-python = ">=3.12"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
     {name = "Development Team", email = "dev@example.com"}
 ]
@@ -24,7 +24,6 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Web Environment",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
