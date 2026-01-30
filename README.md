@@ -1,7 +1,10 @@
 # 🚗 Accidents Routiers - Analyse & API
 
 **Plateforme complète d'analyse des accidents routiers en France**  
-Production-ready avec API FastAPI, dashboard Streamlit et notebooks Jupyter réutilisables
+Production-ready avec API FastAPI déployée sur Render, notebooks Jupyter professionnels et pipeline ETL automatisé
+
+🌐 **API en production**: https://projetetudeaccidentfrance.onrender.com  
+📚 **Documentation interactive**: https://projetetudeaccidentfrance.onrender.com/docs
 
 ---
 
@@ -9,7 +12,7 @@ Production-ready avec API FastAPI, dashboard Streamlit et notebooks Jupyter réu
 
 Ce projet implémente une **architecture analytique complète** pour les données d'accidents routiers:
 
-**Statut**: Production ✅ (Infrastructure 100%, Tests 95%, Docs 100%)
+**Statut**: ✅ Production (API déployée, Tests 95%, Documentation 100%)
 
 ### Architecture Globale
 
@@ -102,9 +105,23 @@ jupyter notebook notebooks/
 
 ### Production sur Render
 
-L'API est déployée en production : **https://accidents-api-prod.onrender.com**
+🌐 **API déployée en production**: https://projetetudeaccidentfrance.onrender.com
 
-Voir [docs/PHASE5_RENDER_DEPLOYMENT.md](docs/PHASE5_RENDER_DEPLOYMENT.md) pour le guide de déploiement.
+**Endpoints disponibles:**
+- `GET /` - Informations API et liste des endpoints
+- `GET /docs` - Documentation interactive Swagger UI
+- `GET /api/v1/health` - Health check
+- `GET /api/v1/accidents` - Requêtes sur les accidents
+- `GET /api/v1/danger-scores` - Scores de dangerosité
+- `GET /api/v1/stats/communes` - Statistiques par commune
+- `GET /api/v1/heatmap` - Données pour carte de chaleur
+
+**Configuration Render:**
+- Branch: `main`
+- Build: `pip install -r requirements.txt`
+- Start: `uvicorn src.api.main:app --host 0.0.0.0 --port $PORT`
+- Python: 3.13.4
+- Auto-deploy: Activé sur push GitHub
 
 ---
 
@@ -255,8 +272,8 @@ API de production : **https://accidents-api-prod.onrender.com/api/v1/**
 - `POST /analyze` - Analyses personnalisées avancées
 
 **Documentation interactive** :
-- 📖 Swagger UI : [/docs](https://accidents-api-prod.onrender.com/docs)
-- 📘 ReDoc : [/redoc](https://accidents-api-prod.onrender.com/redoc)
+- 📖 Swagger UI : [/docs](https://projetetudeaccidentfrance.onrender.com/docs)
+- 📘 ReDoc : [/redoc](https://projetetudeaccidentfrance.onrender.com/redoc)
 
 ---
 
@@ -264,21 +281,20 @@ API de production : **https://accidents-api-prod.onrender.com/api/v1/**
 
 | Couche | Technologie | Version | Utilité |
 |--------|------------|---------|---------|
-| **Backend API** | FastAPI | 0.104.1 | API REST moderne et rapide |
-| **Validation** | Pydantic | v2 | Validation données & schémas |
-| **Serveur ASGI** | Uvicorn | Latest | Serveur haute performance |
+| **Backend API** | FastAPI | ≥0.104.0 | API REST moderne et rapide |
+| **Validation** | Pydantic | ≥2.8.0 | Validation données & schémas |
+| **Serveur ASGI** | Uvicorn | ≥0.24.0 | Serveur haute performance |
 | **Base de données** | PostgreSQL | 15+ | Persistance et requêtes avancées |
-| **Driver DB** | psycopg2 | 2.9+ | Connexion PostgreSQL |
-| **ETL** | pandas | 1.5.3 | Manipulation de données |
-| **ML** | scikit-learn | 1.5.0 | Machine Learning (Random Forest) |
-| **Stats** | scipy | 1.14.0 | Tests statistiques (Chi2, ANOVA) |
-| **Visualisation** | matplotlib, seaborn, plotly | Latest | Graphiques statiques et interactifs |
+| **Driver DB** | psycopg2-binary | ≥2.9.0 | Connexion PostgreSQL |
+| **ETL** | pandas | ≥2.0.0 | Manipulation de données |
+| **ML** | scikit-learn | ≥1.3.0 | Machine Learning (Random Forest) |
+| **Stats** | scipy, statsmodels | ≥1.11.0 | Tests statistiques (Chi2, ANOVA) |
+| **Compute** | numpy | ≥1.24.0 | Calcul numérique optimisé |
 | **Dashboard** | Streamlit | Latest | Interface web interactive |
 | **Notebooks** | Jupyter | Latest | Analyses interactives |
 | **Tests** | pytest | Latest | Tests unitaires et intégration |
-| **CI/CD** | GitHub Actions | - | Automatisation tests et déploiement |
-| **Déploiement** | Render.com | - | Hosting production |
-| **Langage** | Python | 3.12+ | Runtime principal |
+| **Déploiement** | Render.com | - | Hosting production (Python 3.13.4) |
+| **Langage** | Python | 3.13+ | Runtime principal |
 
 ---
 
@@ -611,7 +627,8 @@ python -m ipykernel install --user --name=venv
 - **🐛 Problèmes & Bugs** : [GitHub Issues](https://github.com/Gouesse05/projetetudeaccidentfrance/issues)
 - **💡 Nouvelles Fonctionnalités** : [GitHub Discussions](https://github.com/Gouesse05/projetetudeaccidentfrance/discussions)
 - **📖 Documentation** : Dossier `/docs` du repository
-- **📊 API Live** : [https://accidents-api-prod.onrender.com/docs](https://accidents-api-prod.onrender.com/docs)
+- **📊 API Live** : [https://projetetudeaccidentfrance.onrender.com/docs](https://projetetudeaccidentfrance.onrender.com/docs)
+- **🌐 API Root** : [https://projetetudeaccidentfrance.onrender.com](https://projetetudeaccidentfrance.onrender.com)
 - **👨‍💻 Développeur** : Voir [CV_GOUESSE_GO.md](CV_GOUESSE_GO.md)
 
 ---
