@@ -62,3 +62,4 @@ databases:
     plan: free
     region: frankfurt
     ipAllowList: []  # Allow all IPs
+
