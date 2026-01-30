@@ -737,20 +737,20 @@ with tab1:
     
     with col1:
         st.subheader("Accidents par Heure")
-        acc_heure = df_filtered.groupby('heure').size()
+        acc_heure = df_filtered.groupby('heure', observed=True).size()
         fig = px.bar(x=acc_heure.index, y=acc_heure.values,
                     color=acc_heure.values, color_continuous_scale='Reds',
                     title='Distribution horaire')
         fig.update_layout(xaxis_title="Heure", yaxis_title="Nombre", height=400)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     
     with col2:
         st.subheader("Gravité par Heure")
-        grave_heure = df_filtered.groupby('heure')['gravite'].mean()
+        grave_heure = df_filtered.groupby('heure', observed=True)['gravite'].mean()
         fig = px.line(x=grave_heure.index, y=grave_heure.values,
                      title='Gravité moyenne par heure', markers=True)
         fig.update_layout(xaxis_title="Heure", yaxis_title="Gravité", height=400)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     
     col1, col2 = st.columns(2)
     
@@ -762,14 +762,14 @@ with tab1:
         fig = px.bar(x=acc_jour.index, y=acc_jour.values,
                     color=acc_jour.values, color_continuous_scale='Blues')
         fig.update_layout(xaxis_title="Jour", yaxis_title="Nombre", height=400)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     
     with col2:
         st.subheader("Distribution par Saison")
         acc_saison = df_filtered['saison'].value_counts()
         fig = px.pie(values=acc_saison.values, names=acc_saison.index,
                     title='Répartition saisonnière')
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
 # ============================================================================
 # TAB 2: DÉMOGRAPHIE
@@ -783,7 +783,7 @@ with tab2:
     with col1:
         st.subheader("Accidents par Classe d'Âge")
         acc_age = df_filtered['classe_age'].value_counts().sort_index()
-        gravite_age = df_filtered.groupby('classe_age')['gravite'].mean()
+        gravite_age = df_filtered.groupby('classe_age', observed=True)['gravite'].mean()
         
         fig = px.bar(
             x=acc_age.index, y=acc_age.values,
@@ -791,12 +791,12 @@ with tab2:
             color_continuous_scale='RdYlGn_r',
             title='Accidents et gravité par classe d\'âge'
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     
     with col2:
         st.subheader("Accidents par Genre")
         acc_genre = df_filtered['genre'].value_counts()
-        gravite_genre = df_filtered.groupby('genre')['gravite'].mean()
+        gravite_genre = df_filtered.groupby('genre', observed=True)['gravite'].mean()
         
         fig = px.bar(
             x=acc_genre.index, y=acc_genre.values,
@@ -804,7 +804,7 @@ with tab2:
             color_continuous_scale='RdYlGn_r',
             title='Distribution par genre'
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     
     col1, col2 = st.columns(2)
     
@@ -814,7 +814,7 @@ with tab2:
                                         bins=[0, 2, 5, 10, 40],
                                         labels=['<2 ans', '2-5 ans', '5-10 ans', '>10 ans'])
         acc_exp = df_filtered['exp_cat'].value_counts().sort_index()
-        gravite_exp = df_filtered.groupby('exp_cat')['gravite'].mean()
+        gravite_exp = df_filtered.groupby('exp_cat', observed=True)['gravite'].mean()
         
         fig = px.bar(
             x=acc_exp.index, y=acc_exp.values,
@@ -822,18 +822,18 @@ with tab2:
             color_continuous_scale='RdYlGn_r',
             title='Accidents par expérience'
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     
     with col2:
         st.subheader("Tableau Résumé Démographie")
-        demo_table = df_filtered.groupby('classe_age').agg({
+        demo_table = df_filtered.groupby('classe_age', observed=True).agg({
             'gravite': 'mean',
             'nombre_victimes': 'mean',
             'alcoolémie': lambda x: (x.sum()/len(x)*100) if len(x) > 0 else 0,
             'age': 'count'
         }).round(2)
         demo_table.columns = ['Gravité Moy', 'Victimes Moy', 'Alcool %', 'Nombre']
-        st.dataframe(demo_table, use_container_width=True)
+        st.dataframe(demo_table, width="stretch")
 
 # ============================================================================
 # TAB 3: ASSURANCE
@@ -846,7 +846,7 @@ with tab3:
     
     with col1:
         st.subheader("Coût Assurance par Classe d'Âge")
-        cout_age = df_filtered.groupby('classe_age')['cout_assurance_annuel'].mean()
+        cout_age = df_filtered.groupby('classe_age', observed=True)['cout_assurance_annuel'].mean()
         fig = px.bar(
             x=cout_age.index, y=cout_age.values,
             color=cout_age.values,
@@ -854,11 +854,11 @@ with tab3:
             title='Prime moyenne annuelle'
         )
         fig.update_layout(yaxis_title="Coût (€/an)")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     
     with col2:
         st.subheader("Coût par Genre")
-        cout_genre = df_filtered.groupby('genre')['cout_assurance_annuel'].mean()
+        cout_genre = df_filtered.groupby('genre', observed=True)['cout_assurance_annuel'].mean()
         fig = px.bar(
             x=cout_genre.index, y=cout_genre.values,
             color=cout_genre.values,
@@ -866,13 +866,13 @@ with tab3:
             title='Prime moyenne par genre'
         )
         fig.update_layout(yaxis_title="Coût (€/an)")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     
     col1, col2 = st.columns(2)
     
     with col1:
         st.subheader("Coût par Expérience")
-        cout_exp = df_filtered.groupby('exp_cat')['cout_assurance_annuel'].mean()
+        cout_exp = df_filtered.groupby('exp_cat', observed=True)['cout_assurance_annuel'].mean()
         fig = px.bar(
             x=cout_exp.index, y=cout_exp.values,
             color=cout_exp.values,
@@ -880,15 +880,15 @@ with tab3:
             title='Prime par expérience'
         )
         fig.update_layout(yaxis_title="Coût (€/an)")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     
     with col2:
         st.subheader("Tableau Détaillé Assurance")
-        assurance_table = df_filtered.groupby('classe_age').agg({
+        assurance_table = df_filtered.groupby('classe_age', observed=True).agg({
             'cout_assurance_annuel': ['mean', 'min', 'max', 'std'],
             'gravite': 'mean'
         }).round(0)
-        st.dataframe(assurance_table, use_container_width=True)
+        st.dataframe(assurance_table, width="stretch")
     
     st.markdown("---")
     st.info("""
@@ -913,27 +913,27 @@ with tab4:
         df_filtered['age_cat'] = pd.cut(df_filtered['age'], 
                                         bins=[15, 25, 35, 45, 55, 65, 90],
                                         labels=['18-25', '25-35', '35-45', '45-55', '55-65', '65+'])
-        causal_age = df_filtered.groupby(['age_cat', 'gravite_label']).size().reset_index(name='Nombre')
+        causal_age = df_filtered.groupby(['age_cat', 'gravite_label'], observed=True).size().reset_index(name='Nombre')
         fig = px.bar(causal_age, x='age_cat', y='Nombre', color='gravite_label',
                     barmode='group', title='Impact âge sur gravité')
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     
     with col2:
         st.subheader("Expérience vs Gravité")
-        causal_exp = df_filtered.groupby(['exp_cat', 'gravite_label']).size().reset_index(name='Nombre')
+        causal_exp = df_filtered.groupby(['exp_cat', 'gravite_label'], observed=True).size().reset_index(name='Nombre')
         fig = px.bar(causal_exp, x='exp_cat', y='Nombre', color='gravite_label',
                     barmode='group', title='Impact expérience')
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     
     col1, col2 = st.columns(2)
     
     with col1:
         st.subheader("Alcool vs Gravité")
         df_filtered['alcool_cat'] = df_filtered['alcoolémie'].map({True: 'Avec Alcool', False: 'Sans Alcool'})
-        causal_alcool = df_filtered.groupby(['alcool_cat', 'gravite_label']).size().reset_index(name='Nombre')
+        causal_alcool = df_filtered.groupby(['alcool_cat', 'gravite_label'], observed=True).size().reset_index(name='Nombre')
         fig = px.bar(causal_alcool, x='alcool_cat', y='Nombre', color='gravite_label',
                     barmode='group', title='Impact alcool')
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
         
         if len(df_filtered) > 0:
             alcool_grave = df_filtered[df_filtered['alcoolémie']]['gravite'].mean()
@@ -943,10 +943,10 @@ with tab4:
     
     with col2:
         st.subheader("Luminosité vs Gravité")
-        causal_lumino = df_filtered.groupby(['luminosite', 'gravite_label']).size().reset_index(name='Nombre')
+        causal_lumino = df_filtered.groupby(['luminosite', 'gravite_label'], observed=True).size().reset_index(name='Nombre')
         fig = px.bar(causal_lumino, x='luminosite', y='Nombre', color='gravite_label',
                     barmode='group', title='Impact luminosité')
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
         
         if len(df_filtered) > 0:
             nuit_grave = df_filtered[df_filtered['luminosite'] == 'Nuit']['gravite'].mean()
@@ -965,18 +965,18 @@ with tab5:
     
     with col1:
         st.subheader("Classe d'Âge + Genre")
-        risk_age_genre = df_filtered.groupby(['classe_age', 'genre']).size().reset_index(name='Nombre')
+        risk_age_genre = df_filtered.groupby(['classe_age', 'genre'], observed=True).size().reset_index(name='Nombre')
         fig = px.bar(risk_age_genre, x='classe_age', y='Nombre', color='genre',
                     barmode='group', title='Distribution âge + genre')
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     
     with col2:
         st.subheader("Expérience + Alcool")
-        risk_exp_alcool = df_filtered.groupby(['exp_cat', 'alcoolémie']).size().reset_index(name='Nombre')
+        risk_exp_alcool = df_filtered.groupby(['exp_cat', 'alcoolémie'], observed=True).size().reset_index(name='Nombre')
         risk_exp_alcool['alcoolémie'] = risk_exp_alcool['alcoolémie'].map({True: 'Alcool', False: 'Non'})
         fig = px.bar(risk_exp_alcool, x='exp_cat', y='Nombre', color='alcoolémie',
                     barmode='group', title='Expérience + alcool')
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     
     st.markdown("---")
     
@@ -999,7 +999,7 @@ with tab5:
     if len(df_filtered) > 0:
         facteurs_df['% du Total'] = (facteurs_df['Nombre'] / len(df_filtered) * 100).round(1)
     
-    st.dataframe(facteurs_df, use_container_width=True)
+    st.dataframe(facteurs_df, width="stretch")
 
 # ============================================================================
 # TAB 6: INSIGHTS
