@@ -1,0 +1,18 @@
+# Streamlit Configuration for Render Deployment
+
+[server]
+port = 8501
+enableCORS = false
+enableXsrfProtection = true
+headless = true
+
+[browser]
+gatherUsageStats = false
+serverAddress = "0.0.0.0"
+
+[theme]
+primaryColor = "#FF6B6B"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F7F9FB"
+textColor = "#2C3E50"
+font = "sans serif"
