@@ -82,7 +82,7 @@ class MigrationManager:
         """
         target = target_version or VERSION
         
-        print(f"🚀 Upgrade de {self.current_version} vers {target}")
+        print(f"[UPGRADE] De {self.current_version} vers {target}")
         
         # Obtenir le chemin de migration
         path = get_migration_path(self.current_version, target)
@@ -92,7 +92,7 @@ class MigrationManager:
             return False
         
         if len(path) == 1:
-            print(f"✅ Déjà sur la version {target}")
+            print(f"[OK] Déjà sur la version {target}")
             return True
         
         print(f"📋 Chemin de migration: {' -> '.join(path)}")
@@ -105,14 +105,14 @@ class MigrationManager:
             print(f"\n📦 Migration {from_v} -> {to_v}")
             
             if not self._run_migration_up(to_v):
-                print(f"❌ Échec de la migration vers {to_v}")
+                print(f"[ERROR] Échec de la migration vers {to_v}")
                 return False
             
             self.save_state(to_v, "success")
             self.current_version = to_v
-            print(f"✅ Migration vers {to_v} réussie")
+            print(f"[OK] Migration vers {to_v} réussie")
         
-        print(f"\n🎉 Upgrade vers {target} terminé avec succès!")
+        print(f"\n[SUCCESS] Upgrade vers {target} terminé avec succès!")
         return True
     
     def downgrade(self, target_version: str):
@@ -122,10 +122,10 @@ class MigrationManager:
         Args:
             target_version: Version cible
         """
-        print(f"⬇️  Downgrade de {self.current_version} vers {target_version}")
+        print(f"[DOWNGRADE] De {self.current_version} vers {target_version}")
         
         if compare_versions(target_version, self.current_version) >= 0:
-            print(f"❌ La version cible doit être inférieure à {self.current_version}")
+            print(f"[ERROR] La version cible doit être inférieure à {self.current_version}")
             return False
         
         # Obtenir le chemin de migration (inversé)
@@ -138,9 +138,9 @@ class MigrationManager:
         print(f"📋 Chemin de migration: {' -> '.join(path)}")
         
         # Confirmation utilisateur pour downgrade
-        confirm = input(f"\n⚠️  Confirmer le downgrade vers {target_version}? (yes/no): ")
+        confirm = input(f"\n[WARNING] Confirmer le downgrade vers {target_version}? (yes/no): ")
         if confirm.lower() != "yes":
-            print("❌ Downgrade annulé")
+            print("[CANCELLED] Downgrade annulé")
             return False
         
         # Exécuter les migrations en sens inverse
@@ -151,14 +151,14 @@ class MigrationManager:
             print(f"\n📦 Rollback {from_v} -> {to_v}")
             
             if not self._run_migration_down(from_v):
-                print(f"❌ Échec du rollback depuis {from_v}")
+                print(f"[ERROR] Échec du rollback depuis {from_v}")
                 return False
             
             self.save_state(to_v, "rollback")
             self.current_version = to_v
-            print(f"✅ Rollback vers {to_v} réussi")
+            print(f"[OK] Rollback vers {to_v} réussi")
         
-        print(f"\n🎉 Downgrade vers {target_version} terminé avec succès!")
+        print(f"\n[SUCCESS] Downgrade vers {target_version} terminé avec succès!")
         return True
     
     def _run_migration_up(self, version: str) -> bool:
@@ -168,12 +168,12 @@ class MigrationManager:
             migration_file = self.migrations_dir / f"v{version.replace('.', '_')}.py"
             
             if not migration_file.exists():
-                print(f"⚠️  Pas de script de migration pour {version} (migration automatique)")
+                print(f"[INFO] Pas de script de migration pour {version} (migration automatique)")
                 return True
             
             # Importer et exécuter la migration
             # (implémentation simplifiée - à adapter selon besoins)
-            print(f"  🔧 Exécution de la migration {migration_file.name}")
+            print(f"  [RUN] Exécution de la migration {migration_file.name}")
             return True
             
         except Exception as e:
@@ -186,10 +186,10 @@ class MigrationManager:
             migration_file = self.migrations_dir / f"v{version.replace('.', '_')}.py"
             
             if not migration_file.exists():
-                print(f"⚠️  Pas de script de rollback pour {version} (rollback automatique)")
+                print(f"[INFO] Pas de script de rollback pour {version} (rollback automatique)")
                 return True
             
-            print(f"  🔧 Exécution du rollback {migration_file.name}")
+            print(f"  [RUN] Exécution du rollback {migration_file.name}")
             return True
             
         except Exception as e:
@@ -198,7 +198,7 @@ class MigrationManager:
     
     def status(self):
         """Affiche le statut des migrations"""
-        print(f"📊 Statut des migrations")
+        print(f"[STATUS] Statut des migrations")
         print(f"  Version actuelle: {self.current_version}")
         print(f"  Version disponible: {VERSION}")
         
@@ -209,9 +209,9 @@ class MigrationManager:
                 print(f"  Statut: {state.get('status')}")
         
         if requires_migration(self.current_version, VERSION):
-            print(f"\n⚠️  Migration requise vers {VERSION}")
+            print(f"\n[WARNING] Migration requise vers {VERSION}")
         else:
-            print(f"\n✅ Système à jour")
+            print(f"\n[OK] Système à jour")
 
 
 def main():
@@ -231,7 +231,7 @@ def main():
         manager.upgrade(args.version)
     elif args.command == "downgrade":
         if not args.version:
-            print("❌ --version requis pour downgrade")
+            print("[ERROR] --version requis pour downgrade")
             return
         manager.downgrade(args.version)
     elif args.command == "status":

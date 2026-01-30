@@ -548,17 +548,17 @@ with col5:
 st.markdown("---")
 
 # Sidebar: Navigation
-st.sidebar.title(" Navigation")
+st.sidebar.title("Navigation")
 section = st.sidebar.radio(
     "Choisir une section:",
-    [" Vue d'Ensemble", " Normalisation des Risques"],
+    ["Vue d'Ensemble", "Normalisation des Risques"],
     index=0
 )
 
 st.sidebar.markdown("---")
 
 # Sidebar: Version Info
-with st.sidebar.expander("ℹ️ Informations", expanded=False):
+with st.sidebar.expander("Informations", expanded=False):
     st.markdown(f"""
     **Version Dashboard:** `{DASHBOARD_VERSION}`  
     **Build Date:** `{DASHBOARD_BUILD_DATE}`  
@@ -572,7 +572,7 @@ with st.sidebar.expander("ℹ️ Informations", expanded=False):
 st.sidebar.markdown("---")
 
 # Sidebar: Filtres
-st.sidebar.title(" Filtres Avancés")
+st.sidebar.title("Filtres Avancés")
 st.sidebar.markdown("---")
 
 with st.sidebar:
