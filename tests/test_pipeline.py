@@ -17,18 +17,18 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 # IMPORTS - Modules d'analyse
 # ============================================================================
 
-from analyses.data_cleaning import clean_all_data, get_data_quality_report
-from analyses.statistical_analysis import (
+from ..src.analyses.data_cleaning import clean_all_data, get_data_quality_report
+from ..src.analyses.statistical_analysis import (
     correlation_analysis, 
     descriptive_statistics,
     chi2_test
 )
-from analyses.dimensionality_reduction import (
+from ..src.analyses.dimensionality_reduction import (
     pca_analysis,
     kmeans_clustering,
     elbow_curve
 )
-from analyses.machine_learning import (
+from ..src.analyses.machine_learning import (
     train_random_forest_classifier,
     feature_selection
 )
