@@ -3,8 +3,37 @@
 **Plateforme complète d'analyse des accidents routiers en France**  
 Production-ready avec API FastAPI déployée sur Render, notebooks Jupyter professionnels et pipeline ETL automatisé
 
-🌐 **API en production**: https://projetetudeaccidentfrance.onrender.com  
-📚 **Documentation interactive**: https://projetetudeaccidentfrance.onrender.com/docs
+---
+
+## 🌐 Liens Production
+
+| Service | URL Production | Description |
+|---------|----------------|-------------|
+| **🔷 API REST** | [projetetudeaccidentfrance.onrender.com](https://projetetudeaccidentfrance.onrender.com) | API FastAPI principale |
+| **📖 Documentation API** | [/docs](https://projetetudeaccidentfrance.onrender.com/docs) | Interface Swagger interactive |
+| **📊 Dashboard Streamlit** | [projetetudeaccidentfrance-dashboard.onrender.com](https://projetetudeaccidentfrance-dashboard.onrender.com) | Visualisations interactives |
+
+## 💻 URLs Locales (Développement)
+
+| Service | URL Locale | Commande de démarrage |
+|---------|------------|----------------------|
+| **API FastAPI** | http://localhost:8000 | `uvicorn src.api.main:app --reload` |
+| **Docs API** | http://localhost:8000/docs | (auto avec API) |
+| **Dashboard Streamlit** | http://localhost:8501 | `streamlit run streamlit_app.py` |
+
+## 🐳 Déploiement Docker
+
+```bash
+# Construire l'image
+docker build -t accidents-api .
+
+# Lancer l'API
+docker run -p 8000:8000 \
+  -e DATABASE_URL=postgresql://user:pass@host:5432/db \
+  accidents-api
+
+# Accessible sur http://localhost:8000
+```
 
 ---
 
@@ -94,9 +123,10 @@ python src/database/load_postgresql.py
 # 5. Lancer l'API
 uvicorn src.api.main:app --reload
 # API disponible sur http://localhost:8000
+# Documentation sur http://localhost:8000/docs
 
-# 6. Lancer le dashboard (optionnel)
-streamlit run dashboard/streamlit_app.py
+# 6. Lancer le dashboard Streamlit
+streamlit run streamlit_app.py
 # Dashboard sur http://localhost:8501
 
 # 7. Lancer Jupyter (optionnel)
@@ -105,9 +135,15 @@ jupyter notebook notebooks/
 
 ### Production sur Render
 
-🌐 **API déployée en production**: https://projetetudeaccidentfrance.onrender.com
+**Services déployés:**
 
-**Endpoints disponibles:**
+| Service | URL | Type |
+|---------|-----|------|
+| API REST | https://projetetudeaccidentfrance.onrender.com | FastAPI |
+| Dashboard | https://projetetudeaccidentfrance-dashboard.onrender.com | Streamlit |
+| Documentation | https://projetetudeaccidentfrance.onrender.com/docs | Swagger UI |
+
+**Endpoints API disponibles:**
 - `GET /` - Informations API et liste des endpoints
 - `GET /docs` - Documentation interactive Swagger UI
 - `GET /api/v1/health` - Health check
@@ -116,10 +152,17 @@ jupyter notebook notebooks/
 - `GET /api/v1/stats/communes` - Statistiques par commune
 - `GET /api/v1/heatmap` - Données pour carte de chaleur
 
-**Configuration Render:**
+**Configuration Render (API):**
 - Branch: `main`
 - Build: `pip install -r requirements.txt`
 - Start: `uvicorn src.api.main:app --host 0.0.0.0 --port $PORT`
+- Python: 3.13.4
+- Auto-deploy: Activé sur push GitHub
+
+**Configuration Render (Dashboard):**
+- Branch: `main`
+- Build: `pip install -r requirements-streamlit.txt`
+- Start: `streamlit run streamlit_app.py --server.port=$PORT --server.address=0.0.0.0 --server.headless=true`
 - Python: 3.13.4
 - Auto-deploy: Activé sur push GitHub
 
@@ -627,9 +670,14 @@ python -m ipykernel install --user --name=venv
 - **🐛 Problèmes & Bugs** : [GitHub Issues](https://github.com/Gouesse05/projetetudeaccidentfrance/issues)
 - **💡 Nouvelles Fonctionnalités** : [GitHub Discussions](https://github.com/Gouesse05/projetetudeaccidentfrance/discussions)
 - **📖 Documentation** : Dossier `/docs` du repository
-- **📊 API Live** : [https://projetetudeaccidentfrance.onrender.com/docs](https://projetetudeaccidentfrance.onrender.com/docs)
-- **🌐 API Root** : [https://projetetudeaccidentfrance.onrender.com](https://projetetudeaccidentfrance.onrender.com)
-- **👨‍💻 Développeur** : Voir [CV_GOUESSE_GO.md](CV_GOUESSE_GO.md)
+
+**Liens Production:**
+- **🔷 API REST** : [https://projetetudeaccidentfrance.onrender.com](https://projetetudeaccidentfrance.onrender.com)
+- **📖 Documentation API** : [https://projetetudeaccidentfrance.onrender.com/docs](https://projetetudeaccidentfrance.onrender.com/docs)
+- **📊 Dashboard Streamlit** : [https://projetetudeaccidentfrance-dashboard.onrender.com](https://projetetudeaccidentfrance-dashboard.onrender.com)
+
+**Développeur:**
+- 👨‍💻 Voir [CV_GOUESSE_GO.md](CV_GOUESSE_GO.md)
 
 ---
 
