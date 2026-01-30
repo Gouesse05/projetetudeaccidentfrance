@@ -2,6 +2,7 @@
 Streamlit Dashboard - Accidents Routiers AVANCÉ
 Filtres interactifs + Démographie + Données assurance
 UX/UI Amélioré avec CSS Custom
+Version: 1.0.0
 """
 
 import streamlit as st
@@ -11,9 +12,16 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime
 
+# ============================================================================
+# VERSION
+# ============================================================================
+
+DASHBOARD_VERSION = "1.0.0"
+DASHBOARD_BUILD_DATE = "2026-01-31"
+
 # Page config
 st.set_page_config(
-    page_title="Dashboard Accidents - Advanced",
+    page_title=f"Dashboard Accidents v{DASHBOARD_VERSION}",
     page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -546,6 +554,20 @@ section = st.sidebar.radio(
     [" Vue d'Ensemble", " Normalisation des Risques"],
     index=0
 )
+
+st.sidebar.markdown("---")
+
+# Sidebar: Version Info
+with st.sidebar.expander("ℹ️ Informations", expanded=False):
+    st.markdown(f"""
+    **Version Dashboard:** `{DASHBOARD_VERSION}`  
+    **Build Date:** `{DASHBOARD_BUILD_DATE}`  
+    **API Version:** `v1`
+    
+    [Documentation](https://projetetudeaccidentfrance.onrender.com/docs) • 
+    [GitHub](https://github.com/Gouesse05/projetetudeaccidentfrance)
+    """
+    )
 
 st.sidebar.markdown("---")
 

@@ -21,6 +21,8 @@ import os
 
 from src.api.routes import router as api_router
 from src.api.analysis_endpoints import router as analysis_router
+from src.api.version_routes import router as version_router
+from src.api.version import VERSION, API_VERSION, get_version_info
 from src.config import API_HOST, API_PORT
 
 # ============================================================================
@@ -39,20 +41,21 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     """Gère le cycle de vie de l'application"""
     # Startup
-    logger.info(" Starting Accidents API v1.0.0")
+    logger.info(f" Starting Accidents API v{VERSION}")
+    logger.info(f" API Version: {API_VERSION}")
     logger.info(f" Host: {API_HOST}, Port: {API_PORT}")
     logger.info(" Documentation: http://localhost:8000/docs")
     
     yield
     
     # Shutdown
-    logger.info(" Shutting down Accidents API")
+    logger.info(f" Shutting down Accidents API v{VERSION}")
 
 
 app = FastAPI(
     title="Accidents Routiers API",
     description="API pour analyse accidents routiers corporels - Data Analyst Insurance",
-    version="1.0.0",
+    version=VERSION,
     contact={
         "name": "Data Engineering Team",
         "url": "https://github.com/Gouesse05/projetetudeaccidentfrance",
@@ -86,7 +89,7 @@ def custom_openapi() -> Dict[str, Any]:
     
     openapi_schema = get_openapi(
         title="Accidents Routiers API",
-        version="1.0.0",
+        version=VERSION,
         description="""
 #  Accidents Routiers API
 
@@ -205,6 +208,7 @@ async def general_exception_handler(request: Request, exc: Exception):
 
 app.include_router(api_router)
 app.include_router(analysis_router)
+app.include_router(version_router)
 
 
 # ============================================================================
@@ -214,10 +218,15 @@ app.include_router(analysis_router)
 @app.get("/", tags=["root"])
 async def root():
     """Page d'accueil API"""
+    version_info = get_version_info()
     return {
         "message": "Bienvenue sur Accidents Routiers API",
-        "version": "1.0.0",
+        "version": VERSION,
+        "api_version": API_VERSION,
+        "build_date": version_info["build_date"],
+        "status": version_info["status"],
         "docs": "http://localhost:8000/docs",
+        "version_endpoint": "/api/v1/version",
         "endpoints": [
             "/api/v1/health",
             "/api/v1/accidents",
@@ -235,7 +244,8 @@ async def status():
         "status": "operational",
         "timestamp": datetime.now().isoformat(),
         "environment": os.getenv("ENV", "production"),
-        "version": "1.0.0"
+        "version": VERSION,
+        "api_version": API_VERSION
     }
 
 
