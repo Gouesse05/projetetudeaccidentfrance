@@ -555,3 +555,4 @@ GRANT UPDATE ON accidents_schema.* TO app_user;
 - `docs/DATABASE_SCHEMA.md` (CE FICHIER) - Documentation
 
 **Total Phase 3: 1,700+ lignes de code + documentation**
+

@@ -348,3 +348,4 @@ def generate_smart_accident_data():
     df = pd.DataFrame({
         'date': dates,
         'heure': np.random.randint(0, 24, n_records),
+

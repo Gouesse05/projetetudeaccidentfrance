@@ -311,3 +311,4 @@ def elbow_curve(df: pd.DataFrame, numerical_cols: list = None, max_clusters: int
         'n_clusters': list(range(1, max_clusters + 1)),
         'inertias': inertias
     }
+

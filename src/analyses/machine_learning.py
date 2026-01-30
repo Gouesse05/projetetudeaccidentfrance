@@ -281,3 +281,4 @@ def feature_selection(df: pd.DataFrame, feature_cols: list, target_col: str) -> 
         'top_features': [col for col, _ in importances[:10]],
         'feature_count': len(feature_cols)
     }
+

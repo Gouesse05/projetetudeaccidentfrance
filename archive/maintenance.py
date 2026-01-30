@@ -216,3 +216,4 @@ report = BashOperator(
 
 if __name__ == "__main__":
     print("DAG 'accidents_maintenance' définie!")
+

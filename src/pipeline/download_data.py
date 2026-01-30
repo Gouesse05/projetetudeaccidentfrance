@@ -349,3 +349,4 @@ if __name__ == "__main__":
     # Code de sortie
     all_success = all(r.get("success") for r in results.values())
     exit(0 if all_success else 1)
+

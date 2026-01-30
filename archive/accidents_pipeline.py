@@ -235,3 +235,4 @@ if __name__ == "__main__":
     print("DAG 'accidents_etl_pipeline' définie avec succès!")
     print("Utilise: airflow dags list")
     print("Ou: airflow dags test accidents_etl_pipeline 2024-01-01")
+

@@ -210,3 +210,4 @@ ORDER BY COUNT(*) DESC LIMIT 1;
 **Last Updated**: January 2026  
 **Database Version**: PostgreSQL 12+  
 **Test Data**: French Road Accident Database (2021-2024)
+

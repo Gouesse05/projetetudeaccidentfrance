@@ -183,3 +183,4 @@ def validate_config():
         print(f"  URLs à mettre à jour: {missing_urls}")
         return False
     return True
+

@@ -31,3 +31,4 @@ CLEAN_DATA_DIR = os.path.join(BASE_DIR, "data", "clean")
 # Créer les répertoires s'ils n'existent pas
 os.makedirs(RAW_DATA_DIR, exist_ok=True)
 os.makedirs(CLEAN_DATA_DIR, exist_ok=True)
+

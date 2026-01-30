@@ -230,3 +230,4 @@ def descriptive_statistics(df: pd.DataFrame, numerical_cols: list = None) -> Dic
             }
     
     return stats_dict
+

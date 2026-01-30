@@ -310,3 +310,4 @@ print("\n" + "="*80)
 print(" Analyses complétées!")
 print("="*80)
 print(f"Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+

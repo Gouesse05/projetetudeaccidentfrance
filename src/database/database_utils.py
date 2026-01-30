@@ -508,3 +508,4 @@ if __name__ == '__main__':
     print(db.get_danger_scores(limit=10).to_string())
     
     db.close_pool()
+

@@ -162,3 +162,4 @@ uvicorn main:app --host localhost --port 8000
 **Last Updated:** January 2026  
 **Python Version:** 3.12+  
 **Tested with:** FastAPI 0.104.1, Pandas 1.5.3, Plotly 5.18.0
+
