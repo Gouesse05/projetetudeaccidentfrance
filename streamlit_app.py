@@ -539,6 +539,16 @@ with col5:
 
 st.markdown("---")
 
+# Sidebar: Navigation
+st.sidebar.title(" Navigation")
+section = st.sidebar.radio(
+    "Choisir une section:",
+    [" Vue d'Ensemble", " Normalisation des Risques"],
+    index=0
+)
+
+st.sidebar.markdown("---")
+
 # Sidebar: Filtres
 st.sidebar.title(" Filtres Avancés")
 st.sidebar.markdown("---")
@@ -1083,6 +1093,190 @@ st.markdown("""
 <div class="footer-text">
     <strong> Dashboard Accidents Routiers - Advanced Edition</strong><br>
     Analyse complète • Démographie • Assurance • Intelligence Artificielle<br>
+    <small>Phase 5 Production Ready | UX/UI Enhanced | 85% Test Coverage</small>
+</div>
+""", unsafe_allow_html=True)
+
+# ============================================================================
+# 📊 SECTION 7: ANALYSE RISK NORMALIZATION (NOTEBOOK 05)
+# ============================================================================
+elif section == " Normalisation des Risques":
+    st.header(" Normalisation des Risques par Population")
+    st.markdown("""
+    **Objectif**: Comparer les accidents réels avec l'exposition au risque (population, km parcourus).
+    
+    Cette analyse révèle quels groupes d'âge sont **réellement** surreprésentés après normalisation 
+    par la population et l'usage du véhicule.
+    """)
+    
+    # Données de référence INSEE/ONISR (estimations 2023-2024)
+    population_ref = {
+        'Tranche Âge': ['18-24', '25-34', '35-44', '45-54', '55-64', '65-74', '75+'],
+        'Population': [5_200_000, 8_100_000, 8_400_000, 8_800_000, 8_200_000, 6_000_000, 4_500_000],
+        'Taux Permis': [0.72, 0.88, 0.90, 0.90, 0.88, 0.85, 0.78],
+        'KM/an Moyen': [8_000, 13_000, 15_000, 14_000, 12_000, 9_000, 6_000],
+        'Fréq. Usage': [0.65, 0.85, 0.90, 0.90, 0.85, 0.75, 0.60]
+    }
+    
+    df_pop = pd.DataFrame(population_ref)
+    df_pop['Conducteurs Actifs'] = (df_pop['Population'] * df_pop['Taux Permis'] * df_pop['Fréq. Usage']).astype(int)
+    df_pop['KM Totaux'] = (df_pop['Conducteurs Actifs'] * df_pop['KM/an Moyen']).astype(int)
+    
+    # Mapper les tranches d'âge du dataset
+    def map_age_tranche(age):
+        if age < 25: return '18-24'
+        elif age < 35: return '25-34'
+        elif age < 45: return '35-44'
+        elif age < 55: return '45-54'
+        elif age < 65: return '55-64'
+        elif age < 75: return '65-74'
+        else: return '75+'
+    
+    df_filtered['tranche_age'] = df_filtered['age'].apply(map_age_tranche)
+    
+    # Compter les accidents par tranche
+    accidents_par_age = df_filtered.groupby('tranche_age', observed=True).size().reset_index(name='Accidents Bruts')
+    
+    # Fusionner avec données de population
+    df_analyse = pd.merge(
+        accidents_par_age,
+        df_pop[['Tranche Âge', 'Population', 'Conducteurs Actifs', 'KM Totaux']],
+        left_on='tranche_age',
+        right_on='Tranche Âge',
+        how='left'
+    )
+    
+    # Calculs de normalisation
+    df_analyse['Accidents / 100k hab'] = (df_analyse['Accidents Bruts'] / df_analyse['Population'] * 100_000).round(2)
+    df_analyse['Accidents / 100k conducteurs'] = (df_analyse['Accidents Bruts'] / df_analyse['Conducteurs Actifs'] * 100_000).round(2)
+    df_analyse['Accidents / Million KM'] = (df_analyse['Accidents Bruts'] / df_analyse['KM Totaux'] * 1_000_000).round(2)
+    
+    # Calcul du risque relatif (par rapport à la moyenne)
+    moyenne_acc_100k = df_analyse['Accidents / 100k conducteurs'].mean()
+    df_analyse['Risque Relatif'] = (df_analyse['Accidents / 100k conducteurs'] / moyenne_acc_100k).round(2)
+    
+    # Affichage
+    st.subheader("📊 Données de Référence (INSEE/ONISR)")
+    
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("Population Totale 18+", f"{df_pop['Population'].sum():,}")
+    with col2:
+        st.metric("Conducteurs Actifs", f"{df_pop['Conducteurs Actifs'].sum():,}")
+    with col3:
+        st.metric("KM Totaux/an", f"{(df_pop['KM Totaux'].sum() / 1_000_000_000):.1f} Mds")
+    
+    with st.expander("📋 Voir les détails par tranche d'âge"):
+        st.dataframe(df_pop.style.format({
+            'Population': '{:,.0f}',
+            'Taux Permis': '{:.0%}',
+            'KM/an Moyen': '{:,.0f}',
+            'Fréq. Usage': '{:.0%}',
+            'Conducteurs Actifs': '{:,.0f}',
+            'KM Totaux': '{:,.0f}'
+        }), width="stretch")
+    
+    st.markdown("---")
+    st.subheader("🔍 Analyse Normalisée par Âge")
+    
+    # Graphiques comparatifs
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        fig = px.bar(df_analyse, x='tranche_age', y='Accidents Bruts',
+                     title='Accidents Bruts (Non Normalisés)',
+                     labels={'tranche_age': 'Tranche d\'âge', 'Accidents Bruts': 'Nombre d\'accidents'},
+                     color='Accidents Bruts', color_continuous_scale='Reds')
+        st.plotly_chart(fig, width="stretch")
+    
+    with col2:
+        fig = px.bar(df_analyse, x='tranche_age', y='Accidents / 100k conducteurs',
+                     title='Accidents Normalisés (/ 100k Conducteurs)',
+                     labels={'tranche_age': 'Tranche d\'âge', 'Accidents / 100k conducteurs': 'Accidents / 100k'},
+                     color='Accidents / 100k conducteurs', color_continuous_scale='Oranges')
+        st.plotly_chart(fig, width="stretch")
+    
+    st.markdown("---")
+    st.subheader("⚠️ Risque Relatif par Tranche d'Âge")
+    
+    # Graphique risque relatif
+    fig = px.bar(df_analyse, x='tranche_age', y='Risque Relatif',
+                 title='Risque Relatif (1.0 = Moyenne Nationale)',
+                 labels={'tranche_age': 'Tranche d\'âge', 'Risque Relatif': 'Risque Relatif'},
+                 color='Risque Relatif',
+                 color_continuous_scale=['green', 'yellow', 'orange', 'red'],
+                 text='Risque Relatif')
+    fig.update_traces(texttemplate='%{text:.2f}x', textposition='outside')
+    fig.add_hline(y=1.0, line_dash="dash", line_color="blue", 
+                  annotation_text="Moyenne Nationale", annotation_position="right")
+    st.plotly_chart(fig, width="stretch")
+    
+    # Tableau détaillé
+    st.markdown("---")
+    st.subheader("📊 Tableau Comparatif Complet")
+    
+    # Identifier les groupes à risque
+    df_analyse['Statut'] = df_analyse['Risque Relatif'].apply(
+        lambda x: '[ÉLEVÉ]' if x > 1.3 else '[MODÉRÉ]' if x > 0.8 else '[FAIBLE]'
+    )
+    
+    st.dataframe(
+        df_analyse[[
+            'tranche_age', 'Accidents Bruts', 'Population', 'Conducteurs Actifs',
+            'Accidents / 100k conducteurs', 'Accidents / Million KM', 'Risque Relatif', 'Statut'
+        ]].style.format({
+            'Accidents Bruts': '{:,.0f}',
+            'Population': '{:,.0f}',
+            'Conducteurs Actifs': '{:,.0f}',
+            'Accidents / 100k conducteurs': '{:.2f}',
+            'Accidents / Million KM': '{:.2f}',
+            'Risque Relatif': '{:.2f}x'
+        }).background_gradient(subset=['Risque Relatif'], cmap='RdYlGn_r'),
+        width="stretch"
+    )
+    
+    # Insights clés
+    st.markdown("---")
+    st.subheader("💡 Insights Clés")
+    
+    max_risque_idx = df_analyse['Risque Relatif'].idxmax()
+    min_risque_idx = df_analyse['Risque Relatif'].idxmin()
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.error(f"""
+        **🔴 Groupe à Risque Élevé**
+        
+        - **{df_analyse.loc[max_risque_idx, 'tranche_age']}**
+        - Risque: **{df_analyse.loc[max_risque_idx, 'Risque Relatif']:.2f}x** la moyenne
+        - {df_analyse.loc[max_risque_idx, 'Accidents Bruts']:.0f} accidents pour {df_analyse.loc[max_risque_idx, 'Conducteurs Actifs']:,.0f} conducteurs
+        """)
+    
+    with col2:
+        st.success(f"""
+        **🟢 Groupe à Risque Faible**
+        
+        - **{df_analyse.loc[min_risque_idx, 'tranche_age']}**
+        - Risque: **{df_analyse.loc[min_risque_idx, 'Risque Relatif']:.2f}x** la moyenne
+        - {df_analyse.loc[min_risque_idx, 'Accidents Bruts']:.0f} accidents pour {df_analyse.loc[min_risque_idx, 'Conducteurs Actifs']:,.0f} conducteurs
+        """)
+    
+    st.info("""
+    **📌 Méthodologie**:
+    - **Source Population**: Estimations INSEE 2023-2024
+    - **Taux de Permis**: Enquêtes ONISR (Observatoire National Interministériel de la Sécurité Routière)
+    - **KM Parcourus**: Moyennes académiques par tranche d'âge
+    - **Risque Relatif**: Ratio (accidents/100k conducteurs) / moyenne nationale
+    
+    Un risque relatif de 1.5x signifie que ce groupe a 50% plus d'accidents que la moyenne après normalisation.
+    """)
+
+st.markdown("---")
+st.markdown("""
+<div class="footer-text">
+    <strong> Dashboard Accidents Routiers - Advanced Edition</strong><br>
+    Analyse complète • Démographie • Assurance • Intelligence Artificielle • Normalisation Risques<br>
     <small>Phase 5 Production Ready | UX/UI Enhanced | 85% Test Coverage</small>
 </div>
 """, unsafe_allow_html=True)
